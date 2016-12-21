@@ -6,32 +6,43 @@ semantic.home.ready = function() {
   var
     $themeDropdown = $('.theme.dropdown'),
     $header        = $('.masthead'),
-    $ui            = $header.find('h1 b'),
-    $phrase        = $header.find('h1 span'),
+    $ui            = $header.find('h1 u b'),
     $download      = $header.find('.download'),
     $library       = $header.find('.library'),
     $cursor        = $header.find('.typed-cursor'),
     $version       = $header.find('.version'),
+    $go_down       = $header.find('.go_down'),
     $themeButton   = $('.theming .source.button'),
     $themeGrid     = $('.theming .source.grid'),
-
     handler
   ;
 
   handler = {
-    getRandomInt: function(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
+
     introduction: function() {
-      var
-        background = 'bg' + handler.getRandomInt(1, 14)
-      ;
-      // zoom out
       $header
-        .addClass(background)
         .removeClass('zoomed')
       ;
+      $ui.typed({
+        strings         : [
+          "a programmer." , "a chess player." , "lorom ipsum dolor sit amet"
+        ],
+        showCursor      : true,
+        typeSpeed       : 50,
+        backSpeed       : 50,
+        backDelay       : 50,
+        loop: true
+      });
+      $cursor
+        .transition('set looping')
+        .transition('pulse', '1000ms')
+      ;
+      $go_down
+        .transition('set looping')  
+        .transition('bounce','3000ms')
+      ;
     },
+
     changeLogo: function() {
       var
         $logo = $('.following .logo'),
