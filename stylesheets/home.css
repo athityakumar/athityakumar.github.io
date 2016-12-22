@@ -772,7 +772,7 @@ body .scrollToTop{
   font-weight: bold;
   text-decoration: none;
   position:fixed;
-  bottom:25px;
-  right:25px;
+  bottom:10px;
+  right:10px;
   color: blue;
 } 
