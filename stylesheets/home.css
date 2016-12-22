@@ -760,3 +760,7 @@
   }
 }
 
+.ui .label
+{
+  margin: 2px;
+}

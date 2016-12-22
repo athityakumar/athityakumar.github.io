@@ -11,7 +11,8 @@ semantic.home.ready = function() {
     $library       = $header.find('.library'),
     $cursor        = $header.find('.typed-cursor'),
     $version       = $header.find('.version'),
-    $go_down       = $header.find('.go_down'),
+    $go            = $('#go'),
+    $fakeload      = $('.fakeload'),
     $themeButton   = $('.theming .source.button'),
     $themeGrid     = $('.theming .source.grid'),
     handler
@@ -20,9 +21,8 @@ semantic.home.ready = function() {
   handler = {
 
     introduction: function() {
-      $header
-        .removeClass('zoomed')
-      ;
+      $header.removeClass('zoomed');
+      // $header.transition('scale').transition('fly down','200ms');
       $ui.typed({
         strings         : [
           "a programmer." , "a chess player." , "lorom ipsum dolor sit amet"
@@ -31,15 +31,67 @@ semantic.home.ready = function() {
         typeSpeed       : 50,
         backSpeed       : 50,
         backDelay       : 50,
+        frontDelay      : 1000,
         loop: true
       });
       $cursor
         .transition('set looping')
         .transition('pulse', '1000ms')
       ;
-      $go_down
-        .transition('set looping')  
-        .transition('bounce','3000ms')
+      // $go.transition('fly').transition('fly down','200ms');
+      // $('.card')
+      //   .transition({
+      //       animation : 'bounce',
+      //       duration  : 800,
+      //       interval  : 200
+      //     })
+      // ;
+      // $fakeload.each(function() { 
+      //   var text = $(this).html()
+      //   $(this).html('<div class="ui active dimmer"><div class="ui indeterminate text loader">Quickly loading the resources.</div></div>')
+      //   setTimeout(function() {
+      //     $(this).html(text);
+      //   },200);
+      // })
+      $('img')
+        .visibility({
+          type       : 'image',
+          transition : 'fade in',
+          duration   : 1000
+        })
+      ;
+      $('.ui.form')
+        .form({
+          fields: {
+            name: {
+              identifier: 'name',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your name.'
+                }
+              ]
+            },
+            form_message: {
+              identifier: 'form_message',
+              rules: [
+                {
+                  type   : 'minLength[10]',
+                  prompt : 'Please type a longer message.'
+                }
+              ]
+            },
+            email: {
+              identifier: 'email',
+              rules: [
+                {
+                  type   : 'email',
+                  prompt : 'Please type a valid email.'
+                }
+              ]
+            }
+          }
+        })
       ;
     },
 
