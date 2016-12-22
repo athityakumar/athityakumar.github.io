@@ -2,9 +2,9 @@
 
 # Input
 # -----
-# A -> data/metadata.json
-# B -> data/config.json
-# C -> data/posts/*.json
+# A -> config/data/metadata.json
+# B -> config/data/config.json
+# C -> config/data/posts/*.json
 
 # Output
 # ------
