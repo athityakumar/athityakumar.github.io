@@ -110,6 +110,9 @@
       <a href="#go" class="ui labeled primary icon button">
         <i class="angle double down large icon"></i> About Me
       </a>
+      <a href="resume.html" class="ui labeled primary icon button">
+        <i class="file pdf outline large icon"></i> View My Resume
+      </a>
     </div>
     <div class="inverted advertisement">
       
@@ -277,7 +280,8 @@
 
   </div>
 
-  
+  <a href="#" class="scrollToTop"><span class="ui primary icon button"><b><i class="angle double up icon"></i></b></span></a>
+
   <script>
   (function () {
     var
@@ -346,6 +350,22 @@ $(function() {
       }
     }
   });
+
+
+$('.scrollToTop').fadeOut();
+$(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+      $('.scrollToTop').fadeIn();
+    } else {
+      $('.scrollToTop').fadeOut();
+    }
+  });
+  
+  //Click event to scroll to top
+  $('.scrollToTop').click(function(){
+    $('html, body').animate({scrollTop : 0},800);
+    return false;
+  });  
 $('.ui.dropdown').dropdown();
 // $('.fakeload').each(function(){
 //   var text = $(this).html();
