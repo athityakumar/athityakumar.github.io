@@ -73,7 +73,7 @@ semantic.home.ready = function() {
               ]
             },
             form_message: {
-              identifier: 'form_message',
+              identifier: 'message',
               rules: [
                 {
                   type   : 'minLength[10]',
