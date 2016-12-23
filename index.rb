@@ -2,14 +2,15 @@
 
 # Input
 # -----
-# A -> config/data/metadata.json
-# B -> config/data/config.json
+# A -> config/data/metadata.json (later)
+# B -> config/data/config.json (later)
 # C -> config/data/posts/*.json
+# D -> config/data/tags.json
 
 # Output
 # ------
-# index.html from 
-# blog/index.html   
+# index.html from A,B
+# blog/index.html from A,B,C,D 
 # blog/tag/*/page*/index.html
 # blog/post/*/index.html
 # blog/page*/index.html
