@@ -47,6 +47,7 @@
 
 <body id="example" class="index" ontouchstart="">
 
+ <!-- laptop display -->
 
    <div class="following bar">
   <div class="ui container">
@@ -63,13 +64,35 @@
       <div class="right menu">
                 <div class="item" style="color: white;">
              &nbsp;  <div class="ui breadcrumb">
-        <a href="../index.html" class="section"> Checkout my Blog</a>
+                <div class="my">
+       <div class="ui fluid search">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Search posts.">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div></div>
       </div>
       </div>
+      </div>
+<!--       <div class="grid">
+      <div class="four wide column">              <a href="github.com/athityakumar" target="_blank"> @athityakumar </a>
+</div>
+      <div class="twelve wide column"><div class="my fluid">
+       <div class="ui fluid search">
+        <div class="ui icon input fluid">
+          <input class="prompt" type="text" placeholder="Search countries...">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div></div>
+      </div></div> -->
       </div>
     </div>
   </div>
 </div> 
+
+<!-- Mobile display -->
 
 <div class="ui fixed inverted main menu">
   <div class="ui container">
@@ -80,7 +103,16 @@
       </div>
 <div class="right item" style="color: white;">
        &nbsp;  <div class="ui breadcrumb">
-  <a href="../index.html" class="section">Checkout my Blog</a>
+<!--   <a href="../index.html" class="section">Checkout my Blog</a>
+ -->
+   <div class="my">
+       <div class="ui right aligned search">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Search posts.">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div></div>
 </div>
 </div>
       </div>    
@@ -95,20 +127,17 @@
     <div class="introduction">
       <h1 class="ui inverted header">
         <span class="tagline">
-          Hi! I'm Athitya Kumar, 
-        </span>
-        <br>
-        <span class="tagline">
-<!--           <span class="text">My name is Athitya Kumar, and I'm </span>
- -->          <b> </b>
-          <span class="typed-cursor">|</span>
+          Blog Post Title
+  
         </span>
       </h1>
-      <div class="ui hidden divider"></div>
-      <div class="ui hidden divider"></div>
+      <h4 class="tagline">  You're here : Homepage > Blog > Page 4 > Blog Post
+        </h4>
 
+       <div class="ui hidden divider"></div>
+      <div class="ui hidden divider"></div>
       <a href="#go" class="ui labeled primary icon button">
-        <i class="angle double down large icon"></i> &nbsp; About Me
+        <i class="angle double down large icon"></i> &nbsp; Read this post
       </a>
       <!-- <a href="resume.html" class="ui labeled primary icon button">
         <i class="file pdf outline large icon"></i> View Resume
@@ -117,11 +146,17 @@
 
   </div>
 </div>
-<div id="go" class="ui vertical stripe intro segment">
+<div id="go" class="ui vertical stripe intro piled segment">
+
   <div class="ui stackable very relaxed grid container">
     <div class="row">
-      <div class="sixteen wide column">
-      <h2 class="ui horizontal divider"> < ABOUT ME /></h2>
+      <div class="sixteen wide column center aligned">
+      <div class="ui hidden divider"></div>
+      <h2 class="ui title"> BLOG POST TITLE VERY LARGE</h2>
+      <p class="ui description">Posted on 28th Nov, 2031 by The Vibe.</p>
+      <p> <a class="ui tag label">New</a>
+<a class="ui red tag label">Upcoming</a>
+<a class="ui teal tag label">Featured</a></p>
         <!-- <img class="ui fluid image" src="images/devices.png">
         <h1 class="ui header">Design Beautiful Websites Quicker</h1>
         <p>Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.</p>
@@ -136,7 +171,7 @@
    <a class="ui left corner label">
         <i class="yellow star icon"></i>
       </a>
-    <img data-src="assets/images/avatar2/large/patrick.png" src="assets/images/wireframe/square-image.png">
+    <img data-src="assets/images/avatar2/large/patrick.png" src="images/wireframe/square-image.png">
 <!--     <img data-src="images/dp2.png" src="images/wireframe/square-image.png">
  -->  </div>
   <div class="content">
@@ -280,11 +315,37 @@
 
 
 
-
-
-
 </div>
     </div>
+
+
+
+
+  <div class="ui stackable very relaxed grid container">
+    <div class="row">
+      <div class="sixteen wide column center aligned">
+
+        <a href="#go" class="ui labeled primary icon left floated button">
+        <i class="angle double left large icon"></i> &nbsp; Previous post
+      </a>
+      <a href="#go" class="ui right labeled primary icon right floated button">
+         Next post &nbsp; <i class="angle double right large icon"></i>
+      </a>
+
+        <!-- <img class="ui fluid image" src="images/devices.png">
+        <h1 class="ui header">Design Beautiful Websites Quicker</h1>
+        <p>Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.</p>
+       --></div>
+    </div>
+  </div>
+  <div class="ui stackable very relaxed grid container">
+    <div class="row">
+      <div class="sixteen wide column center aligned">
+  <div id="disqus_thread"></div>
+</div></div></div>
+
+
+
 </div>
 </div>
     <div class="ui black inverted vertical footer segment">
@@ -335,7 +396,7 @@
   <script src="assets/javascript/library/easing.min.js"></script>
   
 
-<script src="assets/dist/semantic.min.js"></script>
+<script src="assets/dist/semantic.js"></script>
 
 
   <script src="assets/javascript/docs.js"></script>
@@ -343,7 +404,7 @@
  -->  
 <script src="assets/javascript/typing.min.js"></script>
  <script src="assets/javascript/home.js"></script>
-
+<script src="assets/javascript/search.js"></script>
 
   <script>
 window.less = {
@@ -413,7 +474,24 @@ $('.masthead h1 b').typed({
 
 </script>
         <script src="assets/javascript/visibility.js"></script>
+<script>
 
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://athityakumar.github.io/blogdisqus/post1.html";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "1"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://athityakumar-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
 </body>
 
 

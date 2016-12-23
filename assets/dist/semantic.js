@@ -14409,11 +14409,11 @@ $.fn.search.settings = {
           //     + '</div>'
           //   ;
           // }
-          html += '<div class="image"><img src="https://assets-cdn.github.com/favicon.ico" height="40"></div>';
+          // html += '<div class="image"><img src="https://assets-cdn.github.com/favicon.ico" height="40"></div>';
           html += '<div class="content">';
           html += '<div class="title">' + result[fields.title] + '</div>';
-          html += '<div class="description">' + result[fields.categoryName] + '</div>';
-          html += '<div class="price"> Rs 35 </div>';
+          // html += '<div class="description">' + result[fields.categoryName] + '</div>';
+          // html += '<div class="ui label"> BLOGPOST </div>';
           // if(result[fields.price] !== undefined) {
           //   html += '<div class="price">' + result[fields.price] + '</div>';
           // }

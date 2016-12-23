@@ -23,17 +23,17 @@ semantic.home.ready = function() {
     introduction: function() {
       $header.removeClass('zoomed');
       // $header.transition('scale').transition('fly down','200ms');
-      $ui.typed({
-        strings         : [
-          "a programmer." , "a chess player." , "lorom ipsum dolor sit amet"
-        ],
-        showCursor      : true,
-        typeSpeed       : 50,
-        backSpeed       : 50,
-        backDelay       : 50,
-        frontDelay      : 1000,
-        loop: true
-      });
+      // $ui.typed({
+      //   strings         : [
+      //     "a programmer." , "a chess player." , "lorom ipsum dolor sit amet"
+      //   ],
+      //   showCursor      : true,
+      //   typeSpeed       : 50,
+      //   backSpeed       : 50,
+      //   backDelay       : 50,
+      //   frontDelay      : 1000,
+      //   loop: true
+      // });
       $cursor
         .transition('set looping')
         .transition('pulse', '1000ms')

@@ -5,7 +5,7 @@ semantic.search.ready = function() {
 
   // selector cache
   var
-    $local    = $('.local .ui.search'),
+    $local    = $('.my .ui.search'),
     $external = $('.external.example .ui.search'),
     $mapping  = $('.mapping .ui.search'),
     $standard = $('.standard .ui.search'),
@@ -17,7 +17,7 @@ semantic.search.ready = function() {
   ;
 
   content = [
-    { name: 'Ak47' , url: "http://github.com",  title: 'Andorra' },
+    { name: 'Ak47' , url: "http://github.com",  title: 'Andorra aksudh asdjgasd asydgasjdbuasd adyutasbd' },
     { name: 'Ak47' , url: "http://github.com",  title: 'United Arab Emirates' },
     { name: 'Ak47' , url: "http://github.com",  title: 'Afghanistan' },
     { name: 'Ak47' , url: "http://github.com",  title: 'Antigua' },
