@@ -101,17 +101,6 @@ semantic.ready = function() {
   // event handlers
   handler = {
 
-    getMetadata: function() {
-      $.api({
-        debug : false,
-        on    : 'now',
-        url   : '/metadata.json',
-        cache : 'local',
-        onSuccess: function(response) {
-          metadata = response;
-        }
-      });
-    },
 
     createIcon: function() {
       $example
