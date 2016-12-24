@@ -1,10 +1,9 @@
 [
     {
         "datetime_index" : "",
-        "datetime_real" : "",
         "title" : "",
         "short_desc" : "",
         "tags" : [],
-        "html_content" : "",
+        "html_content" : ""
     }
 ]
