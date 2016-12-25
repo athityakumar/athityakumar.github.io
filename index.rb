@@ -13,7 +13,6 @@
 # blog/tag/*/page*/index.html for every D[1], for every C[5]. from A,B,C,D
 # blog/post/*/index.html for every C[1]. from A,B,C,D
 # blog/page*/index.html for every C[5]. from A,B,C,D
-# javascript/search.js for local search updation. from C.
 
 # Templates
 # ---------

@@ -389,8 +389,26 @@
  -->  
 <script src="assets/javascript/typing.min.js"></script>
  <script src="assets/javascript/home.js"></script>
-<script src="assets/javascript/search.js"></script>
+<script>
+  var post_content = [
+    { url: "http://github.com",  post_title: 'The Covariance Confusion' },
+    { url: "http://github.com",  post_title: 'Hello World' },
+    { url: "http://github.com",  post_title: 'A man has no name' },
+    { url: "http://github.com",  post_title: 'Kharagpur Winter of Code 2016' }
+  ];
 
+  $('.post_search .ui.search')
+    .search({
+      searchFields: ['post_title'],
+      source: post_content,
+      maxResults: 5,
+      showNoResults: true,
+      type: "custom"
+    })
+  ;
+
+
+</script>
   <script>
 window.less = {
   async        : true,

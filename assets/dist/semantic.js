@@ -14411,7 +14411,12 @@ $.fn.search.settings = {
           // }
           // html += '<div class="image"><img src="https://assets-cdn.github.com/favicon.ico" height="40"></div>';
           html += '<div class="content">';
-          html += '<div class="title">' + result[fields.title] + '</div>';
+          if(result["post_title"]) {
+            html += '<div class="title">' + result["post_title"] + '</div>';
+          }
+          if(result["tag_title"]) {
+            html += '<div class="title"><span class="ui '+result["color"]+' tag label">' + result["tag_title"] + '</span></div>';
+          }
           // html += '<div class="description">' + result[fields.categoryName] + '</div>';
           // html += '<div class="ui label"> BLOGPOST </div>';
           // if(result[fields.price] !== undefined) {
