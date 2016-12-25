@@ -16,10 +16,10 @@
 
 # Templates
 # ---------
-# index.html.erb > DONE
-# blog_page.html.erb  > DONE
-# blog_post.html.erb > DONE
-# tag_page.html.erb > DONE
+# index.html.erb > 
+# blog_page.html.erb  > 
+# blog_post.html.erb > 
+# tag_page.html.erb > 
 
 require 'json'
 require 'erb'
@@ -78,10 +78,14 @@ def setup_paths
     end
 end
 
-def do_pagination posts , type 
+def do_pagination posts , tag 
     # Requires template too
+    #type = "b for blog or t for rag"
     n_pages = posts.each_slice($per_page).to_a.count
     n_posts = posts.count
+    for i in (0..n_posts-1)
+        posts[i]["index"] = (i+1).to_s
+    end
     for i in (0..n_pages-1)
         posts_in_page = posts.each_slice($per_page).to_a[i]
         showing_posts = [$per_page*i+1, (($per_page*(i+1) > n_posts) ? n_posts : ($per_page*(i+1)))]
@@ -99,68 +103,27 @@ def do_pagination posts , type
             older_page_exists = false
             older_page = "NIL"
         end       
-        puts "#{type} Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
-        # series_text = (File.exists? $series_html_template) ? ERB.new(File.open($series_html_template).read, 0, '>').result(binding) : ""
-        # File.open(series_html, "w") { |file| file.write(series_text) }
 
+        if tag.length == 0
+            # html_text = (File.exists? "auto/templates/blogpage.html.erb") ? ERB.new(File.open("auto/templates/blogpage.html.erb").read, 0, '>').result(binding) : ""
+            # File.open("blog/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
+            puts "Blog Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
+        else
+            # html_text = (File.exists? "auto/templates/blogtagpage.html.erb") ? ERB.new(File.open("auto/templates/blogtagpage.html.erb").read, 0, '>').result(binding) : ""
+            # File.open("blog/tag/#{tag["name"]}/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
+            puts "Tag #{tag["name"]} Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
+        end
     end
 end
 
 def generate_blog_pages
-    # n_blog_pages = $posts.each_slice($per_page).to_a.count
-    # total_posts = $posts.count
-    # for i in (0..n_blog_pages-1)
-    #     posts_in_page = $posts.each_slice($per_page).to_a[i]
-    #     showing_posts = [$per_page*i+1, (($per_page*(i+1) > total_posts) ? total_posts : ($per_page*(i+1)))]
-    #     if i!=0
-    #         recent_page_exists = true
-    #         recent_page = i
-    #     else
-    #         recent_page_exists = false
-    #         recent_page = "NIL"
-    #     end 
-    #     if i!=n_blog_pages-1
-    #         older_page_exists = true
-    #         older_page = i+2
-    #     else
-    #         older_page_exists = false
-    #         older_page = "NIL"
-    #     end       
-    #     puts "Blog Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
-        # series_text = (File.exists? $series_html_template) ? ERB.new(File.open($series_html_template).read, 0, '>').result(binding) : ""
-        # File.open(series_html, "w") { |file| file.write(series_text) }
-
-    # end
-    do_pagination($posts,"Blog")
+    do_pagination($posts,"")
 end
 
 def generate_tags_pages
     $tags.each do |tag|
         tagged_posts = get_posts_tagged(tag)
-        # total_posts = tagged_posts.count
-        # n_tag_pages = tagged_posts.each_slice($per_page).to_a.count
-        # for i in (0..n_tag_pages-1)
-        #     posts_in_page = tagged_posts.each_slice($per_page).to_a[i]
-        #     showing_posts = [$per_page*i+1, (($per_page*(i+1) > total_posts) ? total_posts : ($per_page*(i+1)))]
-        #     if i!=0
-        #         recent_page_exists = true
-        #         recent_page = i
-        #     else
-        #         recent_page_exists = false
-        #         recent_page = "NIL"
-        #     end 
-        #     if i!=n_tag_pages-1
-        #         older_page_exists = true
-        #         older_page = i+2
-        #     else
-        #         older_page_exists = false
-        #         older_page = "NIL"
-        #     end       
-            # puts "Tag #{tag["filename"]} > Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
-            # series_text = (File.exists? $series_html_template) ? ERB.new(File.open($series_html_template).read, 0, '>').result(binding) : ""
-            # File.open(series_html, "w") { |file| file.write(series_text) }
-        # end
-        do_pagination(tagged_posts,"Tag")
+        do_pagination(tagged_posts,tag)
     end
 end
 
@@ -182,8 +145,8 @@ def generate_blog_posts
         end    
         puts "Blog Post #{$posts[i]["filename"]} - Next post is #{next_post_link}, Previous post is #{prev_post_link}."
 
-            # series_text = (File.exists? $series_html_template) ? ERB.new(File.open($series_html_template).read, 0, '>').result(binding) : ""
-            # File.open(series_html, "w") { |file| file.write(series_text) }
+        # html_text = (File.exists? "auto/templates/blogpost.html.erb") ? ERB.new(File.open("auto/templates/blogpost.html.erb").read, 0, '>').result(binding) : ""
+        # File.open("blog/posts/#{$posts[i]["filename"]}/index.html, "w") { |file| file.write(html_text) }
     end
 end
 
