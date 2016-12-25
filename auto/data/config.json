@@ -11,6 +11,9 @@
         "location" : "",
         "formspree_link" : "",
         "image_link" : "",
-        "skill_set" : []
+        "skill_set" : [],
+        "education" : [],
+        "activities" : [],
+        "open_source_projects" : []
     }
 ]
