@@ -108,7 +108,7 @@
             <p class="ui description">Posted on <%= $posts[i]["date"] %> at <%= $posts[i]["time"] %> by <a href="../../../" target="_blank">The Vibe</a>.</p>
             <p>
               <% $posts[i]["tag_data"].each do |tag| %>
-              <a href="../../tags/<%= tag["filename"] %>/" class="ui <%= tag["color"] %> tag label"> <%= tag["name"] %> </a>
+              <a href="../../tags/<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"> <%= tag["name"] %> </a>
               <% end %>
             </p>
          </div>
