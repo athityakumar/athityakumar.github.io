@@ -8,9 +8,9 @@
     <link rel="shortcut icon" type="image/jpeg" href="../../../assets/images/logo.png" />
     <!-- Site Properities -->
     <meta name="generator" content="DocPad v6.78.4" />
-    <title> Athitya Kumar | <%= $posts[i]["title"] %> </title>
-    <meta name="description" content="<%= $posts[i]["short_desc"] %>" />
-    <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,<%= $posts[i]["short_desc"].split(" ").join(",") %>" />
+    <title> Athitya Kumar | Hello </title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog," />
     <link rel="stylesheet" type="text/css" class="ui" href="../../../assets/dist/semantic.css">
   </head>
   <body id="example" class="index" ontouchstart="">
@@ -30,6 +30,7 @@
           <div class="right menu">
             <div class="item" style="color: white;">
               &nbsp;  
+              
               <div class="ui breadcrumb">
                 <div class="post_search">
                   <div class="ui fluid search">
@@ -53,12 +54,14 @@
       <div class="item" style="color: white;">
         &nbsp;  
         
+        
         <div class="ui breadcrumb">
           <a href="../index.html" class="section" style="color: white;">@athityakumar</a>
         </div>
       </div>
       <div class="right item" style="color: white;">
         &nbsp;  
+        
         
         <div class="ui breadcrumb">
           <div class="post_search">
@@ -82,8 +85,7 @@
         <div class="introduction">
           <h1 class="ui inverted header">
             <span class="tagline">
-              <%= $posts[i]["title"] %>
-  
+              Hello  
         </span>
           </h1>
           <h4 class="tagline">  You're here : <a href="../../../" target="_blank">Homepage</a> > <a href="../../page1/" target="_blank">Blog</a> > <a>This Blog Post</a>
@@ -104,42 +106,27 @@
         <div class="row">
           <div class="sixteen wide column center aligned">
             <div class="ui hidden divider"></div>
-            <h2 class="ui title"> <%= $posts[i]["title"] %></h2>
-            <p class="ui description">Posted on <%= $posts[i]["date"] %> at <%= $posts[i]["time"] %> by <a href="../../../" target="_blank">The Vibe</a>.</p>
+            <h2 class="ui title"> Hello</h2>
+            <p class="ui description">Posted on 25/12/2017 at 6:42 PM by <a href="../../../" target="_blank">The Vibe</a>.</p>
             <p>
-              <% $posts[i]["tag_data"].each do |tag| %>
-              <a href="../../tags/<%= tag["filename"] %>/" target="_blank" class="ui <%= tag["color"] %> tag label"> <%= tag["name"] %> </a>
-              <% end %>
+              <a href="../../tags/TEAM_AUV_IIT-KGP/" target="_blank" class="ui red tag label"> TEAM AUV IIT-KGP </a>
             </p>
-         </div>
+          </div>
         </div>
       </div>
       <div class='stackable very relaxed ui grid container fakeload'>
         <div class='row'>
-          <%= $posts[i]["html_content"] %>
-        </div>
+          Hello world!        </div>
       </div>
       <div class="ui stackable very relaxed grid container">
         <div class="row">
           <div class="sixteen wide column center aligned">
-            <% if prev_post_exists %>
-            <a href="../<%= prev_post_link %>/" target="_blank" class="ui labeled primary icon left floated button">
+            <a href="../new/" target="_blank" class="ui labeled primary icon left floated button">
               <i class="angle double left large icon"></i> &nbsp; Previous post
             </a>
-            <% else %>
-            <a class="ui labeled icon left floated button">
-              <i class="angle double left large icon"></i> &nbsp; Previous post
-            </a>
-            <% end %>
-            <% if next_post_exists %>
-            <a href="../<%= next_post_link %>" target="_blank" class="ui right labeled primary icon right floated button">
-              Next post &nbsp; <i class="angle double right large icon"></i>
-            </a>
-            <% else %>
             <a class="ui right labeled icon right floated button">
               Next post &nbsp; <i class="angle double right large icon"></i>
             </a>
-            <% end %>
           </div>
         </div>
       </div>
@@ -165,23 +152,18 @@
 <a href="#" class="scrollToTop"><span class="ui primary icon button"><b><i class="angle double up large icon"></i></b></span></a>
 <script>
   window.less = {
-          async        : true,
-          environment  : 'production',
-          fileAsync    : false,
-          onReady      : false,
-          useFileCache : true
-  };
-
-var post_content = [
-  <% for i in (0..$posts.count-1) %>
-    <% if i != $posts.count-1 %>  
-      { url: "../<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" },
-    <% else %>
-      { url: "../<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" }
-    <% end %>
-  <% end %>
-];
-
+            async        : true,
+            environment  : 'production',
+            fileAsync    : false,
+            onReady      : false,
+            useFileCache : true
+    };
+  
+  var post_content = [
+  
+        { url: "../post1/",  post_title: "Hello" },
+                  { url: "../new/",  post_title: "Hello2" }
+        ];
 </script>
 <script src="../../../assets/javascript/library/jquery.min.js"></script>
 <script src="../../../assets/javascript/library/highlight.min.js"></script>
@@ -194,20 +176,20 @@ var post_content = [
 <script src="../../../assets/javascript/visibility.js"></script>
 <script src="../../../assets/javascript/custom.js"></script><script>
   /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
   
-    var disqus_config = function () {
-    this.page.url = "http://athityakumar.github.io/blog/posts/<%= $posts[i]["filename"] %>/index.html";  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = "<%= $posts[i]["disqus_identifier"] %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable */
-    };
+      var disqus_config = function () {
+      this.page.url = "http://athityakumar.github.io/blog/posts/new/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "tubolfcwrmhzdaisyjngxekvpq"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      };
   
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://athityakumar-github-io.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://athityakumar-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
 </script>
 </body>
 </html>

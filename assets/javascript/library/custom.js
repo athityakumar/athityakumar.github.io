@@ -72,7 +72,48 @@ $.fn.search.settings.templates.custom = function(response, fields) {
     }
 
 
+// var post_content = [
+//   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //       
+//       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" },
+//     //   //     //       { url: "http://github.com",  post_title: "#{$posts[i]["title"]}" }
+//     //   // ];
 
+// var tag_content = [
+// { url: "http://github.com",  tag_title: 'AUV', color: 'red' },
+// { url: "http://github.com",  tag_title: 'Ruby', color: 'green' }
+// ];
 
 $('.post_search .ui.search')
 .search({

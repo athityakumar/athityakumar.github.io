@@ -26,21 +26,17 @@ require 'erb'
 require 'htmlbeautifier'
 
 def remove_dir path
-    if Dir.exists? path
-        if File.directory?(path)
-            Dir.foreach(path) do |file|
-            if ((file.to_s != ".") and (file.to_s != ".."))
-                    remove_dir("#{path}/#{file}")
-                end
+    if File.directory?(path)
+        Dir.foreach(path) do |file|
+        if ((file.to_s != ".") and (file.to_s != ".."))
+                remove_dir("#{path}/#{file}")
             end
-            Dir.delete(path)
-        else
-            File.delete(path)
         end
-        puts "Removing previous blog path : #{path}/."
+        Dir.delete(path)
     else
-        puts "#{path}/ directory to be removed, doesn't exist."
+        File.delete(path)
     end
+    puts "Removing previous blog path : #{path}/."
 end
 
 def make_dir path
@@ -108,11 +104,11 @@ def do_pagination posts , tag
         if tag.length == 0
             # html_text = HtmlBeautifier.beautify((File.exists? "auto/templates/blogpage.html.erb") ? ERB.new(File.open("auto/templates/blogpage.html.erb").read, 0, '>').result(binding) : "")
             # File.open("blog/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
-            puts "Blog Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
+            puts "Generating Blog page #{i+1}."
         else
             # html_text = HtmlBeautifier.beautify((File.exists? "auto/templates/blogtagpage.html.erb") ? ERB.new(File.open("auto/templates/blogtagpage.html.erb").read, 0, '>').result(binding) : "")
             # File.open("blog/tag/#{tag["name"]}/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
-            puts "Tag #{tag["name"]} Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
+            puts "Generating page #{i+1} of Tag #{tag["name"]}."
         end
     end
 end
@@ -129,6 +125,7 @@ def generate_tags_pages
 end
 
 def generate_blog_posts
+    tempate = "auto/templates/blogpost.html.erb"
     for i in (0..$posts.count-1)
         if i!=0
             next_post_exists = true
@@ -143,12 +140,16 @@ def generate_blog_posts
         else
             prev_post_exists = false
             prev_post_link = "NIL"
-        end    
-        puts "Blog Post #{$posts[i]["filename"]} - Next post is #{next_post_link}, Previous post is #{prev_post_link}."
-
-        # html_text = (File.exists? "auto/templates/blogpost.html.erb") ? ERB.new(File.open("auto/templates/blogpost.html.erb").read, 0, '>').result(binding) : ""
-        # File.open("blog/posts/#{$posts[i]["filename"]}/index.html, "w") { |file| file.write(html_text) }
+        end
+        post = $posts[i]    
+        html_file = "blog/posts/#{post["filename"]}/index.html"
+        puts "Generating blog post - #{post["filename"]}."
+        html_text = HtmlBeautifier.beautify((File.exists? tempate) ? ERB.new(File.open(tempate).read, 0, '>').result(binding) : "")
+        File.open(html_file, "w") { |file| file.write(html_text) }
     end
+end
+
+def generate_homepage
 end
 
 def get_random_key
@@ -192,11 +193,32 @@ def get_posts
         else
             data["time"] = data["datetime_index"][8..9] + ":" + data["datetime_index"][10..11] + " AM" 
         end
+        data["tag_data"] = []
+        $tags.each do |t|
+            if data["tags"].include? t["index"]
+                data["tag_data"].push(t)
+            end
+        end
     end
     posts = posts.sort_by { |row| row["datetime_index"].to_i }
     posts = posts.reverse
     puts "Reading and manipulating all posts from json format."
     return posts
+end
+
+def get_unused_tags 
+    $tags.each do |tag|
+        flag = 0
+        data = tag
+        $posts.each do |post|
+            if post["tags"].include? tag["index"]
+                flag = 1
+            end
+        end
+        if flag == 0
+            puts "Tag #{tag["name"]} is not used on any post, and is still there in tags.json file. Take care of it."
+        end
+    end
 end
 
 def get_tags
@@ -206,18 +228,6 @@ def get_tags
         filename = tag["name"].gsub(" ","_")
         data = tag
         data["filename"] = filename
-        flag = 0
-        $posts.each do |post|
-            if post["tags"].include? tag["index"]
-                flag = 1
-            end
-        end
-        if flag == 0
-            data["used"] = false
-            puts "Tag #{tag["name"]} is not used on any post, and is still there in tags.json file. Take care of it."
-        else
-            data["used"] = true
-        end
         list.push(data)
     end
     puts "Reading & manipulating all tags from json format."
@@ -226,10 +236,12 @@ end
 
 $per_page = 5
 unique_disqus_identifier()
-$posts = get_posts()
 $tags = get_tags()
+$posts = get_posts()
+get_unused_tags()
 remove_dir("blog")
 setup_paths()
 generate_blog_pages()
 generate_tags_pages()
 generate_blog_posts()
+# generate_homepage()
