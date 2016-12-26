@@ -14387,60 +14387,60 @@ $.fn.search.settings = {
         return html;
       }
       return false;
-    },
-    custom: function(response, fields) {
-      var
-        html = ''
-      ;
-      if(response[fields.results] !== undefined) {
-
-        // each result
-        $.each(response[fields.results], function(index, result) {
-          if(result[fields.url]) {
-            html  += '<a class="result" href="' + result[fields.url] + '">';
-          }
-          else {
-            html  += '<a class="result">';
-          }
-          // if(result[fields.image] !== undefined) {
-          //   html += ''
-          //     + '<div class="image">'
-          //     + ' <img src="' + result[fields.image] + '">'
-          //     + '</div>'
-          //   ;
-          // }
-          // html += '<div class="image"><img src="https://assets-cdn.github.com/favicon.ico" height="40"></div>';
-          html += '<div class="content">';
-          if(result["post_title"]) {
-            html += '<div class="title">' + result["post_title"] + '</div>';
-          }
-          if(result["tag_title"]) {
-            html += '<div class="title"><span class="ui '+result["color"]+' tag label">' + result["tag_title"] + '</span></div>';
-          }
-          // html += '<div class="description">' + result[fields.categoryName] + '</div>';
-          // html += '<div class="ui label"> BLOGPOST </div>';
-          // if(result[fields.price] !== undefined) {
-          //   html += '<div class="price">' + result[fields.price] + '</div>';
-          // }
-          // if(result[fields.title] !== undefined) {
-          //   html += '<div class="title">' + result[fields.title] + '</div>';
-          // }
-          // if(result[fields.description] !== undefined) {
-          //   html += '<div class="description">' + result[fields.description] + '</div>';
-          // }
-          html  += '</div></a>';
-        });
-
-        // if(response[fields.action]) {
-        //   html += ''
-        //   + '<a href="' + response[fields.action][fields.actionURL] + '" class="action">'
-        //   +   response[fields.action][fields.actionText]
-        //   + '</a>';
-        // }
-        return html;
-      }
-      return false;
     }
+    // custom: function(response, fields) {
+    //   var
+    //     html = ''
+    //   ;
+    //   if(response[fields.results] !== undefined) {
+
+    //     // each result
+    //     $.each(response[fields.results], function(index, result) {
+    //       if(result[fields.url]) {
+    //         html  += '<a class="result" href="' + result[fields.url] + '">';
+    //       }
+    //       else {
+    //         html  += '<a class="result">';
+    //       }
+    //       // if(result[fields.image] !== undefined) {
+    //       //   html += ''
+    //       //     + '<div class="image">'
+    //       //     + ' <img src="' + result[fields.image] + '">'
+    //       //     + '</div>'
+    //       //   ;
+    //       // }
+    //       // html += '<div class="image"><img src="https://assets-cdn.github.com/favicon.ico" height="40"></div>';
+    //       html += '<div class="content">';
+    //       if(result["post_title"]) {
+    //         html += '<div class="title">' + result["post_title"] + '</div>';
+    //       }
+    //       if(result["tag_title"]) {
+    //         html += '<div class="title"><span class="ui '+result["color"]+' tag label">' + result["tag_title"] + '</span></div>';
+    //       }
+    //       // html += '<div class="description">' + result[fields.categoryName] + '</div>';
+    //       // html += '<div class="ui label"> BLOGPOST </div>';
+    //       // if(result[fields.price] !== undefined) {
+    //       //   html += '<div class="price">' + result[fields.price] + '</div>';
+    //       // }
+    //       // if(result[fields.title] !== undefined) {
+    //       //   html += '<div class="title">' + result[fields.title] + '</div>';
+    //       // }
+    //       // if(result[fields.description] !== undefined) {
+    //       //   html += '<div class="description">' + result[fields.description] + '</div>';
+    //       // }
+    //       html  += '</div></a>';
+    //     });
+
+    //     // if(response[fields.action]) {
+    //     //   html += ''
+    //     //   + '<a href="' + response[fields.action][fields.actionURL] + '" class="action">'
+    //     //   +   response[fields.action][fields.actionText]
+    //     //   + '</a>';
+    //     // }
+    //     return html;
+    //   }
+    //   return false;
+    // }
   }
 };
 

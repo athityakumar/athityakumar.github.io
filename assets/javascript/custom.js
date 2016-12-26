@@ -1,10 +1,4 @@
-window.less = {
-        async        : true,
-        environment  : 'production',
-        fileAsync    : false,
-        onReady      : false,
-        useFileCache : true
-};
+
 
 $(function() {
     $('a[href*="#"]:not([href="#"])').click(function() {
@@ -48,6 +42,35 @@ $('.masthead h1 b').typed({
 
 // window.sr = ScrollReveal({ reset: true });
 // sr.reveal('.sr');
+
+$.fn.search.settings.templates.custom = function(response, fields) {
+      var
+        html = ''
+      ;
+      if(response[fields.results] !== undefined) {
+
+        // each result
+        $.each(response[fields.results], function(index, result) {
+          if(result[fields.url]) {
+            html  += '<a class="result" href="' + result[fields.url] + '">';
+          }
+          else {
+            html  += '<a class="result">';
+          }
+          html += '<div class="content">';
+          if(result["post_title"]) {
+            html += '<div class="title">' + result["post_title"] + '</div>';
+          }
+          if(result["tag_title"]) {
+            html += '<div class="title"><span class="ui '+result["color"]+' tag label">' + result["tag_title"] + '</span></div>';
+          }
+          html  += '</div></a>';
+        });
+        return html;
+      }
+      return false;
+    }
+
 
 var post_content = [
 { url: "http://github.com",  post_title: 'The Covariance Confusion' },
