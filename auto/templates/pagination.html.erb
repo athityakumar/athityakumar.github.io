@@ -252,9 +252,9 @@
 var post_content = [
   <% for i in (0..$posts.count-1) %>
     <% if i != $posts.count-1 %>  
-      { url: "../<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" },
+      { url: "../posts/<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" },
     <% else %>
-      { url: "../<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" }
+      { url: "../posts/<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" }
     <% end %>
   <% end %>
 ];
@@ -262,9 +262,9 @@ var post_content = [
 var tag_content = [
   <% for i in (0..$tags.count-1) %>
     <% if i != $tags.count-1 %>  
-      { url: "../../tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
+      { url: "../../blog/tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
     <% else %>
-      { url: "../../tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
+      { url: "../../blog/tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
     <% end %>
   <% end %>
 ];
