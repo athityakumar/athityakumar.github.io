@@ -99,15 +99,14 @@ def do_pagination posts , tag
         else
             older_page_exists = false
             older_page = "NIL"
-        end       
-
+        end
+        template = "auto/templates/pagination.html.erb"       
+        html_text = HtmlBeautifier.beautify((File.exists? template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : "")
         if tag.length == 0
-            # html_text = HtmlBeautifier.beautify((File.exists? "auto/templates/blogpage.html.erb") ? ERB.new(File.open("auto/templates/blogpage.html.erb").read, 0, '>').result(binding) : "")
-            # File.open("blog/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
+            File.open("blog/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
             puts "Generating Blog page #{i+1}."
         else
-            # html_text = HtmlBeautifier.beautify((File.exists? "auto/templates/blogtagpage.html.erb") ? ERB.new(File.open("auto/templates/blogtagpage.html.erb").read, 0, '>').result(binding) : "")
-            # File.open("blog/tag/#{tag["name"]}/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
+            File.open("blog/tags/#{tag["filename"]}/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
             puts "Generating page #{i+1} of Tag #{tag["name"]}."
         end
     end
