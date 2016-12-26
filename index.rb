@@ -23,6 +23,7 @@
 
 require 'json'
 require 'erb'
+require 'htmlbeautifier'
 
 def remove_dir path
     if Dir.exists? path
@@ -105,11 +106,11 @@ def do_pagination posts , tag
         end       
 
         if tag.length == 0
-            # html_text = (File.exists? "auto/templates/blogpage.html.erb") ? ERB.new(File.open("auto/templates/blogpage.html.erb").read, 0, '>').result(binding) : ""
+            # html_text = HtmlBeautifier.beautify((File.exists? "auto/templates/blogpage.html.erb") ? ERB.new(File.open("auto/templates/blogpage.html.erb").read, 0, '>').result(binding) : "")
             # File.open("blog/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
             puts "Blog Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
         else
-            # html_text = (File.exists? "auto/templates/blogtagpage.html.erb") ? ERB.new(File.open("auto/templates/blogtagpage.html.erb").read, 0, '>').result(binding) : ""
+            # html_text = HtmlBeautifier.beautify((File.exists? "auto/templates/blogtagpage.html.erb") ? ERB.new(File.open("auto/templates/blogtagpage.html.erb").read, 0, '>').result(binding) : "")
             # File.open("blog/tag/#{tag["name"]}/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
             puts "Tag #{tag["name"]} Page #{i+1} : Showing posts #{showing_posts[0]} to #{showing_posts[1]}. Older post page : #{older_page}, Recent post page : #{recent_page}."
         end
