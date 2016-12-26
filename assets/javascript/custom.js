@@ -46,8 +46,8 @@ $('.masthead h1 b').typed({
   loop: true
 });
 
-window.sr = ScrollReveal({ reset: true });
-sr.reveal('.sr');
+// window.sr = ScrollReveal({ reset: true });
+// sr.reveal('.sr');
 
 var post_content = [
 { url: "http://github.com",  post_title: 'The Covariance Confusion' },
