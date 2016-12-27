@@ -1,7 +1,17 @@
 [
-    {
-        "name" : "TEAM AUV IIT-KGP",
-        "index" : 3,
-        "color" : "red"
-    }
+    {"name" : "TEAM AUV", "index" : 1, "color" : "red"},
+    {"name" : "Metakgp", "index" : 2, "color" : "black"},
+    {"name" : "IIT Kharagpur", "index" : 3, "color" : "violet"},
+    {"name" : "Web", "index" : 4, "color" : "brown"},
+    {"name" : "Frontend", "index" : 5, "color" : "brown"},
+    {"name" : "Backend", "index" : 6, "color" : "brown"},
+    {"name" : "Chess", "index" : 7, "color" : "orange"},
+    {"name" : "Review", "index" : 8, "color" : "green"},
+    {"name" : "Rant", "index" : 9, "color" : "green"},
+    {"name" : "JavaScript", "index" : 10, "color" : "blue"},
+    {"name" : "Python", "index" : 11, "color" : "blue"},
+    {"name" : "Ruby", "index" : 12, "color" : "blue"},
+    {"name" : "PHP", "index" : 13, "color" : "blue"},
+    {"name" : "Ruby on Rails", "index" : 14, "color" : "blue"},
+    {"name" : "C++", "index" : 15, "color" : "blue"}
 ]

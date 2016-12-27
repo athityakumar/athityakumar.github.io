@@ -76,8 +76,6 @@ def setup_paths
 end
 
 def do_pagination posts , tag 
-    # Requires template too
-    #type = "b for blog or t for rag"
     n_pages = posts.each_slice($per_page).to_a.count
     n_posts = posts.count
     for i in (0..n_posts-1)
@@ -86,6 +84,7 @@ def do_pagination posts , tag
     for i in (0..n_pages-1)
         posts_in_page = posts.each_slice($per_page).to_a[i]
         showing_posts = [$per_page*i+1, (($per_page*(i+1) > n_posts) ? n_posts : ($per_page*(i+1)))]
+        j = i
         if i!=0
             recent_page_exists = true
             recent_page = i
@@ -103,11 +102,11 @@ def do_pagination posts , tag
         template = "auto/templates/pagination.html.erb"       
         html_text = HtmlBeautifier.beautify((File.exists? template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : "")
         if tag.length == 0
-            File.open("blog/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
-            puts "Generating Blog page #{i+1}."
+            File.open("blog/page#{j+1}/index.html", "w") { |file| file.write(html_text) }
+            puts "Generating Blog page #{j+1}."
         else
-            File.open("blog/tags/#{tag["filename"]}/page#{i+1}/index.html", "w") { |file| file.write(html_text) }
-            puts "Generating page #{i+1} of Tag #{tag["name"]}."
+            File.open("blog/tags/#{tag["filename"]}/page#{j+1}/index.html", "w") { |file| file.write(html_text) }
+            puts "Generating page #{j+1} of Tag #{tag["name"]}."
         end
     end
 end

@@ -40,9 +40,6 @@ $('.masthead h1 b').typed({
   loop: true
 });
 
-// window.sr = ScrollReveal({ reset: true });
-// sr.reveal('.sr');
-
 $.fn.search.settings.templates.custom = function(response, fields) {
       var
         html = ''

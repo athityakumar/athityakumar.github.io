@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="assets/images/logo.png" />
     <!-- Site Properities -->
     <meta name="generator" content="DocPad v6.78.4" />
     <% if tag.length == 0 %>
@@ -18,8 +17,10 @@
     
     <% if tag.length == 0 %>
       <link rel="stylesheet" type="text/css" class="ui" href="../../assets/dist/semantic.css">
+      <link rel="shortcut icon" href="../../assets/images/logo.png" />
     <% else %>
       <link rel="stylesheet" type="text/css" class="ui" href="../../../../assets/dist/semantic.css">
+      <link rel="shortcut icon" href="../../../../assets/images/logo.png" />
     <% end %>
   </head>
   <body id="example" class="index" ontouchstart="">
@@ -31,7 +32,11 @@
             <div class="ui logo shape">
               <div class="sides">
                 <div class="active ui side">
-                  <a href="github.com/athityakumar" target="_blank"> @athityakumar </a>
+                  <% if tag.length == 0 %>
+                    <a href="../../"> @athityakumar </a>
+                  <% else %>
+                    <a href="../../../../"> @athityakumar </a>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -64,7 +69,11 @@
         &nbsp;  
         
         <div class="ui breadcrumb">
-          <a href="../index.html" class="section" style="color: white;">@athityakumar</a>
+          <% if tag.length == 0 %>
+            <a href="../../" class="section" style="color: white;">@athityakumar</a>
+          <% else %>
+            <a href="../../../../" class="section" style="color: white;">@athityakumar</a>
+          <% end %>          
         </div>
       </div>
       <div class="right item" style="color: white;">
@@ -102,7 +111,7 @@
               <a href="../page1/">Blog</a> > 
               <a>Page <%= i+1 %> </a>    
               <br>              
-              Totally <%= n_posts %> post(s), <%= n_pages %> page(s). Showing posts <%= showing_posts[0] %> - <%= showing_posts[1] %> now.
+               Total : <%= n_posts %> post(s), <%= n_pages %> page(s), <%= $tags.count %> tag(s). <br> Showing posts <%= showing_posts[0] %> - <%= showing_posts[1] %> in this page.
             </h4>
           <% else %>
             <h1 class="ui inverted header">
@@ -114,10 +123,10 @@
               You're here : 
               <a href="../../../../">Homepage</a> > 
               <a href="../../../page1/">Blog</a> > 
-              <a href="../page1/">Posts tagged <%= tag["name"] %></a>
+              <a href="../page1/">This Tag</a> >
               <a href>Page <%= i+1 %> </a>    
               <br>              
-              Totally <%= n_posts %> post(s), <%= n_pages %> page(s) for this tag. Showing posts <%= showing_posts[0] %> - <%= showing_posts[1] %> now.
+              Total : <%= n_posts %> post(s), <%= n_pages %> page(s) for this tag. <br> Showing posts <%= showing_posts[0] %> - <%= showing_posts[1] %> now.
             </h4>
           <% end %>  
           <div class="ui hidden divider"></div>
@@ -302,7 +311,6 @@ var tag_content = [
   <script src="../../assets/javascript/home.js"></script>
   <script src="../../assets/javascript/library/less.min.js"></script>
   <script src="../../assets/javascript/visibility.js"></script>
-  <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
   <script src="../../assets/javascript/custom.js"></script>
 <% else %>
   <script src="../../../../assets/javascript/library/jquery.min.js"></script>
@@ -314,7 +322,6 @@ var tag_content = [
   <script src="../../../../assets/javascript/home.js"></script>
   <script src="../../../../assets/javascript/library/less.min.js"></script>
   <script src="../../../../assets/javascript/visibility.js"></script>
-  <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
   <script src="../../../../assets/javascript/custom.js"></script>
 
 <% end %>
