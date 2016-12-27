@@ -69,6 +69,7 @@ def setup_paths
     $tags.each do |tag|
         make_dir("blog/tags/#{tag["filename"]}")
         n_tag_pages = get_posts_tagged(tag).each_slice($per_page).to_a.count
+        n_tag_pages = n_tag_pages==0 ? 1 : n_tag_pages
         for i in (1..n_tag_pages)
             make_dir("blog/tags/#{tag["filename"]}/page#{i}")
         end
@@ -81,32 +82,49 @@ def do_pagination posts , tag
     for i in (0..n_posts-1)
         posts[i]["index"] = (i+1).to_s
     end
-    for i in (0..n_pages-1)
-        posts_in_page = posts.each_slice($per_page).to_a[i]
-        showing_posts = [$per_page*i+1, (($per_page*(i+1) > n_posts) ? n_posts : ($per_page*(i+1)))]
-        j = i
-        if i!=0
-            recent_page_exists = true
-            recent_page = i
-        else
-            recent_page_exists = false
-            recent_page = "NIL"
-        end 
-        if i!=n_pages-1
-            older_page_exists = true
-            older_page = i+2
-        else
-            older_page_exists = false
-            older_page = "NIL"
+    if n_pages != 0
+        for i in (0..n_pages-1)
+            posts_in_page = posts.each_slice($per_page).to_a[i]
+            showing_posts = [$per_page*i+1, (($per_page*(i+1) > n_posts) ? n_posts : ($per_page*(i+1)))]
+            j = i
+            if i!=0
+                recent_page_exists = true
+                recent_page = i
+            else
+                recent_page_exists = false
+                recent_page = "NIL"
+            end 
+            if i!=n_pages-1
+                older_page_exists = true
+                older_page = i+2
+            else
+                older_page_exists = false
+                older_page = "NIL"
+            end
+            template = "auto/templates/pagination.html.erb"       
+            html_text = HtmlBeautifier.beautify((File.exists? template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : "")
+            if tag.length == 0
+                File.open("blog/page#{j+1}/index.html", "w") { |file| file.write(html_text) }
+                puts "Generating Blog page #{j+1}."
+            else
+                File.open("blog/tags/#{tag["filename"]}/page#{j+1}/index.html", "w") { |file| file.write(html_text) }
+                puts "Generating page #{j+1} of Tag #{tag["name"]}."
+            end
         end
+    else
+        i = 0
+        n_pages = 1
+        posts_in_page = []
+        showing_posts = [0,0]
+        older_page_exists , recent_page_exists = false , false
         template = "auto/templates/pagination.html.erb"       
         html_text = HtmlBeautifier.beautify((File.exists? template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : "")
         if tag.length == 0
-            File.open("blog/page#{j+1}/index.html", "w") { |file| file.write(html_text) }
-            puts "Generating Blog page #{j+1}."
+            File.open("blog/page1/index.html", "w") { |file| file.write(html_text) }
+            puts "Generating Blog page 1."
         else
-            File.open("blog/tags/#{tag["filename"]}/page#{j+1}/index.html", "w") { |file| file.write(html_text) }
-            puts "Generating page #{j+1} of Tag #{tag["name"]}."
+            File.open("blog/tags/#{tag["filename"]}/page1/index.html", "w") { |file| file.write(html_text) }
+            puts "Generating page 1 of Tag #{tag["name"]}."
         end
     end
 end
@@ -214,7 +232,7 @@ def get_unused_tags
             end
         end
         if flag == 0
-            puts "Tag #{tag["name"]} is not used on any post, and is still there in tags.json file. Take care of it."
+            puts "Unused tag : #{tag["name"]}."
         end
     end
 end
@@ -236,10 +254,10 @@ $per_page = 5
 unique_disqus_identifier()
 $tags = get_tags()
 $posts = get_posts()
-get_unused_tags()
 remove_dir("blog")
 setup_paths()
 generate_blog_pages()
 generate_tags_pages()
 generate_blog_posts()
 # generate_homepage()
+get_unused_tags()

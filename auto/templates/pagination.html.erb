@@ -10,7 +10,7 @@
     <% if tag.length == 0 %>
       <title> Athitya Kumar | Blog - Page <%= i+1 %></title>
     <% else %>
-      <title> Athitya Kumar | Posts tagged <%= tag["name"] %> - <%= i+1 %></title>
+      <title> Athitya Kumar | Posts tagged <%= tag["name"] %> - Page <%= i+1 %></title>
     <% end %>
     <meta name="description" content="This is the personal website of Athitya Kumar, hosted on GitHub." />
     <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog" />
@@ -281,9 +281,9 @@ var tag_content = [
 var post_content = [
   <% for i in (0..$posts.count-1) %>
     <% if i != $posts.count-1 %>  
-      { url: "../../../../posts/<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" },
+      { url: "../../../../blog/posts/<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" },
     <% else %>
-      { url: "../../../../posts/<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" }
+      { url: "../../../../blog/posts/<%= $posts[i]["filename"] %>/",  post_title: "<%= $posts[i]["title"] %>" }
     <% end %>
   <% end %>
 ];
