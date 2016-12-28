@@ -8,12 +8,13 @@
     {"name" : "Development", "index" : 7, "color" : "brown"},
     {"name" : "Review", "index" : 8, "color" : "green"},
     {"name" : "Rant", "index" : 9, "color" : "green"},
-    {"name" : "JavaScript", "index" : 10, "color" : "blue"},
-    {"name" : "Python", "index" : 11, "color" : "blue"},
-    {"name" : "Ruby", "index" : 12, "color" : "blue"},
-    {"name" : "PHP", "index" : 13, "color" : "blue"},
-    {"name" : "Ruby on Rails", "index" : 14, "color" : "blue"},
-    {"name" : "C++", "index" : 15, "color" : "blue"},
-    {"name" : "Chess", "index" : 16, "color" : "orange"},
-    {"name" : "Music", "index" : 17, "color" : "orange"}
+    {"name" : "Documentation", "index" : 10, "color" : "green"},
+    {"name" : "JavaScript", "index" : 11, "color" : "blue"},
+    {"name" : "Python", "index" : 12, "color" : "blue"},
+    {"name" : "Ruby", "index" : 13, "color" : "blue"},
+    {"name" : "PHP", "index" : 14, "color" : "blue"},
+    {"name" : "Ruby on Rails", "index" : 15, "color" : "blue"},
+    {"name" : "C++", "index" : 16, "color" : "blue"},
+    {"name" : "Chess", "index" : 17, "color" : "orange"},
+    {"name" : "Music", "index" : 18, "color" : "orange"}
 ]

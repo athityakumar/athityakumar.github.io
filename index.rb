@@ -250,6 +250,15 @@ def get_tags
     return list
 end
 
+# def liquid_markdown_to_html 
+# 2.3.1 :013 > renderer = Redcarpet::Render::HTML.new(render_options = {})
+#  => #<Redcarpet::Render::HTML:0x000000014c7b00 @options={}> 
+# 2.3.1 :014 > markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+#  => #<Redcarpet::Markdown:0x000000014afb18 @renderer=#<Redcarpet::Render::HTML:0x000000014c7b00 @options={}> 
+# 2.3.1 :015 > markdown.render("This is *bongos*, indeed.")
+#  => "<p>This is <em>bongos</em>, indeed.</p>\n" 
+# end
+
 $per_page = 5
 unique_disqus_identifier()
 $tags = get_tags()
