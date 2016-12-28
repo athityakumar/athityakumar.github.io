@@ -241,7 +241,7 @@ def get_tags
     list = []
     tags = JSON.parse(File.read("auto/data/tags.json"))
     tags.each do |tag|
-        filename = tag["name"].gsub(" ","_")
+        filename = tag["name"].gsub(" ","_").downcase
         data = tag
         data["filename"] = filename
         list.push(data)
