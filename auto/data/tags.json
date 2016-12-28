@@ -3,9 +3,9 @@
     {"name" : "Metakgp", "index" : 2, "color" : "black"},
     {"name" : "IIT Kharagpur", "index" : 3, "color" : "violet"},
     {"name" : "Web", "index" : 4, "color" : "brown"},
-    {"name" : "Frontend", "index" : 5, "color" : "brown"},
-    {"name" : "Backend", "index" : 6, "color" : "brown"},
-    {"name" : "Chess", "index" : 7, "color" : "orange"},
+    {"name" : "Software", "index" : 5, "color" : "brown"},
+    {"name" : "Design", "index" : 6, "color" : "brown"},
+    {"name" : "Development", "index" : 7, "color" : "brown"},
     {"name" : "Review", "index" : 8, "color" : "green"},
     {"name" : "Rant", "index" : 9, "color" : "green"},
     {"name" : "JavaScript", "index" : 10, "color" : "blue"},
@@ -13,5 +13,7 @@
     {"name" : "Ruby", "index" : 12, "color" : "blue"},
     {"name" : "PHP", "index" : 13, "color" : "blue"},
     {"name" : "Ruby on Rails", "index" : 14, "color" : "blue"},
-    {"name" : "C++", "index" : 15, "color" : "blue"}
+    {"name" : "C++", "index" : 15, "color" : "blue"},
+    {"name" : "Chess", "index" : 16, "color" : "orange"},
+    {"name" : "Music", "index" : 17, "color" : "orange"}
 ]
