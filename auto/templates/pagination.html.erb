@@ -14,7 +14,11 @@
     <% end %>
     <meta name="description" content="This is the personal website of Athitya Kumar, hosted on GitHub." />
     <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog" />
-    
+    <meta property="og:title" content="Athitya Kumar" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://athityakumar.github.io/blog/page/<%= i+1 %>/" />
+    <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />
+    <meta property="og:description" content="This is page <%= i+1 %> of Athitya Kumar's blog." />
     <% if tag.length == 0 %>
       <link rel="stylesheet" type="text/css" class="ui" href="../../assets/dist/semantic.css">
       <link rel="shortcut icon" href="../../assets/images/logo.png" />

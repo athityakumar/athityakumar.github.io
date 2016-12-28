@@ -141,7 +141,7 @@ def generate_tags_pages
 end
 
 def generate_blog_posts
-    tempate = "auto/templates/blogpost.html.erb"
+    template = "auto/templates/blogpost.html.erb"
     for i in (0..$posts.count-1)
         if i!=0
             next_post_exists = true
@@ -158,9 +158,10 @@ def generate_blog_posts
             prev_post_link = "NIL"
         end
         post = $posts[i]    
+        j = i
         html_file = "blog/posts/#{post["filename"]}/index.html"
         puts "Generating blog post - #{post["filename"]}."
-        html_text = HtmlBeautifier.beautify((File.exists? tempate) ? ERB.new(File.open(tempate).read, 0, '>').result(binding) : "")
+        html_text = HtmlBeautifier.beautify((File.exists? template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : "")
         File.open(html_file, "w") { |file| file.write(html_text) }
     end
 end

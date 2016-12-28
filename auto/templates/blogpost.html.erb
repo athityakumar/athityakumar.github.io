@@ -10,7 +10,12 @@
     <meta name="generator" content="DocPad v6.78.4" />
     <title> Athitya Kumar | <%= $posts[i]["title"] %> </title>
     <meta name="description" content="<%= $posts[i]["short_desc"] %>" />
-    <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,<%= $posts[i]["short_desc"].split(" ").join(",") %>" />
+    <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,open,source,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,<%= $posts[i]["short_desc"].split(" ").join(",") %>" />
+    <meta property="og:title" content="Athitya Kumar" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://athityakumar.github.io/blog/posts/<%= $posts[i]["filename"] %>/" />
+    <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />
+    <meta property="og:description" content="<%= $posts[i]["short_desc"] %>" />
     <link rel="stylesheet" type="text/css" class="ui" href="../../../assets/dist/semantic.css">
   </head>
   <body id="example" class="index" ontouchstart="">
@@ -116,7 +121,32 @@
       </div>
       <div class='stackable very relaxed ui grid container fakeload'>
         <div class='row'>
-          <%= $posts[i]["html_content"] %>
+          <div class="twelve wide column">
+            <%= $posts[i]["html_content"] %>
+          </div>
+          <div class="four wide column">
+            <div class="ui fluid centered card">
+              <div class="content">
+                <a class="header ui blue top left attached label">Tags</a>
+                <p class="description">
+                  <div class="ui hidden divider"></div>
+                  <div class="tag_search">
+                    <div class="ui fluid search center aligned">
+                      <div class="ui icon input">
+                        <input class="prompt" type="text" placeholder="Search tags.">
+                        <i class="search icon"></i>
+                      </div>
+                      <div class="results"></div>
+                    </div>
+                  </div>
+                  <div class="ui hidden divider"></div>
+                    <% $tags.each do |tag| %>
+                      <a href="../../tags/<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
+                    <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="ui stackable very relaxed grid container">
@@ -182,6 +212,16 @@ var post_content = [
   <% end %>
 ];
 
+var tag_content = [
+  <% for i in (0..$tags.count-1) %>
+    <% if i != $tags.count-1 %>  
+      { url: "../../tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
+    <% else %>
+      { url: "../../tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
+    <% end %>
+  <% end %>
+];
+
 </script>
 <script src="../../../assets/javascript/library/jquery.min.js"></script>
 <script src="../../../assets/javascript/library/highlight.min.js"></script>
@@ -198,8 +238,8 @@ var post_content = [
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
   
     var disqus_config = function () {
-    this.page.url = "http://athityakumar.github.io/blog/posts/<%= $posts[i]["filename"] %>/index.html";  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = "<%= $posts[i]["disqus_identifier"] %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    this.page.url = "http://athityakumar.github.io/blog/posts/<%= $posts[j]["filename"] %>/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "<%= $posts[j]["disqus_identifier"] %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
   
     (function() { // DON'T EDIT BELOW THIS LINE
