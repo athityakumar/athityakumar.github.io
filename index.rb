@@ -195,13 +195,31 @@ def unique_disqus_identifier
     end
 end
 
+# def initialize_empty_fields data
+#     fields = ["datetime_index","title","short_desc","tags=a","image_preview","images=a","html_content","disqus_identifier"]
+#     fields.each do |f|
+#         if data[f].nil?
+#             if f.include? "=a"
+#                 data[f.gsub("=a","")] = []
+#             else
+#                 data[f] = ""
+#             end
+#         end
+#     end    
+#     return data
+# end
+
 def get_posts
     posts = []
     files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".json" }
-
+    blog_img_dir = "assets/images/blog"
+    unless Dir.exists? blog_img_dir
+        Dir.mkdir(blog_img_dir)
+    end
     files.each do |file|
         data = {}
         data = JSON.parse(File.read("auto/data/posts/#{file}"))[0] 
+        # File.open("auto/data/posts/#{file}", "w") { |file| file.write(JSON.pretty_generate([initialize_empty_fields(data)])) }
         data["filename"] = file.gsub(".json","").gsub(" ","_") 
         posts.push(data)
         data["date"] = data["datetime_index"][6..7] + "/" + data["datetime_index"][4..5] + "/" + data["datetime_index"][0..3]
@@ -211,6 +229,24 @@ def get_posts
             data["time"] = data["datetime_index"][8..9] + ":" + data["datetime_index"][10..11] + " AM" 
         end
         data["tag_data"] = []
+        image_dir = "assets/images/blog/#{data["filename"]}"
+        if Dir.exists? image_dir
+            unless File.exists? "#{image_dir}/#{data["image_preview"]}"
+                data["image_preview"] = ""
+            end
+        else
+            Dir.mkdir("assets/images/blog/#{data["filename"]}")
+        end
+        begin
+            html = data["html_content"].split("<img")
+            img_tag_str = html[0]
+            for i in (0..html.count-2)
+               img_tag_str =  img_tag_str + "<img src='#{$lazy_load_img}' data-src='../../../assets/images/blog/#{data["filename"]}/#{data["images"][i]}' "  + html[i+1] 
+            end
+            data["html_content"] = img_tag_str
+        rescue Exception => e
+            puts "Some issue with #{data["filename"]} blog posts's images."
+        end
         $tags.each do |t|
             if data["tags"].include? t["index"]
                 data["tag_data"].push(t)
@@ -260,6 +296,7 @@ end
 #  => "<p>This is <em>bongos</em>, indeed.</p>\n" 
 # end
 
+$lazy_load_img = "../../../assets/images/load.png"
 $per_page = 5
 unique_disqus_identifier()
 $tags = get_tags()
