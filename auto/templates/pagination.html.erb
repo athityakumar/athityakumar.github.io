@@ -151,7 +151,7 @@
               <% if tag.length == 0 %>
                 <% posts_in_page.each do |post| %>
                   <% if post["image_preview"].length != 0 %>              
-                    <img class="ui tiny left floated top aligned image" data-src="../../assets/images/blog/<%= post["image_preview"] %>" src="../../assets/images/load.png">
+                    <img class="ui tiny left floated top aligned image" data-src="../../assets/images/blog/<%= post["filename"] %>/<%= post["image_preview"] %>" src="../../assets/images/load.png">
                   <% end %>
                   <b><span> 
                   <a href="../posts/<%= post["filename"] %>/">#<%= post["index"] %> - <%= post["title"] %></a></span></b><br>                  
