@@ -11,7 +11,7 @@
     <title> Athitya Kumar | <%= $posts[i]["title"] %> </title>
     <meta name="description" content="<%= $posts[i]["short_desc"] %>" />
     <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,open,source,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,<%= $posts[i]["short_desc"].split(" ").join(",") %>" />
-    <meta property="og:title" content="Athitya Kumar | Blog Post" />
+    <meta property="og:title" content="Athitya Kumar | Blog Post - <%= $posts[i]["title"] %>" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://athityakumar.github.io/blog/posts/<%= $posts[i]["filename"] %>/" />
     <% if $posts[i]["image_preview"].length != 0 %>
