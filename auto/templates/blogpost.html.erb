@@ -15,9 +15,9 @@
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://athityakumar.github.io/blog/posts/<%= $posts[i]["filename"] %>/" />
     <% if $posts[i]["image_preview"].length != 0 %>
-      <meta property="og:image" content="../../../assets/images/blog/<%= $posts[i]["filename"] %>/<%= $posts[i]["image_preview"] %>" />
+      <meta property="og:image" content="https://athityakumar.github.io/assets/images/blog/<%= $posts[i]["filename"] %>/<%= $posts[i]["image_preview"] %>" />
     <% else %>
-      <meta property="og:image" content="../../../assets/images/logo.png" />      
+      <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />      
     <% end %>
     <meta property="og:description" content="<%= $posts[i]["short_desc"] %>" />
     <link rel="stylesheet" type="text/css" class="ui" href="../../../assets/all.css">
