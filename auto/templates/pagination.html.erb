@@ -20,10 +20,10 @@
     <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />
     <meta property="og:description" content="This is page <%= i+1 %> of Athitya Kumar's blog." />
     <% if tag.length == 0 %>
-      <link rel="stylesheet" type="text/css" class="ui" href="../../assets/dist/semantic.css">
+      <link rel="stylesheet" type="text/css" class="ui" href="../../assets/all.css">
       <link rel="shortcut icon" href="../../assets/images/logo.png" />
     <% else %>
-      <link rel="stylesheet" type="text/css" class="ui" href="../../../../assets/dist/semantic.css">
+      <link rel="stylesheet" type="text/css" class="ui" href="../../../../assets/all.css">
       <link rel="shortcut icon" href="../../../../assets/images/logo.png" />
     <% end %>
   </head>
@@ -306,9 +306,9 @@ var tag_content = [
 </script>
 
 <% if tag.length == 0 %>
-  <script src="../../assets/javascript/all.js"></script>
+  <script src="../../assets/all.js"></script>
 <% else %>
-  <script src="../../../../assets/javascript/all.js"></script>
+  <script src="../../../../assets/all.js"></script>
 <% end %>
 </body>
 </html>
