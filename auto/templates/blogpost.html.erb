@@ -12,9 +12,13 @@
     <meta name="description" content="<%= $posts[i]["short_desc"] %>" />
     <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,open,source,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,<%= $posts[i]["short_desc"].split(" ").join(",") %>" />
     <meta property="og:title" content="Athitya Kumar" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="page" />
     <meta property="og:url" content="https://athityakumar.github.io/blog/posts/<%= $posts[i]["filename"] %>/" />
-    <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />
+    <% if $posts[i]["image_preview"].length != 0 %>
+      <meta property="og:image" content="../../../assets/images/blog/<%= $posts[i]["filename"] %>/<%= $posts[i]["image_preview"] %>" />
+    <% else %>
+      <meta property="og:image" content="../../../assets/images/logo.png" />      
+    <% end %>
     <meta property="og:description" content="<%= $posts[i]["short_desc"] %>" />
     <link rel="stylesheet" type="text/css" class="ui" href="../../../assets/all.css">
   </head>
