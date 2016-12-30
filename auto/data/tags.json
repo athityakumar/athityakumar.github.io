@@ -6,7 +6,7 @@
     {"name" : "Software", "index" : 5, "color" : "brown"},
     {"name" : "Design", "index" : 6, "color" : "brown"},
     {"name" : "Development", "index" : 7, "color" : "brown"},
-    {"name" : "Review", "index" : 8, "color" : "green"},
+    {"name" : "Experience", "index" : 8, "color" : "green"},
     {"name" : "Rant", "index" : 9, "color" : "green"},
     {"name" : "Documentation", "index" : 10, "color" : "green"},
     {"name" : "JavaScript", "index" : 11, "color" : "blue"},

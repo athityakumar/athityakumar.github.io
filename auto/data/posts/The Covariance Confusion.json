@@ -1,0 +1,21 @@
+[
+  {
+    "datetime_index": "201712281400",
+    "title": "The Covariance Confusion",
+    "short_desc": "Following the tradition of developers' blogging, this post has been named 'Hello World' - to indicate that this post is where my blog started from. Through this post, I'd also like to explain about how these blog pages and homepage have been made.",
+    "tags": [
+      1,
+      3,
+      5,
+      9,
+      12
+    ],
+    "image_preview": "1.png",
+    "images": [
+      "1.png",
+      "2.png"
+    ],
+    "html_content": "<p> <span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>F</span>ollowing the tradition of developers' blogging, this post has been named <i>Hello World</i> - to indicate that this post is where my blog started from. Through this post, I'd also like to explain about how this blog has been built. This blog is different from the other blogs in both - choice of UI framework and method of pages generation. <a href='http://semantic-ui.com/' target=_blank'>Semantic-UI</a>, a new and growing front-end framework has been chosen as the front-end framework, leaving behind other usual frameworks such as <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a> , <a href='http://materializecss.com/' target='_blank'>MaterializeCSS</a> , <a href='http://foundation.zurb.com/' target='_blank'>Zurb Foundation</a>. And I've kind of re-invented the wheel by producing the same functionalities of <a href='http://jekyllrb.com/' target='_blank'>Jekyll</a>, but with just a hand-made Ruby script.</p> <p> So, what all does this Ruby script do?  </p><h4><ul class='ui list'><li> Remove the previously generated <code>blog/</code> directory. <li> Read through the <code>data/</code> folder, for blog posts. </li> <li> Create corresponding <code>posts/</code> , <code>tags/</code> and <code>page{i}</code> sub-directories.</li><li>Generate proper <code>index.html</code> files in all sub-directories from ERB templates, with proper back-linking to other entities.</li><li>Add DisQus comment section to all blog posts.</li><li> Add functional search boxes for both posts and tags.</li><li> Provide proper messages for each action, on Terminal.<br><br><img class='ui big centered image'><br><img class='ui big centered image'></li> </ul></h4><p>Yet, there are some improvements left to be done - </p><h4><ul class='ui list'><li> Read data from configuration files (equivalent of Jekyll's <code>_config.yml</code>).</li><li> Setup intelligent <code>< meta ></code> tags for SEO.</li></ul></h4><p> So, that's the end of this post, folks.  For the attention of fellow developers, you can find the codes at the <a href='https://github.com/athityakumar/athityakumar.github.io' target=_blank'>GitHub repository</a>. Feel free to comment below - give your feedback about how Vibe writes.",
+    "disqus_identifier": "faxwmebvilgurhqksjczyopndt"
+  }
+]
