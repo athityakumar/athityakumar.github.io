@@ -247,6 +247,16 @@ def get_posts
         rescue Exception => e
             puts "Some issue with #{data["filename"]} blog posts's images."
         end
+        begin
+            html = data["html_content"].split("<a>")
+            hyperlink_tag_str = html[0]
+            for i in (0..html.count-2)
+                hyperlink_tag_str = hyperlink_tag_str + "<a href='#{data["hyperlinks"][i][1]}' target='_blank'> #{data["hyperlinks"][i][0]} </a>" + html[i+1]
+            end
+            data["html_content"] = hyperlink_tag_str
+        rescue Exception => e
+            puts "Some issue with #{data["filename"]} blog posts's hyperlinks."
+        end
         $tags.each do |t|
             if data["tags"].include? t["index"]
                 data["tag_data"].push(t)
