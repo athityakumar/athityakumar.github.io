@@ -153,7 +153,10 @@
                          
                         <p>Athitya : I was thinking of storing <code> n , cov_n , mean_n </code> variables and then, removing the list of <code>acc_x</code> values from 1 to n. So for (n+1)th time , we can calculate like <code> mean_n+1 = (ax,n+1 + n* mean_n) / n+1 </code> </p>
                          
-                        <p>Siddharth : Just found the relation that we were looking for. We will have one extra summation term and a few Ns to take care of. But, more or less - this should work. Lemme work on this. And, your point is noted, Pranay. Maybe that is true, but this is worth a shot though. <img src='../../../assets/images/load.png' data-src='../../../assets/images/blog/The_Covariance_Confusion/cov.png'  class='ui big centered image'> </p>
+                        <p>Siddharth : Just found the relation that we were looking for. We will have one extra summation term and a few Ns to take care of. But, more or less - this should work. Lemme work on this. And, your point is noted, Pranay. Maybe that is true, but this is worth a shot though. 
+                          <p></p>
+                           <img src='../../../assets/images/load.png' data-src='../../../assets/images/blog/The_Covariance_Confusion/cov.png'  class='ui big centered image'> <br>
+                           </p>
                          
                         <p>Pranay : This would definitely diverge in a second. Trust me. Not worth a shot. This is meant for a small dataset, not for doing it cumulatively. </p>
                          
@@ -166,8 +169,9 @@
                         <p>Pranay : What exactly would be done with the covariance values, Athitya? </p>
                          
                         <p>Athitya : It's a part of the sensor message. </p>
-                         
-                        <div class='ui horizontal divider'>AND THEN, THE PLOT THICKENS</div>
+                         <br>
+                        <div class='ui horizontal divider'>AND NOW, THE PLOT THICKENS</div>
+                        <br>
                          
                         <p>Siddharth : Athitya, I just read the description provided by ROS, which says - <br>
                           <br>
