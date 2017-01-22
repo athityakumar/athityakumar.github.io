@@ -1,0 +1,32 @@
+[
+  {
+    "datetime_index": "201701221600",
+    "title": "GitHub Follower Notification App",
+    "short_desc": "GitHub Follower Notification App is a simple web app that notifies the user about new followers / unfollowers on GitHub. This blog post describes the working of the App.",
+    "tags": [
+      4 , 5 , 6 , 7 , 10 , 13 , 15 
+    ],
+    "image_preview": "github.gif",
+    "images": [
+      "website.png"
+    ],
+    "hyperlinks": [
+      ["developer","https://www.google.co.in/search?q=developer+meaning"],
+      ["GitHub","https://github.com/"],
+      ["here","http://github-follow.herokuapp.com/"],
+      ["Heroku hosted website","http://github-follow.herokuapp.com/"],
+      ["GitHub repository","https://github.com/athityakumar/github-follow"],
+      ["Heroku","https://www.heroku.com/"],
+      ["Postgres","https://www.heroku.com/postgres"],
+      ["Heroku Scheduler","https://elements.heroku.com/addons/scheduler"],
+      ["Ruby on Rails (Back-end)","http://rubyonrails.org/"],
+      ["Bootstrap (Front-end)","http://getbootstrap.com/"],
+      ["Devise","https://github.com/plataformatec/devise"],
+      ["this guide","https://gist.github.com/technoweenie/419219"],
+      ["star the project","https://github.com/athityakumar/github-follow"],
+      ["follow me","https://github.com/athityakumar"]
+    ],
+    "html_content": "<p> <span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>A</span>ny <a> would most probably be familiar with <a> & its notification system. Currently, GitHub provides email notifications to watched repositories & mentions. However, GitHub fails to provide a similar email notification when someone follows / unfollows you. This GitHub App solves this issue by mailing the users on a daily basis about any new followers / unfollowers - to the email ID which is associated with their GitHub account. With just a click of a button <a>, you can activate this service.</p><br><div class='ui horizontal divider'>CONFIGURATION OF THE APP</div><img class='ui big centered image'><h4><ul class='ui list'><li>Web App Homepage : <a> </li><li>Source code : <a> </li><li>Server : <a> </li><li>Database language : <a> </li><li>Cron job : <a> </li><li>Website framework : <a> with <a> </li></ul></h4><br><div class='ui horizontal divider'>DEVELOPING THE APP</div> <p> Working with the GitHub API OAuth without using any external gem like <a> can become messy and even difficult at times. However, it was <a> that played the role of saviour when I was stuck. Following the above guide, I was able to exchange the <code style='font-size: 13px;'>code</code> , <code style='font-size: 13px;'>client_id</code> and <code style='font-size: 13px;'>client_secret</code> for an <code style='font-size: 13px;'>access_token</code>. An <code style='font-size: 13px;'>access_token</code> is the parameter through which my application can access a user's public information such as <code style='font-size: 13px;'>name</code>, <code style='font-size: 13px;'>email</code>, <code style='font-size: 13px;'>github handle</code>, <code style='font-size: 13px;'>followers list</code>. However, reloading the <code style='font-size: 13px;'>callback_uri</code> made the website throw an error as a <code style='font-size: 13px;'>code</code> when exchanged once can't be used again. Hence, I found out that I had to maintain <code style='font-size: 13px;'>session</code> variables & redirect properly so that the access_token won't be visible in the <code style='font-size: 13px;'>callback_uri</code>.</p><p> Once the <code style='font-size: 13px;'>access_token</code> was received, I had to store it into the database. Before storing in the batabase, I also had to make sure that no two <code style='font-size: 13px;'>access_token</code>s point to the same user account - as this case would lead to multiple emails being sent to that user on that day. Then, the cron job logs into each user in the database and mails them their respective notification emails if there are any new followers / unfollowers. </p><p> So -  that's how I built it, folks. Comment below, your thoughts on this application. If you liked this project, do <a> & <a> on github.",
+    "disqus_identifier": "khpxgfjecsdiqroyanmuvtzlbw"
+  }
+]
