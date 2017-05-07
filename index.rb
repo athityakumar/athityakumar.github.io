@@ -80,12 +80,12 @@ def do_pagination posts , tag
     n_pages = posts.each_slice($per_page).to_a.count
     n_posts = posts.count
     for i in (0..n_posts-1)
-        posts[i]["index"] = (i+1).to_s
+        posts[i]["index"] = (n_posts-i).to_s
     end
     if n_pages != 0
         for i in (0..n_pages-1)
             posts_in_page = posts.each_slice($per_page).to_a[i]
-            showing_posts = [$per_page*i+1, (($per_page*(i+1) > n_posts) ? n_posts : ($per_page*(i+1)))]
+            showing_posts = [posts_in_page.first["index"], posts_in_page.last["index"]].reverse
             j = i
             if i!=0
                 recent_page_exists = true
