@@ -133,7 +133,7 @@
             <p> <span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>F</span>irst week of Coding period of GSoC 2017 as per my timeline, started on the 29th of May 2017. This was something I was really looking up to, right from the moment I was selected by SciRuby organization ( <a href='https://github.com/SciRuby/' target='_blank'> GitHub </a> | <a href='http://sciruby.com/' target='_blank'> Website </a> ) for my project idea daru-io. In my opinion, the first week was very interesting and productive. Through this blog post, I'd like to document my progress during this week.</p>
             <br>
             <div class='ui horizontal divider'>HTML Importer for daru</div>
-            <p>During the earlier part of this week, I continued on my Pull Request regarding the HTML Importer method for daru , <code> Daru::DataFrame#from_html</code>. Through this method, I implemented web scraping to get tables from a HTML page and convert them to an <code>Array</code> of <code>Daru::DataFrame</code>s. The <code>Mechanize</code> gem has been used to implement web scraping. <br>
+            <p>During the earlier part of this week, I continued on my Pull Request regarding the HTML Importer method for daru , <code class='language-ruby' style='background: #fff'> Daru::DataFrame.from_html()</code>. Through this method, I implemented web scraping to get tables from a HTML page and convert them to an <code class='language-ruby' style='background: #fff'>Array</code> of <code class='language-ruby' style='background: #fff'>Daru::DataFrame</code>s. The <code class='language-ruby' style='background: #fff'>Mechanize</code> gem has been used to implement web scraping. <br>
               <br>
                Though the method is now able to properly parse the dataframes from a couple of websites, it does have a downside. The downside is that, there are websites that dynamically load the HTML tables by inline JS, and this method won't be able to parse such tables. <br>
               <br>
@@ -153,13 +153,10 @@
               <div class='ui horizontal divider'>Porting existing IO modules of daru to daru-io</div>
               <p>The existing IO modules of daru - 5 importers and 2 exporters, are to be ported to the daru-io repository to ensure that subsequent IO modules that are to be newly formed, look consistent with the older ones. That way, daru-io can also be released as a plugin gem to daru, by August end. By Friday, I had ported the existing modules with updated YARD docs styling and modern syntax for RSpec tests. However, a <a href='https://github.com/athityakumar/daru-io/pull/16#discussion_r119859429' target='_blank'> review comment </a> by mentor <a href='https://github.com/zverok' target='_blank'> Victor (@zverok) </a> seems to suggest a better inheritence layout and usage methodology to daru-io modules. <br>
                 <br>
-                That is, something used like <code>Daru::IO::Exporters::CSV.write('path/to/csv/file', options)</code> can now be used with lazy-calling feature such as, <br>
-                <br>
-                <code>csv_exporter = Daru::IO::Exporters::CSV.new('path/to/csv/file', options)<br>
-                  <br>
-                  # Do some thing here <br>
-                  <br>
-                  csv_exporter.write</code></p>
+                That is, something used like <code class='language-ruby' style='background: #fff'>Daru::IO::Exporters::CSV.write('path/to/csv/file', options)</code> can now be used with lazy-calling feature such as, </p>
+              <pre><code class='language-ruby' style='background: #fff'>csv_exporter = Daru::IO::Exporters::CSV.new('path/to/csv/file', options)
+# Do some thing here 
+csv_exporter.write</code></pre>
               <p>This is still under progress with <a href='https://github.com/athityakumar/daru-io/pull/16' target='_blank'> this Pull Request </a>, and isn't merged yet. Once the lazy-calling feature has been approved for one module, it is easy to extend them to other modules. I've been putting effort from my side, and it hopefully doesn't delay my timeline. But if it does, I've a swiss-knife up my sleeve called 'Buffer period', which is meant for handling such delays.</p>
               <br>
               <div class='ui horizontal divider'>Adding fixture files for daru-io repository</div>
