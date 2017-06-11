@@ -306,15 +306,15 @@ end
 #  => "<p>This is <em>bongos</em>, indeed.</p>\n" 
 # end
 
-$lazy_load_img = "../../../assets/images/load.png"
+$lazy_load_img = '../../../assets/images/load.png'
 $per_page = 5
-unique_disqus_identifier()
-$tags = get_tags()
-$posts = get_posts()
-remove_dir("blog")
-setup_paths()
-generate_blog_pages()
-generate_tags_pages()
-generate_blog_posts()
+unique_disqus_identifier
+$tags = get_tags
+$posts = get_posts
+remove_dir('blog')
+setup_paths
+generate_blog_pages
+generate_tags_pages
+generate_blog_posts
 # generate_homepage()
-get_unused_tags()
+get_unused_tags

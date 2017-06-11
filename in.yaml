@@ -1,0 +1,42 @@
+datetime_index:	201705021155
+
+title:	A Tale of GitHub Usernames
+
+short description:	Why dd Bruce Wayne call himself Batman, or Barry Allen call himself the Flash? Nicknames and alter egos in general, have a wide variety of interesting origin stories. This post is an honest attempt to crowd-source, collect and document the information about how the GitHub handles described in this post, came into existence.
+
+tags: 
+    -   8
+    -   10
+
+image preview:	name.png
+
+images:
+    -   say_my_name.gif
+    -   not_bad.gif
+    -   cooler_name.gif
+    -   keeps_getting_cooler.gif
+    -   vader.gif
+    -   cool_at_naming.gif
+
+hyperlinks:
+    -   text:   '@kaustubhhiware'
+        link:   https://github.com/kaustubhhiware
+
+html:   |
+    # Header
+    ### Hey!
+    --- _How are you_ ---
+    
+    ```Ruby
+    x = Mechanize.new
+    agent = x.get('google.com')
+    ```
+
+    [url param](link)
+
+    -   himself
+    -   yourslef
+    <br><br>Description
+    -   none
+
+    
