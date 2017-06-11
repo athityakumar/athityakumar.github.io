@@ -1,0 +1,65 @@
+[
+  {
+    "datetime_index": "201706111300",
+    "title": "GSoC 2017 - Coding Period | Week 2",
+    "short_desc": "Programming is when a Human writes code. But what happens when a Human writes a piece of code, that writes code? Welcome to the intriguing world of Meta-programming. Through this blog post, I'd like to document my progress in the second week of the Coding period, Google Summer of Code 2017.",
+    "tags": [
+      5,
+      7,
+      10,
+      13,
+      19
+    ],
+    "image_preview": "gsoc.png",
+    "images": [
+      "banner.png",
+      "redis_without_keys.png",
+      "redis_with_key_pattern.png",
+      "redis_params.png"
+    ],
+    "hyperlinks": [
+      [
+        "Victor",
+        "https://github.com/zverok"
+      ],
+      [
+        "Sameer",
+        "https://github.com/v0dro"
+      ],
+      [
+        "Lokesh",
+        "https://github.com/lokeshh"
+      ],
+      [
+        "The Flash",
+        "https://en.wikipedia.org/wiki/The_Flash_(2014_TV_series)"
+      ],
+      [
+        "Daru-IO",
+        "https://github.com/athityakumar/daru-io"
+      ],
+      [
+        "this Issue",
+        "https://github.com/athityakumar/daru-io/issues/19"
+      ],
+      [
+        "this Pull Request",
+        "https://github.com/athityakumar/daru-io/pull/16"
+      ],
+      [
+        "this Issue",
+        "https://github.com/athityakumar/daru-io/issues/19"
+      ],
+      [
+        "this Pull Request",
+        "https://github.com/athityakumar/daru-io/pull/16"
+      ],
+      [
+        "this Pull Request",
+        "https://github.com/athityakumar/daru-io/pull/18"
+      ]
+    ],
+    "html_content": "<img class='ui centered image'><p> <span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>P</span>rogramming is when a Human writes code. But what happens when a Human writes a piece of  code, that writes code? Welcome to the intriguing world of <b>Meta-programming</b>. Special thanks to mentors <a>, <a> and <a> for introducing me to this conecpt. In my second week of Coding period, I learnt about what Metaprogramming is, what it can do, and how interesting it is to automate pieces of code to work together rather than manually typing out the code.</p><p><i>Should a human who does meta-programming be called a meta-human? Okay, sorry - I should probably stop watching <a> by now.</i></p><br><div class='ui horizontal divider'>Automating initialization for IO modules</div><p><a> has a class inheritence structure, and initializing the arguments to class variables happened manually in the previous week. That is, each IO module used to look like this - </p><pre><code class='language-ruby' style='background: #fff'>#! lib/daru/io/importers/csv.rb from Week 1\nmodule Daru\n  module IO\n    module Importers\n      class CSV\n        def initialize(path, col_sep: ',', ..., **options)\n          @path &nbsp;&nbsp; = path\n          @col_sep = col_sep\n          ...\n          @options = options\n        end\n      end\n    end\n  end\nend</code></pre><p>Enter <b>meta-programming</b> and all these lines were reduced to merely a line in each IO module. All the given arguments are now auto-initialized as a class variable with the same name as the argument name. This layout also respects the concept of <i>DRY (Don't Repeat Yourself)</i> and now looks like this - </p><pre><code class='language-ruby' style='background: #fff'>#! lib/daru/io/importers/csv.rb from Week 2\nrequire 'daru/io/base'\n\nmodule Daru\n  module IO\n    module Importers\n      class CSV < Base\n        def initialize(path, col_sep: ',', ..., **options)\n          super(binding)\n        end\n      end\n    end\n  end\nend</code></pre><p> Hmm, but where is the magic ingredient that's making this work? As you can see, each IO module is inheriting from the <b>Daru::IO::Base</b> class, and it is the constructor of this class, that automates the initialization procedure.</p><pre><code class='language-ruby' style='background: #fff'>\n#! lib/daru/io/base.rb\nmodule Daru\n  module IO\n    class Base\n      def initialize(binding)\n        args = method(__method__).parameters.map do |_, name|\n          [name, binding.local_variable_get(name.to_s)]\n        end.to_h\n\n        args.each do |k, v|\n          instance_variable_set(&quot;@#{k}&quot;, v)\n          define_singleton_method(k) { instance_variable_get(&quot;@#{k}&quot;) }\n        end\n      end\n    end\n  end\nend</code></pre><p>If you're interested in knowing more about this, feel free to have a look at <a> and <a>.</p><br><div class='ui horizontal divider'> Auto-linking Daru methods and Daru-IO classes</div><p>In short, the IO modules have to be linked with corresponding methods of Daru::DataFrame. That is, <b>Daru::DataFrame.from_csv(arguments)</b> should redirect to <b>Daru::IO::Importers::CSV.new(arguments).call</b> and similarly, <b>df.to_csv(arguments)</b> should redirect to <b>Daru::IO::Exporters::CSV.new(df, arguments).call</b>. As per the first week, these linkages were done manually with pieces of code that looked like this - </p><pre><code class='language-ruby' style='background: #fff'>\n#! lib/daru/io/exporters/linkages/csv.rb from Week 1\nmodule Daru \n  class DataFrame\n    class &lt;&lt; self\n      def to_csv(path, options={})\n        Daru::IO::Exporters::CSV.new(self, path, options).call\n      end\n    end\n  end\nend</code></pre> <p>But again, these linkages looks like duplication (<i>sort of</i>), which can be automated with meta-programming (<i>again</i>). Yes, again keeping <i>DRY</i> in mind.</p><pre><code class='language-ruby' style='background: #fff'>#! lib/daru/io/link.rb\nmodule Daru \n  class DataFrame\n    class &lt;&lt; self\n      def register_io_module(function, instance)\n        if function.to_s.include? &quot;to&quot;\n          define_method(function) { |*args| instance.new(self, *args).call }\n        else\n          define_singleton_method(function) { |*args| instance.new(*args).call }\n        end\n      end\n    end\n  end\nend</code></pre> <p>And this can now be used in each IO module as - </p><pre><code class='language-ruby' style='background: #fff'>#! lib/daru/io/exporters/csv.rb\n#! (At the very end of the file)\nrequire 'daru/io/link'\nDaru::DataFrame.register_io_module :to_csv, Daru::IO::Exporters::CSV</code></pre><p>If you're interested in knowing more about this, feel free to have a look at <a> and <a>.</p><br><div class='ui horizontal divider'>Redis Importer</div><p>As per my timeline, this week was scheduled for adding support to the Redis Importer module. For this, I used the <code class='language-ruby'>Redis</code> ruby gem. Currently, this module has functionality of creating <b>Daru::DataFrame</b> from a particular Redis connection, Keys or Pattern of matching keys. Either selected keys can be given as an Array, or a pattern (as per Redis#scan) can be given. Values are then parsed from these keys via the Redis connection, and a <b>Daru::DataFrame</b> is made based on whether the key-values are all Hash, Hashes, or Arrays.</p><p> Progress related to the Redis Importer, can be tracked in <a>. Here a few screenshots from it's documentation -</p><img class='ui centered image'><img class='ui centered image'><img class='ui centered image'>",
+    "disqus_identifier": "hlmaiwyezjgktqdonprbucvfsx"
+  }
+]
