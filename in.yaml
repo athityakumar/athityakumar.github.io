@@ -10,18 +10,6 @@ tags:
 
 image preview:	name.png
 
-images:
-    -   say_my_name.gif
-    -   not_bad.gif
-    -   cooler_name.gif
-    -   keeps_getting_cooler.gif
-    -   vader.gif
-    -   cool_at_naming.gif
-
-hyperlinks:
-    -   text:   '@kaustubhhiware'
-        link:   https://github.com/kaustubhhiware
-
 html:   |
     # Header
     ### Hey!
@@ -34,9 +22,9 @@ html:   |
 
     [url param](link)
 
-    -   himself
+    - ###### h1    
     -   yourslef
     <br><br>Description
     -   none
 
-    
+    ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
