@@ -1,0 +1,115 @@
+datetime_index: "201612302200"
+
+title:  Kharagpur Winter of Code 2016
+
+short_desc:  Kharagpur Winter of Code is a one-month long open-source contribution fest organised by Kharagpur Open Source Society. As a mentor of 7 projects, it felt great to guide newbies of different skill-sets in contributing to the projects. This post aims to document all the proceedings in different projects that happened during KWoC 2016.
+
+tags: 
+    -   2
+    -   3
+    -   4
+    -   5
+    -   7
+    -   8
+    -   12
+    -   13
+
+image_preview:  koss.jpg
+
+html_content:   |
+    
+    December 2016 at Chennai , TamilNadu was pretty much as grim as the previous 
+    December, with tragic death of Cheif Minister 
+    [Jayalalithaa](https://en.wikipedia.org/wiki/Jayalalithaa), followed by 
+    [Cyclone Vardah](https://en.wikipedia.org/wiki/Cyclone_Vardah), that 
+    devastated more than 30,000 trees and electricity. Amidst all these happening 
+    in background, [Kharagpur Winter of Code 2016](http://kwoc.herokuapp.com/), 
+    was probably the only optimistic thing happening around. Kharagpur Winter of 
+    Code is a one-month long open-source contribution fest organised by 
+    [Kharagpur Open Source Society](http://kossiitkgp.herokuapp.com/). As a 
+    mentor of 7 projects, it felt great to guide newbies in contributing to the 
+    projects. I have penned down below - my experiences and proceedings in 
+    different projects that happened during KWoC 2016. 
+
+    ---Project #1 - TV Series---
+
+    ![TV series project](tvseries.png)
+
+    TV Series ( [GitHub](https://github.com/athityakumar/tvseries) | 
+    [Website](https://athityakumar.github.io/tvseries) ) is an aggregator of 
+    Episode Synopsis' and ratings of different TV Series' spread across multiple 
+    Wiki sources and IMDb rating. This involves Web Scraping, and writing the 
+    scraped data into HTML files - to showcase the episodes with a neat user 
+    interface. 
+
+    - [Dhruv Apte](https://github.com/the-ethan-hunt) added Sherlock & Firefly 
+    series' with 2 Pull requests.
+
+    - [Anirudh Murali](https://github.com/AnirudhMurali) added Person of 
+    Interest, Gotham and White Collar series' with 3 Pull Requests.
+
+    - [Abhay Gurrala](https://github.com/abhay44) added Travis Continous 
+    Integration support with 1 Pull Request.
+
+    ---Project #2 - Naarad---
+
+    ![Project Naarad](naarad.png)
+
+    Naarad ( [GitHub](https://github.com/metakgp/naarad-source) | 
+    [Website](https://naarad.metakgp.org/) ) is a news aggregator localized to 
+    the students of IIT Kharagpur. That is, Naarad scrapes IIT Kharagpur 
+    related posts from various IIT Kharagpur groups on facebook, to show them 
+    all at one place. 
+
+    - [Zishan Sami](https://github.com/zishansami102) fixed 2 issues with 2 
+    Pull requests.
+    - [Harshit](https://github.com/iamharshit) added Travis Continous 
+    Integration with 1 Pull Request.
+    - [Sayan Sinha](https://github.com/americast/) fixed an issue with 1 Pull Request.
+
+    ---Project #3 - Faculty Scraper---
+
+    The project name is quite self-explanatory. This project aims to keep 
+    building a database of faculties from various Institutes across the world. 
+    Have a look [here](https://github.com/barc-iitkgp/faculty-scraper) at the 
+    resources aggregated so far.
+
+    - [Dhruv Apte](https://github.com/the-ethan-hunt) added support for Princeton 
+    faculty, Yale's CS faculty and UCSB faculty with 3 Pull Requests. 
+    - [Sayan Ghosh](https://github.com/sgdgp) added support for CS faculty of UIUC with 1 Pull Request.
+
+    ---Project #4 - Ruby Notificator---
+
+    ![Ruby Notificator project](ruby-notifier.png)
+
+    [Ruby Notificator](https://github.com/athityakumar/ruby-notificator) is a 
+    project that aims to keep collecting and aggregating the user's social media 
+    data (from Facebook, GitHub, Twitter, LinkedIn, etc.) via APIs, and mail the 
+    user regularly (say, everyday) about new notifications from various 
+    platforms. This project is pretty much in the early stage. 
+
+    - [Sayan Sinha](https://github.com/americast/) added support for mailing 
+    the notifications of GitHub, with 3 Pull Requests. 
+
+    ---Project #5 - GYFT--- 
+
+    ![Get Your Freaking Timetabe](gyft.png)
+
+    [GYFT](https://github.com/metakgp/gyft) is a gift to the students of IIT 
+    Kharagpur, who would like to keep their Timetable from their ERP account 
+    synced with their Google Calender. However, contributions are yet to be 
+    reviewed and hence, no Pull Request has been merged so far.
+
+    ---Conclusion---
+
+    A huge token of thanks to Kharagpur Open Source Society for providing this 
+    kind of an opportunity to mentor in open source projects. For the experiences 
+    from the other side of the grass, have a look at the blog posts written by 
+    student members who worked in my projects. 
+
+
+    [View Anirudh Murali's Blog post.](http://www.anirudhmurali.com/kwoc-report/)
+
+    [View Dhruv Apte's Blog post.](https://coffeecode781.wordpress.com/2016/12/21/my-experience-at-kwoc/)
+
+    [View Sayan Sinha's Blog post.](https://medium.com/@americast/kharagpur-winter-of-code-c4eeb4af71f1#.lrg8f045t)

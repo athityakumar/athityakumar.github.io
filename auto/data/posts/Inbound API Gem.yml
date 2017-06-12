@@ -1,0 +1,178 @@
+datetime_index: "201701262000"
+
+title:  A Ruby API gem for Inbound.org platform
+
+short_desc:  Inbound.org is a social-media platform for inbound marketers. This is a ruby API gem to programatically perform tasks like login, follow, unfollow, search on Inbound.org portal. This helps many start-ups in implementing automated growth-hacking in their initial phase, to have a wider audience channel.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+
+image_preview:  ror.png
+
+html_content:   |
+    
+    Ever heard of this term - _Growth hacking_? Probably not. Growth hacking 
+    refers to a procedure by which you artificially increase your circle on any 
+    social-media platform in general. This is a really important factor that 
+    start-ups have to consider, while they're still in their initial phase. And 
+    the need to automate growth hacking is really immense. Keep reading, to 
+    understand the logic of growth-hacking and functionality of this API. 
+
+    ---Logic of Growth Hacking---
+
+    Growth hacking has a very interesting logic behind its working. This is what a 
+    step-by-step analysis of growth hacking would roughly resemble -  
+
+    1. Repeat steps 2 to 5 for each social-media platform.
+    2. Get the list of users who're following your competitor in that
+    social-media platform. Most of them are your target audience too, as they 
+    were interested in your competitor. Repeat steps 3 to 5 for each such 
+    follower. 
+    3. Select a user from the above list. 
+    4. Follow that user. They receive a notification that you've followed them. 
+    5. If they follow you back within _n_ days, great - _mission accomplished_. 
+    Else, 
+      1. If you've already followed them for a critical cut-off of _m_ times, 
+      don't follow them anymore. That user is probably not interested in this 
+      sector - let's not spam them with any more notifications. 
+      2. Else, unfollow them & repeat from step 3.
+
+    Pretty smooth, huh? Most social-media platforms such as Facebook, Linkedin, 
+    Twitter, Google offer APIs for programmatic implementation of growth-hacking. 
+    This Inbound API Ruby gem is a similar API for ruby language. 
+
+    ---Working with the API---
+
+    - Setting up dependencies : 
+        <div class='ui info message'>
+        This API depends on 2 ruby gems - Mechanize & JSON. They should be 
+        installed by default, while installing this gem. In any case, 
+        considering that you already have ruby & rubygems setup, type the 
+        below commands in your terminal to install the dependencies - 
+    
+          `gem install mechanize` to install Mechanize gem.
+    
+          `gem install json` to install the native JSON gem.
+
+        Great! You're now ready to install the Inbound API Ruby gem.
+        </div>
+
+    - Installation : 
+        <div class='ui info message'>
+          Type `gem install inbound_api` on your terminal. 
+
+          => Successfully installed inbound_api-1.0.3
+
+          => 1 gem installed 
+
+          After the gem is installed, try out the below commands in your ruby
+          console (`irb`) or in a ruby file. 
+
+        </div> 
+
+    - Initializing :
+        <div class='ui info message'>
+          `require 'inbound_api'`
+          
+          => true
+
+          `instance = InboundAPI.new()`
+          
+          => #< InboundAPI: ... >
+        </div>
+
+    - Logging in : 
+      <div class='ui info message'>
+        `instance.login('inbound_email_id','inbound_password')`
+        
+        => {'response'=>'Success'}
+
+        Note that this and also the below statements return a hash, whose 
+        `response` field contains value of `Success` or `Failure` - making it 
+        easier to debug.
+      </div>
+
+    - Fetch a user's data : 
+      <div class='ui info message'>
+        `instance.fetch_user_data('dany_jon_tyrion')`
+
+        => {'response'=>'Success', 'userid'=>'1277018', 'name'=>'Athitya Kumar', 'image_url'=>'https://www.filepicker.io/api/file/d1e3Zr61Q8ef8dRFMeUr', 'location'=>'Chennai', 'karma'=>4, 'number_followers'=>541, 'number_following'=>11341, 'work'=>'Student at IIT Kharagpur', 'company_link'=>'https://athityakumar.github.io/', 'twitter_link'=>'https://twitter.com/dany_jon_tyrion', 'facebook_link'=>'https://www.facebook.com/athitya.kumar', 'linkedin_link'=>nil, 'googleplus_link'=>nil, 'my_link'=>'https://athityakumar.github.io/blog/page1/', 'number_badges'=>nil, 'badges'=>nil, 'recent_activity'=>nil} 
+
+        Note that all information of a user that isn't available at 
+        inbound.org portal is initialised as nil.
+      </div>
+
+    - Fetch a user's followers : 
+      <div class='ui info message'>
+        `followers = instance.fetch_followers('dany_jon_tyrion')['followers']`
+        
+        `followers.count`
+
+        => 535
+      </div>
+
+    - Fetch a list of usernames followed by a user : 
+      <div class='ui info message'>
+        `followers = instance.fetch_following('dany_jon_tyrion')`
+        
+        => {'response'=>'Failure'}
+
+        Note that the server 500 error encountered on Inbound.org portal 
+        translates into a hash output with 'response' field as 'Failure'.
+      </div>
+
+    - Fetch a list of usernames as search results with / without pagination  :
+      <div class='ui info message'>
+        `instance.search_users(name,location,badges,skills,number_of_pages)`
+
+        where,
+          
+          name and location are strings initialised as ""
+
+          badges and skills are lists initialised as []
+
+          pages is an integer number of pages initialised as 1.
+
+        For example,
+        
+        `instance.search_users('Dany','Chennai',['Inbound','HubSpot'],['Web','Graphics'],100)`
+
+        => {'response'=>'Success', 'usernames'=>['valiantsystems', 'webdesigningco1', '11Ganapathy', 'DENTISTINDIA', 'RenegadeCricket']}
+
+        Note that the actual list of Badges & Skills can be found by 
+        functions `instance.get_all_badges()` & `instance.get_all_skills()`.
+      </div>
+
+    - Follow a user : 
+      <div class='ui info message'>
+        `instance.follow_user('dany_jon_tyrion')`
+
+        => {'response'=>'Success'}
+
+        Note that you'd have to login first to follow / unfollow.
+      </div>
+
+    - Unfollow a user : 
+      <div class='ui info message'>
+        `instance.unfollow_user('dany_jon_tyrion')`
+
+        => {'response'=>'Success'}
+
+        Don't try to unfollow yourself - you would get 'Failure' as the 
+        response.
+      </div>
+
+    ---Any suggestions?---
+
+    You can find this gem on 
+    [RubyGems website](https://rubygems.org/gems/inbound_api). If there are any 
+    suggestions / enhancements you'd like to see in this Ruby API gem, do comment 
+    below, or open a new issue 
+    [here](https://github.com/athityakumar/inbound_api/issues). Also, if you 
+    liked this project, do star the 
+    [repository](https://github.com/athityakumar/inbound_api). And fellow 
+    developers, you're welcome to contribute - for, this is an open-source 
+    project.

@@ -1,0 +1,97 @@
+datetime_index: "201701071400"
+
+title:  The Covariance Confusion
+
+short_desc:  Despite our very best efforts to remain aware and concentrated, we do come across times when we're confused with a very small issue and then later feel silly about the same. Here's a geek rant about a silly confusion that I experienced, a few months back.
+
+tags: 
+    -   1
+    -   3
+    -   5
+    -   7
+    -   9
+    -   12
+
+image_preview:  auv.jpg
+
+html_content:   |
+    
+    Despite our very best efforts to remain aware and concentrated, we do come 
+    across times when we're confused with a very small issue and then later feel 
+    silly about the same. Here's a geek-rant about a silly confusion that I 
+    experienced, a few months back. 
+
+    ---The Background---
+
+    [Team Autonomous Underwater Vehicle (AUV)](https://auviitkgp.github.io/) is a 
+    Research group of [IIT Kharagpur](https://en.wikipedia.org/wiki/Indian_Institute_of_Technology_Kharagpur) 
+    that focuses on making full-fledged autonomous underwater bots. Making such 
+    an autonomous bot requires skill-set in fields like Image Processing, GUI for 
+    simulator, Controls system, Battery management system, Hardware design, etc. 
+    For integrating these different fields and sensors to work with one another, 
+    we at Team AUV use [Robot Operating System (ROS)](https://en.wikipedia.org/wiki/Robot_Operating_System). 
+    As a Software Team Member of Team AUV, I was given the task of updating our 
+    existing [Sparton sensor](https://www.spartonnavex.com/product-category/inertial-sensors/?post_type=product) - ie, I had to change the existing 
+    `IMU` message types and make the python script to read the message(s) from 
+    ROS parameters called `ROSPARAMS`. 
+
+    ---The Confusion Episode---
+
+    The [Sparton sensor's script](https://github.com/auviitkgp/kraken_3.0/blob/indigo-devel/sensor_stack/sparton/src/sparton.py) in general deals with 
+    mechanical variables - like `roll`, `pitch`, `yaw`, `quaternion`, etc. As a 
+    measure of confidence on the readings provided by the sensor in the working 
+    conditions, there are covariance matrices for `linear acceleration`, 
+    `orientation` and `angular velocity`. While porting the new sensor script, I 
+    saw these covariance matrices that had to be found - and as I wasn't sure 
+    about the procedure to find out their values, I started a discussion on 
+    channel `#software` of our slack group. What unfolded next, in an interval of 
+    half an hour was this discussion below between me, 
+    [Pranay Pratyush](https://github.com/pranaypratyush) and 
+    [Siddharth Kannan](https://github.com/icyflame). Read our discussion below, 
+    to find out how we understood about the required covariance, in quite an 
+    anti-climatic plot-twist manner. 
+
+    <h4>
+      <div class='ui message'>
+        <p> Athitya : So, do we really need 3 more vectors that store the set of say, linear acceleration values (like cumulatively appending to the list) corresponding to each vector? </p> 
+        <p>Pranay : Cumulatively appending? Why? </p> 
+        <p>Athitya : Yep. How else would covariance exist if the <code>< acc_x acc_y,acc_z ></code> are just values and not a list of values / random vectors? </p> 
+        <p>Pranay : Ah, yes. I got confused with some other covariance. Yeah, you need to maintain a history of covariances. </p> 
+        <p>Athitya : Currently, the rate for the loop is 10Hz or 10 value of <code>acc_x / 1 sec</code>. So, if the bot totally takes 20 mins, we'd end up with totally 12000 values for <code>acc_x</code> alone. </p> 
+        <p>Siddharth : And are you going to store everything? Shouldn't a representative value of the whole set do? Like an average or something? </p> 
+        <p>Athitya : I was thinking of storing <code> n , cov_n , mean_n </code> variables and then, removing the list of <code>acc_x</code> values from 1 to n. So for (n+1)th time , we can calculate like <code> mean_n+1 = (ax,n+1 + n* mean_n) / n+1 </code> </p> 
+        <p>Siddharth : Just found the relation that we were looking for. We will have one extra summation term and a few Ns to take care of. But, more or less - this should work. Lemme work on this. And, your point is noted, Pranay. Maybe that is true, but this is worth a shot though. </p> 
+
+        ![Formula for covariance calculation](cov.png) 
+
+        <p>Pranay : This would definitely diverge in a short period of time. Trust me. Not worth a shot. This is meant for a small dataset, not for doing it cumulatively. </p> 
+        <p>Siddharth : What? This is an identity right? How can this diverge? And they did the calculation for us anyway. We need to store <code> avg_x_n, avg_y_n, cov_n</code> and from that, we can get <code>cov_(n+1)</code>. Tell me if my interpretation is wrong or something. </p> 
+        <p>Athitya : Alright, so can I start on implementing this? </p> 
+        <p>Siddharth : Hmm, I don't see any inconsistency in this - I think this should work. </p> 
+        <p>Pranay : What exactly would be done with the covariance values, Athitya? </p> 
+        <p>Athitya : It's a part of the sensor message. </p> 
+
+        ---And now, the plot thickens---
+
+        <p>Siddharth : Athitya, I just read the description provided by ROS, which says - 
+
+           _If the covariance of the measurement is known, it should be filled in (if all you know is the variance of each measurement, e.g. from the datasheet, just put those along the diagonal). A covariance matrix of all zeros will be interpreted as covariance unknown, and to use the data a covariance will have to be assumed or gotten from some other source.' _
+
+          It looks to me like they are saying that we should fill it in if it's 
+          a part of the measurement - rather than cumulatively calculating it and 
+          populating it there. </p> 
+        <p>Athitya : So, if the data on covariance matrix is not given on the sensor's document, we can just initialise these matrices as zero matrices? That was a rather simple solution to a self-assumed complex problem. Duh! </p> 
+        <p>Pranay: Wow. We were all way off from what was intended by covariance. This got me confused so badly, I'm going to call it a night. </p> 
+        <p>Siddharth : Athitya & Pranay, we did end up learning a thing or two about the mathematical methods of covariance calculation. Right? </p> 
+      </div>
+    </h4>
+
+    ---The solution---
+
+    As mentioned by Siddharth, the [IMU sensor_msgs documentation by ROS](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html), cleared this self-created 
+    confusion, and the porting of new message types for sparton sensor was 
+    successfully accomplished with 
+    [Pull request #112](https://github.com/auviitkgp/kraken_3.0/pull/112). 
+    Nevertheless, this incident is a sweet memory that the three of us will 
+    remember for a long time, unless another dumb confusion crosses our path in a 
+    similar fashion to humble our non-existent ego.

@@ -177,21 +177,21 @@ end
 
 def unique_disqus_identifier
     posts , filename = [] , []
-    identifier = File.exists?('auto/data/disqus.json') ? JSON.parse(File.read('auto/data/disqus.json')) : []
+    identifier = File.exists?('auto/data/disqus.json') ? JSON.parse(File.read('auto/data/disqus.json')) : {}
     files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".yml" }
     files.each do |file|
         posts.push(YAML.load(File.read("auto/data/posts/#{file}")))
         filename.push(file)
     end
-    existing_keys = identifier.map { |r| r["disqus_identifier"] }.uniq
-    existing_names = identifier.map { |r| r["filename"] }.uniq
+    existing_names = identifier.keys.uniq
+    existing_keys = identifier.values.uniq
     filename.each do |file|
       unless existing_names.include? file
         random = get_random_key()
         while existing_keys.include? random
             random = get_random_key()
         end
-        identifier.push({"filename" => file, "disqus_identifier" => random})
+        identifier[file] = random
       end
     end
     File.open("auto/data/disqus.json", "w") { |file| file.write(JSON.pretty_generate(identifier)) }
@@ -227,6 +227,7 @@ end
 
 def get_posts
     posts = []
+    disqus = JSON.parse(File.read('auto/data/disqus.json'))
     files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".yml" }
     blog_img_dir = "assets/images/blog"
     unless Dir.exists? blog_img_dir
@@ -236,8 +237,9 @@ def get_posts
         data = {}
         data = YAML.load(File.read("auto/data/posts/#{file}"))
         # File.open("auto/data/posts/#{file}", "w") { |file| file.write(JSON.pretty_generate([initialize_empty_fields(data)])) }
-        data["filename"] = file.gsub(".json","").gsub(" ","_") 
+        data["filename"] = file.gsub(".yml","").gsub(" ","_") 
         posts.push(data)
+        data["disqus_identifier"] = disqus[data["filename"]]
         data["date"] = data["datetime_index"][6..7] + "/" + data["datetime_index"][4..5] + "/" + data["datetime_index"][0..3]
         if data["datetime_index"][8..9].to_i > 12 
             data["time"] =  (data["datetime_index"][8..9].to_i - 12).to_s + ":" + data["datetime_index"][10..11] + " PM"
@@ -256,13 +258,15 @@ def get_posts
         data["html_content"] = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(no_intra_emphasis: true, tables: true, autolink: true, strikethrough: true, with_toc_data: true)).render(data["html_content"])
         data["html_content"] = data["html_content"]
                                 .gsub("<a","<a target='_blank'")
-                                .gsub("<img","<img src='#{$lazy_load_img}'")
+                                .gsub("<img src=\"","<img src='#{$lazy_load_img}' class='ui centered image' data-src=\"../../../assets/images/blog/#{data["filename"]}/")
                                 .gsub("<ul>","<h4> <ul class='ui list'>")
                                 .gsub("</ul>","</ul> </h4>")
-        first = data["html_content"].split("<p>").last[0]
+                                .gsub("<code","<code class='language-ruby'")
+                                .gsub("</code>","</code></pre>")
+        first = data["html_content"].split("<p>")[1][0]
         data["html_content"] = data["html_content"].sub("<p>#{first}","<p><span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>#{first}</span>")
         str = data["html_content"]
-        replace = ["<div class='ui horizontal divider'>", "</div>"]
+        replace = ["<br><div class='ui horizontal divider'>", "</div>"]
         rep_i = 0
         while str.include? "---"
           str.sub!('---',replace[rep_i])
