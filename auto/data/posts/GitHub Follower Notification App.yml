@@ -1,0 +1,67 @@
+datetime_index: "201701221600"
+
+title:  GitHub Follower Notification App
+
+short_desc:  GitHub Follower Notification App is a simple web app that notifies the user about new followers / unfollowers on GitHub. This blog post describes the working of the App.
+
+tags: 
+    -   4
+    -   5
+    -   6
+    -   7
+    -   10
+    -   13
+    -   15
+
+image_preview:  github.gif
+
+html_content:   |
+
+    Any [developer](https://www.google.co.in/search?q=developer+meaning)
+    would most probably be familiar with [GitHub](https://github.com/) 
+    & its notification system. Currently, GitHub provides email notifications to 
+    watched repositories & mentions. However, GitHub fails to provide a similar 
+    email notification when someone follows / unfollows you. This GitHub App 
+    solves this issue by mailing the users on a daily basis about any new 
+    followers / unfollowers - to the email ID which is associated with their 
+    GitHub account. With just a click of a button 
+    [here](http://github-follow.herokuapp.com/), you can activate this 
+    service.</p>
+
+    ---Configuration of the App---
+
+    ![Configuration of the App](website.png)
+
+    - Web App Homepage : [Hosted on Heroku](http://github-follow.herokuapp.com/) 
+    - Source code : [GitHub Repository](https://github.com/athityakumar/github-follow)
+    - Server : [Heroku](https://www.heroku.com/)
+    - Database language : [Postgres](https://www.heroku.com/postgres) 
+    - Cron job : [Heroku Scheduler](https://elements.heroku.com/addons/scheduler)
+    - Website framework : [Ruby on Rails](http://rubyonrails.org/) as back-end, and [Bootstrap](http://getbootstrap.com) as front-end
+
+    ---Developing the App---
+
+    Working with the GitHub API OAuth without using any external gem like 
+    [Devise](https://github.com/plataformatec/devise) can become messy and 
+    even difficult at times. However, it was 
+    [this guide](https://gist.github.com/technoweenie/419219) that played the 
+    role of saviour when I was stuck. Following the above guide, I was able to 
+    exchange the `code` , `client_id` and `client_secret` for an `access_token`. 
+    An `access_token` is the parameter through which my application can access a 
+    user's public information such as `name`, `email`, `github handle`, 
+    `followers list`, etc. However, reloading the `callback_uri` made the 
+    website throw an error as a `code` when exchanged once can't be used again. 
+    Hence, I found out that I had to maintain `session` variables & redirect 
+    properly so that the access_token won't be visible in the `callback_uri`.
+
+    Once the `access_token` was received, I had to store it into the database. 
+    Before storing in the batabase, I also had to make sure that no two 
+    `access_token`s point to the same user account - as this case would lead 
+    to multiple emails being sent to that user on that day. Then, the cron job 
+    logs into each user in the database and mails them their respective 
+    notification emails if there are any new followers / unfollowers. 
+
+    So -  that's how I built it, folks. Comment below, your thoughts on this 
+    application. If you liked this project, do 
+    [star the repository](https://github.com/athityakumar/github-follow) & 
+    [follow me](https://github.com/athityakumar/) on github.</p>

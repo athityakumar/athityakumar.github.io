@@ -1,0 +1,76 @@
+datetime_index: "201612281400"
+
+title:  Hello World
+
+short_desc:  Following the tradition of developers' blogging, this post has been named 'Hello World' - to indicate that this post is where my blog started from. Through this post, I'd also like to explain about how these blog pages and homepage have been made.
+
+tags: 
+    -   4
+    -   5
+    -   6
+    -   7
+    -   10
+    -   13
+
+image_preview:  1.png
+
+html_content:   |
+
+    Following the tradition of developers' blogging, this post has been named 
+    _Hello World_ - to indicate that this post is where my blog started from. 
+    Through this post, I'd also like to explain about how this blog has been 
+    built. This blog is different from the other blogs in both - choice of UI 
+    framework and method of pages generation. 
+
+    ---Choice of Front-end---
+
+    [Semantic-UI](http://semantic-ui.com/), a new and growing front-end framework 
+    was chosen as the front-end framework, leaving behind other usual frameworks 
+    such as [Bootstrap](http://getbootstrap.com/), 
+    [MaterializeCSS](http://materializecss.com/) and
+    [Zurb Foundation](http://foundation.zurb.com/). After having chosen the 
+    front-end framework, the next task is of optimizing the front-end assets for 
+    faster rendering of the website - and the score on 
+    [Pingdom tool](https://tools.pingdom.com/) was chosen as a reference. After 
+    a week of optimizing on CSS files, JS files and lazy-loading images, the 
+    website finally attained a performance grade of 92/100 - which is the highest 
+    possible score for free hosting on static 
+    [GitHub Pages](https://pages.github.com/).
+
+    ![Pingdom Tool Result](speed.png) 
+
+    ---Blog functionality---
+
+    For continuing further on building blog functionality on a static website, 
+    some kind of static site generator like [Jekyll](http://jekyllrb.com/) 
+    had to be used. Rather, I re-invented the wheel by replicating the 
+    functionalities of Jekyll, with just a hand-made Ruby script. Here is a list 
+    of tasks that this Ruby script does - 
+
+    - Remove the previously generated `blog` directory.
+    - Read through the `data/` folder, for blog posts.
+    - Create corresponding `posts/` , `tags/` and `page{i}` sub-directories.
+    - Generate proper `index.html` files in all sub-directories from ERB 
+      templates, with proper back-linking to other entities.
+    - Add DisQus comment section to all blog posts.
+    - Add functional search boxes for both posts and tags.
+    - Provide proper messages for each action, on Terminal.
+
+    ![Demo screenshot](1.png)
+
+    ![Demo screenshot](2.png)
+
+    That way, whatever is shown on my blog is merely just an output of the 
+    powerful hand-made Ruby Script. Yet, there are scope of improvements left - 
+
+    - Read data from configuration files (equivalent of Jekyll's `_config.yml`).
+    - Setup intelligent `< meta >` tags for SEO.
+
+    ---Conclusion---
+
+    Incorporating the functionalities of the almighty Jekyll into a single Ruby 
+    script was pretty much fun and interesting. Even though it got challenging at 
+    times, I believe that overall, it was an awesome learning experience. For the 
+    attention of fellow developers, you can find the codes at the 
+    [GitHub repository](https://github.com/athityakumar/athityakumar.github.io). 
+    Feel free to comment below - give your feedback about how Vibe writes.

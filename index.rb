@@ -24,6 +24,8 @@
 require 'json'
 require 'erb'
 require 'htmlbeautifier'
+require 'yaml'
+require 'redcarpet'
 
 def remove_dir path
     if File.directory?(path)
@@ -175,24 +177,38 @@ end
 
 def unique_disqus_identifier
     posts , filename = [] , []
-    files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".json" }
+    identifier = File.exists?('auto/data/disqus.json') ? JSON.parse(File.read('auto/data/disqus.json')) : {}
+    files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".yml" }
     files.each do |file|
-        posts.push(JSON.parse(File.read("auto/data/posts/#{file}"))[0])
+        posts.push(YAML.load(File.read("auto/data/posts/#{file}")))
         filename.push(file)
     end
-    n = posts.count
-    for i in (0..n-1)
-        existing_keys = posts.map { |r| r["disqus_identifier"] }.uniq
-        if posts[i]["disqus_identifier"].nil?
+    existing_names = identifier.keys.uniq
+    existing_keys = identifier.values.uniq
+    filename.each do |file|
+      unless existing_names.include? file
+        random = get_random_key()
+        while existing_keys.include? random
             random = get_random_key()
-            while existing_keys.include? random
-                random = get_random_key()
-            end
-            posts[i]["disqus_identifier"] = random
-            data = posts[i]
-            File.open("auto/data/posts/#{filename[i]}", "w") { |file| file.write(JSON.pretty_generate([data])) }
         end
+        identifier[file] = random
+      end
     end
+    File.open("auto/data/disqus.json", "w") { |file| file.write(JSON.pretty_generate(identifier)) }
+
+    # n = posts.count
+    # for i in (0..n-1)
+    #     existing_keys = posts.map { |r| r["disqus_identifier"] }.uniq
+    #     if posts[i]["disqus_identifier"].nil?
+    #         random = get_random_key()
+    #         while existing_keys.include? random
+    #             random = get_random_key()
+    #         end
+    #         posts[i]["disqus_identifier"] = random
+    #         File.open("auto/data/posts/#{filename[i]}", 'w') { |f| f.write posts[i].to_yaml } 
+    #         # File.open("auto/data/posts/#{filename[i]}", "w") { |file| file.write(JSON.pretty_generate([data])) }
+    #     end
+    # end
 end
 
 # def initialize_empty_fields data
@@ -211,17 +227,19 @@ end
 
 def get_posts
     posts = []
-    files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".json" }
+    disqus = JSON.parse(File.read('auto/data/disqus.json'))
+    files = Dir.entries("auto/data/posts").keep_if { |a| a.end_with? ".yml" }
     blog_img_dir = "assets/images/blog"
     unless Dir.exists? blog_img_dir
         Dir.mkdir(blog_img_dir)
     end
     files.each do |file|
         data = {}
-        data = JSON.parse(File.read("auto/data/posts/#{file}"))[0] 
+        data = YAML.load(File.read("auto/data/posts/#{file}"))
         # File.open("auto/data/posts/#{file}", "w") { |file| file.write(JSON.pretty_generate([initialize_empty_fields(data)])) }
-        data["filename"] = file.gsub(".json","").gsub(" ","_") 
+        data["filename"] = file.gsub(".yml","").gsub(" ","_") 
         posts.push(data)
+        data["disqus_identifier"] = disqus[data["filename"]]
         data["date"] = data["datetime_index"][6..7] + "/" + data["datetime_index"][4..5] + "/" + data["datetime_index"][0..3]
         if data["datetime_index"][8..9].to_i > 12 
             data["time"] =  (data["datetime_index"][8..9].to_i - 12).to_s + ":" + data["datetime_index"][10..11] + " PM"
@@ -237,26 +255,24 @@ def get_posts
         else
             Dir.mkdir("assets/images/blog/#{data["filename"]}")
         end
-        begin
-            html = data["html_content"].split("<img")
-            img_tag_str = html[0]
-            for i in (0..html.count-2)
-               img_tag_str =  img_tag_str + "<img src='#{$lazy_load_img}' data-src='../../../assets/images/blog/#{data["filename"]}/#{data["images"][i]}' "  + html[i+1] 
-            end
-            data["html_content"] = img_tag_str
-        rescue Exception => e
-            puts "Some issue with #{data["filename"]} blog posts's images."
+        data["html_content"] = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(no_intra_emphasis: true, tables: true, autolink: true, strikethrough: true, with_toc_data: true)).render(data["html_content"])
+        data["html_content"] = data["html_content"]
+                                .gsub("<a","<a target='_blank'")
+                                .gsub("<img src=\"","<img src='#{$lazy_load_img}' class='ui centered image' data-src=\"../../../assets/images/blog/#{data["filename"]}/")
+                                .gsub("<ul>","<h4> <ul class='ui list'>")
+                                .gsub("</ul>","</ul> </h4>")
+                                .gsub("<code","<code class='language-ruby'")
+                                .gsub("</code>","</code></pre>")
+        first = data["html_content"].split("<p>")[1][0]
+        data["html_content"] = data["html_content"].sub("<p>#{first}","<p><span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>#{first}</span>")
+        str = data["html_content"]
+        replace = ["<br><div class='ui horizontal divider'>", "</div>"]
+        rep_i = 0
+        while str.include? "---"
+          str.sub!('---',replace[rep_i])
+          rep_i = rep_i == 1 ? 0 : 1
         end
-        begin
-            html = data["html_content"].split("<a>")
-            hyperlink_tag_str = html[0]
-            for i in (0..html.count-2)
-                hyperlink_tag_str = hyperlink_tag_str + "<a href='#{data["hyperlinks"][i][1]}' target='_blank'> #{data["hyperlinks"][i][0]} </a>" + html[i+1]
-            end
-            data["html_content"] = hyperlink_tag_str
-        rescue Exception => e
-            puts "Some issue with #{data["filename"]} blog posts's hyperlinks."
-        end
+        data["html_content"] = str
         $tags.each do |t|
             if data["tags"].include? t["index"]
                 data["tag_data"].push(t)
@@ -306,15 +322,15 @@ end
 #  => "<p>This is <em>bongos</em>, indeed.</p>\n" 
 # end
 
-$lazy_load_img = "../../../assets/images/load.png"
+$lazy_load_img = '../../../assets/images/load.png'
 $per_page = 5
-unique_disqus_identifier()
-$tags = get_tags()
-$posts = get_posts()
-remove_dir("blog")
-setup_paths()
-generate_blog_pages()
-generate_tags_pages()
-generate_blog_posts()
+unique_disqus_identifier
+$tags = get_tags
+$posts = get_posts
+remove_dir('blog')
+setup_paths
+generate_blog_pages
+generate_tags_pages
+generate_blog_posts
 # generate_homepage()
-get_unused_tags()
+get_unused_tags
