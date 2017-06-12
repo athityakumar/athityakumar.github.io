@@ -1,0 +1,91 @@
+datetime_index: "201705282200"
+
+title:  GSoC 2017 - Community Bonding Period
+
+short_desc:  Through this blog post, I'd like to document the various Google Summer of Code related happenings I was associated with, during the Community Bonding Period.
+
+tags: 
+    -   8
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Community Bonding Period is roughly a 4-week period before the coding period
+    wherein the selected GSoC students and mentors get to know more about each 
+    other, and also discuss more about the project implementation. This year, 
+    SciRuby ( [GitHub](https://github.com/SciRuby/) | 
+    [Website](http://sciruby.com/) ) has selected 3 students - 
+    [Prasun](https://github.com/prasunanand), [Shekar](https://github.com/Shekharrajak) 
+    and myself. As Shekhar & myself were selected for the same project idea, we 
+    had to split the project idea into 2 components and re-draft our timeline 
+    schedules. 
+
+    A consensus was reached that the project will be split into two parts namely 
+    `daru-io` and `daru-view`, with the former being done by me and the latter 
+    being done by Shekhar. 
+
+    ---Video Conference #1---
+    
+    - Attendees : Shekhar & Myself
+    - Date : 8th May 2017
+    - Time : 4:15PM - 5:15PM IST 
+
+    Through this one hour long discussion, we shared the main highlights of each 
+    other's proposals that help with my daru-io part as well as Shakhar's 
+    daru-view part. We also had a discussion regarding which libraries could be 
+    used for various use cases, and whether we could integrate daru-io and 
+    daru-views through a use-case like a 'Download' option in Ruby web frameworks 
+    like Rails. 
+
+    ---Video Conference #2---
+
+    - Attendees : Shekhar & Myself
+    - Date : 12th May 2017
+    - Time : 4:30PM - 5:50PM IST 
+
+    This discussion was essentially a continuation of the previous video 
+    conference. We discussed more regarding adding more features in the same 
+    timeline, now that our work has been split well. The consensus was to add 
+    more support to both daru-io and daru-views. That is, more Import-Export 
+    modules will be added to `daru-io` during the colloborated timeline, while more 
+    plotting library support will be added to `daru-view`. 
+
+    ---Video Conference #3---
+
+    - Attendees : Sameer, Victor, Shekhar & Myself
+    - Date : 24th May 2017
+    - Time : 7:10PM - 8:40PM IST 
+
+    Through this video conference, we discussed about both our re-drafted 
+    proposals with mentors [Sameer](https://github.com/v0dro/) and 
+    [Victor](https://github.com/zverok). By running through our proposal week 
+    by week and module by module, we made sure that our timelines have been 
+    re-drafted feasibly, and without any clashes. The colloborated proposal now 
+    has the following deliverables : 
+
+    - Daru-IO gem repository, with 
+      1. Setups : Rspec, Rubocop, Yard docs and Travis CI
+      2. Importers : HTML, Redis, JSON, Mongo, Avro, Rdata
+      3. Exporters : CSV, Excel, JSON, Avro, Rdata
+    - A Sample Rails Application showing usage of daru, daru-io and daru-views
+      gems.
+
+    ---Bonus : GSoC Meetup at Chennai---
+
+    - Attendees (from left) : Afroz, Myself, 
+      [Keerthana](https://developerbytes.wordpress.com/), Vignesh, Nishanth
+    - Date : 27th May 2017
+    - Time : 5:20PM - 7:00PM IST 
+    - Venue : Phoenix Mall, Velachery
+
+    ![GSoC'17 Meetup at Chennai](meetup.jpeg)
+
+    This was an offline meetup that took place between GSoCers from Chennai, to
+    discuss about their projects, coding, colleges, TV series and what not! It 
+    was good to meet a couple of like-minded people with similar interests.

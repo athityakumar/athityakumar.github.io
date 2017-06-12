@@ -39,6 +39,8 @@ def remove_dir path
         File.delete(path)
     end
     puts "Removing previous blog path : #{path}/."
+rescue 
+    puts "Can't remove blog directory"
 end
 
 def make_dir path
@@ -261,9 +263,14 @@ def get_posts
                                 .gsub("<img src=\"","<img src='#{$lazy_load_img}' class='ui centered image' data-src=\"../../../assets/images/blog/#{data["filename"]}/")
                                 .gsub("<ul>","<h4> <ul class='ui list'>")
                                 .gsub("</ul>","</ul> </h4>")
-                                .gsub("<code","<code class='language-ruby'")
+                                .gsub("<code","<code class='language-ruby' style='background-color : #fff;'")
                                 .gsub("</code>","</code></pre>")
-        first = data["html_content"].split("<p>")[1][0]
+        i = 1
+        first = data["html_content"].split("<p>")[i][0]
+        while(first == "<")
+            i += 1
+            first = data["html_content"].split("<p>")[i][0]
+        end
         data["html_content"] = data["html_content"].sub("<p>#{first}","<p><span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>#{first}</span>")
         str = data["html_content"]
         replace = ["<br><div class='ui horizontal divider'>", "</div>"]

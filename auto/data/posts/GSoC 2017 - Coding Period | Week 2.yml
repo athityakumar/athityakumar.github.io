@@ -1,0 +1,195 @@
+datetime_index: "201706111300"
+
+title:  GSoC 2017 - Coding Period | Week 2
+
+short_desc: Programming is when a Human writes code. But what happens when a Human writes a piece of code, that writes code? Welcome to the intriguing world of Meta-programming. Through this blog post, I'd like to document my progress in the second week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Programming is when a Human writes code. But what happens when a Human writes 
+    a piece of  code, that writes code? Welcome to the intriguing world of 
+    *Meta-programming*. Special thanks to mentors 
+    [Victor](https://github.com/zverok"), [Sameer](https://github.com/v0dro)
+    and [Lokesh](https://github.com/lokeshh) for introducing me to this concept. 
+    In my second week of Coding period, I learnt about what Metaprogramming is, 
+    what it can do, and how interesting it is to automate pieces of code to work 
+    together rather than manually typing out the code.
+
+    _Should a human who does meta-programming be called a meta-human? Okay, sorry
+     - I should probably stop watching 
+    [The Flash](https://en.wikipedia.org/wiki/The_Flash_(2014_TV_series)) 
+    by now._ 
+
+    ---Automating initialization for IO modules---
+
+    [Daru-IO](https://github.com/athityakumar/daru-io) has a class inheritence 
+    structure, and initializing the arguments to class variables happened 
+    manually in the previous week. That is, each IO module used to look like 
+    this - 
+
+    <pre>
+      <code>
+      #! lib/daru/io/importers/csv.rb from Week 1
+      module Daru
+        module IO
+          module Importers
+            class CSV
+              def initialize(path, col_sep: ',', ..., **options)
+                @path    = path
+                @col_sep = col_sep
+                ...
+                @options = options
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    Enter *meta-programming* and all these lines were reduced to merely a line in 
+    each IO module. All the given arguments are now auto-initialized as a class 
+    variable with the same name as the argument name. This layout also respects 
+    the concept of _DRY (Don't Repeat Yourself)_ and now looks like this - 
+
+    <pre>
+      <code>
+      #! lib/daru/io/importers/csv.rb from Week 2
+      require 'daru/io/base'
+
+      module Daru
+        module IO
+          module Importers
+            class CSV < Base
+              def initialize(path, col_sep: ',', ..., **options)
+                super(binding)
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    Hmm, but where is the magic ingredient that's making this work? As you can 
+    see, each IO module is inheriting from the `Daru::IO::Base` class, and it is 
+    the constructor of this class, that automates the initialization procedure.
+
+    <pre>
+      <code>
+      #! lib/daru/io/base.rb
+      module Daru
+        module IO
+          class Base
+            def initialize(binding)
+              args = method(__method__).parameters.map do |_, name|
+                [name, binding.local_variable_get(name.to_s)]
+              end.to_h
+
+              args.each do |k, v|
+                instance_variable_set(&quot;@#{k}&quot;, v)
+                define_singleton_method(k) { instance_variable_get(&quot;@#{k}&quot;) }
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    If you're interested in knowing more about this, feel free to have a look at 
+    [this Issue](https://github.com/athityakumar/daru-io/issues/19) and 
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/16).
+
+    ---Auto-linking Daru methods and Daru-IO classes---
+
+    In short, the IO modules have to be linked with corresponding methods of 
+    `Daru::DataFrame`. That is, `Daru::DataFrame.from_csv(arguments)` should 
+    redirect to `Daru::IO::Importers::CSV.new(arguments).call` and similarly, 
+    `df.to_csv(arguments)` should redirect to 
+    `Daru::IO::Exporters::CSV.new(df, arguments).call`. As per the first week, 
+    these linkages were done manually with pieces of code that looked like this - 
+
+    <pre>
+      <code>
+      #! lib/daru/io/exporters/linkages/csv.rb from Week 1
+      module Daru
+        class DataFrame
+          class &lt;&lt; self
+            def to_csv(path, options={})
+              Daru::IO::Exporters::CSV.new(self, path, options).call
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    But again, these linkages looks like duplication (_sort of_), which can be 
+    automated with meta-programming (_again_). Yes, again keeping _DRY_ in mind.
+
+    <pre>
+      <code>
+      #! lib/daru/io/link.rb
+      module Daru
+        class DataFrame
+          class &lt;&lt; self
+            def register_io_module(function, instance)
+              if function.to_s.include? &quot;to&quot;
+                define_method(function) { |*args| instance.new(self, *args).call
+              else
+                define_singleton_method(function) { |*args| instance.new(*args).call }
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    And this can now be used in each IO module as - 
+
+    <pre>
+      <code>
+      #! lib/daru/io/exporters/csv.rb
+      #! (At the very end of the file)
+      
+      require 'daru/io/link'
+      Daru::DataFrame.register_io_module :to_csv, Daru::IO::Exporters::CSV
+      </code>
+    </pre>
+
+
+    If you're interested in knowing more about this, feel free to have a look at 
+    [this Issue](https://github.com/athityakumar/daru-io/issues/19) and 
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/16).
+
+    ---Redis Importer---
+
+    As per my timeline, this week was scheduled for adding support to the Redis 
+    Importer module. For this, I used the `Redis` ruby gem. Currently, this 
+    module has functionality of creating `Daru::DataFrame` from a particular 
+    Redis connection, Keys or Pattern of matching keys. Either selected keys can 
+    be given as an `Array`, or a pattern (as per Redis#scan) can be given. Values 
+    are then parsed from these keys via the Redis connection, and a 
+    `Daru::DataFrame` is made based on whether the key-values are all `Hash`, 
+    `Hash`es, or `Array`s.
+
+    Progress related to the Redis Importer, can be tracked in 
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/18). Here 
+    are a few screenshots from it's documentation - 
+
+    ![Using Redis without keys](redis_without_keys.png)
+    ![Using Redis with Key pattern](redis_with_key_pattern.png)
+    ![Redis parameters](redis_params.png)
