@@ -1,0 +1,197 @@
+datetime_index: "201706181530"
+
+title:  GSoC 2017 - Coding Period | Week 3
+
+short_desc: Through this blog post, I'd like to document my progress in the third week of the Coding period, Google Summer of Code 2017. Also, there is something special in the air about the 18th of June.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    There is something special in the air about the 18th of June. But what might 
+    possibly be special about this day? Maybe it's the _**International Father's 
+    day**_ ? Or maybe it's _**my birthday**_? Or maybe it's the _**Champions 
+    Trophy 2017 Finale**_ ? Or maybe because it's just a _**Sunday**_? _No points 
+    for guessing, it's all of the above packaged into one single day._
+
+    Today also marks the end of the 3rd week of coding period of my GSoC project,
+    [daru-io](https://github.com/athityakumar/daru-io). _Time flies afterall._
+    Through this blog post, I'd like to document the progress that happened
+    in this week.
+
+    ---JSON Importer---
+
+    According to my timeline, the next importer I had planned to extend support,
+    was the JSON Importer. For the uninitiated, JSON is the format in which most
+    APIs provide response. For example, a typical API JSON response looks like
+    the below -
+
+    <pre>
+      <code>
+        #! Simple JSON
+        {
+          simple_key_1: :simple_value_1,
+          simple_key_2: :simple_value_2,
+          ...,
+          simple_key_n: :simple_value_n
+        }
+
+
+        #! Complexly nested JSON
+        {
+          simple_key_1:  :simple_value_1,
+          complex_key_1: {
+            simple_key_2: :simple_value_2,
+            complex_key_2: [1,2,3],
+            ... 
+            # More complex structures constituting of nested arrays,
+            # nested hashes or combinations of both.
+          }
+        }
+      </code>
+    </pre>
+
+    Importing these simple JSON responses into `Daru::DataFrame` was quite
+    simple, as the `Daru::DataFrame.new()` method already supports various
+    types of inputs like hashes, arrays or array of hashes. Here's an example
+    showing import from a simple JSON response -
+
+    <pre>
+      <code>
+      require 'daru/io/importers/json'
+      => true
+
+      url = 'https://data.nasa.gov/resource/2vr3-k9wn.json'
+      df  = Daru::IO::Importers::JSON.new(url).call
+
+      df
+
+      => < Daru::DataFrame(202x10) >
+           designation discovery_      h_mag      i_deg    moid_au orbit_clas  period_yr ...
+         0 419880 (20 2011-01-07       19.7       9.65      0.035     Apollo       4.06 ...
+         1 419624 (20 2010-09-17       20.5      14.52      0.028     Apollo          1 ...
+         2 414772 (20 2010-07-28         19      23.11      0.333     Apollo       1.31 ...
+         3 414746 (20 2010-03-06         18      23.89      0.268       Amor       4.24 ...
+         4 407324 (20 2010-07-18       20.7       9.12      0.111     Apollo       2.06 ...
+         5 398188 (20 2010-06-03       19.5      13.25      0.024       Aten        0.8 ...
+         6 395207 (20 2010-04-25       19.6      27.85      0.007     Apollo       1.96 ...
+         7 386847 (20 2010-06-06         18       5.84      0.029     Apollo        2.2 ...
+       ...        ...        ...        ...        ...        ...        ...        ... ...
+      </code>
+    </pre>
+
+    Cool. But what about the important scenario of complexly nested structures?
+    The **[JsonPath](https://github.com/joshbuddy/jsonpath)** 
+    gem comes to rescue here, by allowing users to select certain
+    json-paths from the complex JSON structure, and then the `Daru::DataFrame`
+    is constructed from these json-paths. Hence, `Daru::IO::Importers::JSON` can
+    be used to import dataframe from complexly nested JSON, in the below manner -
+
+    <pre>
+      <code>
+      require 'daru/io/importers/json'
+      => true
+
+      url = 'http://api.tvmaze.com/singlesearch/shows?q=game-of-thrones&embed=episodes'
+      df  = Daru::IO::Importers::JSON.new(url,
+                "$.._embedded..episodes..name",
+              "$.._embedded..episodes..season",
+              "$.._embedded..episodes..number",
+               index: (10..70).to_a,
+               RunTime: "$.._embedded..episodes..runtime"
+            ).call
+
+      # Note that the hash json-path selectors like index, RunTime, etc.
+      # should be given after normal json-path selectors like that of
+      # name, season and number.
+
+      df
+
+      => < Daru::DataFrame(61x4) >
+               name     season     number    RunTime
+      10 Winter is           1          1         60
+      11 The Kingsr          1          2         60
+      12  Lord Snow          1          3         60
+      13 Cripples,           1          4         60
+      14 The Wolf a          1          5         60
+      15 A Golden C          1          6         60
+      16 You Win or          1          7         60
+      17 The Pointy          1          8         60
+      18     Baelor          1          9         60
+      19 Fire and B          1         10         60
+      20 The North           2          1         60
+      21 The Night           2          2         60
+      22 What is De          2          3         60
+      23 Garden of           2          4         60
+      24 The Ghost           2          5         60
+      ...        ...        ...        ...        ...
+      </code>
+    </pre>
+
+    Currently, the JSON Importer is able to parse from local JSON files, remote
+    JSON files, JSON strings or JSON as Ruby objects (Arrays / Hashes).
+    However, certain beautifications are pending in the code & documentation.
+    If you're interested in knowing about what's making this work, please feel
+    free to have a look at the `lib/io/importers/json.rb` file in 
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/21). Also,
+    have a look at this screenshot from the documentation to get to know better
+    about the arguments that this method takes.
+
+    ![JSON Importer params](json_params.png)
+
+    ---Discussion : A faster csv Importer---
+
+    From [this Issue](https://github.com/SciRuby/daru/issues/337),
+    I came to know that the existing CSV Importer acts slow (kind of),
+    especially when the CSV file is really huge. Being asked by mentor 
+    [Sameer](https://github.com/v0dro/) to check for better alternatives
+    for faster imports from CSV, I tested quite a few Ruby gems that parse
+    CSV files. Here are the benchmarks for the various gems -
+
+    <pre>
+      <code>
+      #! Benchmark results for CSV Importer
+
+                            user       system      total         real
+      existing stdlib     99.380000   1.290000  100.670000   (142.255080)
+      modified stdlib     17.340000   0.470000   17.810000   ( 40.721766)
+      smartercsv          65.400000   1.000000   66.400000   (116.842460)
+      fastcsv             7.660000    0.380000    8.040000   ( 13.105506)
+      rcsv                5.850000    0.210000    6.060000   (  7.756945)
+      </code>
+    </pre>
+    <pre>
+      <code>
+      #! Importing a huge CSV file into Daru::DataFrame with rcsv gem
+      require 'daru'
+      require 'rcsv'
+      df  = Daru::DataFrame.rows Rcsv.parse(File.open('path/to/water.csv'))
+      </code>
+    </pre>
+    <pre>
+      <code>
+      #! Importing a huge CSV file into Daru::DataFrame with fastcsv gem
+      require 'daru'
+      require 'fastcsv'
+      all = []
+      File.open('path/to/water.csv') { |f| FastCSV.raw_parse(f) { |row| all.push row } }
+      df = Daru::DataFrame.rows all[1..-1], order: all[0]
+      </code>
+    </pre>
+
+    Yes, both [fastcsv](https://github.com/jpmckinney/fastcsv)
+    and [rcsv](https://github.com/fiksu/rcsv)
+    come out to be 20x faster than the existing method. Depending on the outcome
+    of further discussions on 
+    [this issue](https://github.com/SciRuby/daru/issues/337)'s thread,
+    `Daru::IO` might most likely feature a faster CSV Importer in the near future,
+    with support for fastcsv and/or rcsv.
