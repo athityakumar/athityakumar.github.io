@@ -1,0 +1,197 @@
+datetime_index: "201706251430"
+
+title:  GSoC 2017 - Coding Period | Week 4
+
+short_desc: Through this blog post, I'd like to document my progress in the fourth week of the Coding period, Google Summer of Code 2017. Contains updates regarding Mongo Importer, Redis Importer, Optional dependencies and Rubocop-rspec.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Swiftly like a samurai sword, the fourth week of Google Summer of Code 2017
+    whizzed past me. In this week, I worked on adding support to import a
+    `Daru::DataFrame` from a `Mongo` collection, and also made changes to the
+    `Redis` Importer as per the suggestions. With the second month of coding
+    to start in another week, the project is going as per schedule.
+
+    ---Mongo Importer---
+
+    According to my timeline, the importer I had planned to extend support this
+    week, was the Mongo Importer. Mongo is a NoSQL database, which works on the
+    concept of storing data as documents, and grouping all these documents under
+    collections. These collections are then stored in a database and accessed
+    as BSON (Binary JSON) documents when required.
+
+    For this Importer, I used the 
+    [mongo](https://github.com/mongodb/mongo-ruby-driver) 
+    gem. The BSON documents returned from a collection, are parsed to JSON by
+    the Mongo gem, through a `to_json` method. The best part is that, the JSON
+    Importer built last week has been re-used (inherited) by the Mongo Importer
+    to re-use the feature of JSON-path selectors.
+
+    <pre>
+      <code>
+      #! lib/daru/io/importers/mongo.rb
+
+      require 'daru/io/importers/json'
+
+      module Daru
+        module IO
+          module Importers
+            class Mongo < JSON
+              def call
+                # Connects to a collection
+                # Finds matching BSON documents
+                # Converts BSON documents to JSON object
+                @json_input = @client[@collection]
+                              .find(@filter, skip: @skip, limit: @limit)
+                              .to_json
+
+                # calls the JSON Importer
+                super
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    The client is obtained through a variety of arguments - `String`, `Hash` or
+    an existing `Mongo::Client` connection, through the private instance method
+    `get_client()` of `Daru::IO::Importers::Mongo` class.
+
+    <pre>
+      <code>
+      def get_client(connection)
+        case connection
+        when ::Mongo::Client
+          connection
+        when Hash
+          hosts = connection.delete :hosts
+          ::Mongo::Client.new(hosts, connection)
+        when String
+          ::Mongo::Client.new(connection)
+        else
+          raise ArgumentError,
+            "Expected #{connection} to be either a Mongo instance, "\
+            'Mongo connection Hash, or Mongo connection URL String. '\
+            "Received #{connection.class} instead."
+        end
+      end
+      </code>
+    </pre>
+
+    Progress related to the `Mongo` Importer can tracked on
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/26).
+    Here are some screenshots from the YARD documentation.
+
+    ![Mongo Importer - Example](mongo_example.png)
+    ![Mongo Importer - Notes](mongo_init.png)
+    ![Mongo Importer - Parameters](mongo_params.png)
+
+    ---Optional dependencies and Partial requires---
+
+    [daru-io](https://github.com/athityakumar/daru-io) uses a lot of
+    gems that parse various file / database formats. Having all these gems as
+    development dependencies would be costly, especially as daru-io is ideated
+    to support partial requiring of certain importers / exporters. This means
+    that the use-case of daru-io could be any of the below statements -
+
+    <pre>
+      <code>
+      require 'daru/io' # => Requires ALL Importers and Exporters
+      require 'daru/io/importers' # => Requires ALL Importers
+      require 'daru/io/importers/json' # => Requires only JSON Importer
+      </code>
+    </pre>
+
+    Hence, a better trade-off for using the various parsing these parsing gems is
+    to have them as optional dependencies, rather than development dependencies.
+    By optional dependencies, the parsing gems will directly just be `require`d
+    by daru-io. In case the `require`d gem isn't present in the environment,
+    the default `LoadError` is rescued to print a more helpful message. This
+    paves way for an `optional_gem()` method, which can be used like 
+
+    <pre>
+      <code>
+      # Used in Excel Importer (say)
+      optional_gem 'spreadsheet', '~> 1.1.1'
+      # => true
+      
+      # Used in ActiveRecord Importer (say)
+      optional_gem 'activerecord', '~> 4.0', requires: 'active_record'
+      # => LoadError: Please install the activerecord gem 4.0 version, with
+      # `gem install activerecord -v '4.0'` to use the
+      # Daru::IO::Importers::ActiveRecord module."
+      </code>
+    </pre>
+
+    This `optional_gem()` method could be achieved with something like this,
+    under the hood -
+
+    <pre>
+      <code>
+      module Daru
+        module IO
+          class Base
+            def optional_gem(dependency, version=nil, requires: nil,
+              callback: self.class.name)
+              gem dependency, version
+              require requires || dependency
+            rescue LoadError
+              statement =
+                if version.nil?
+                  "gem install #{dependency}"
+                else
+                  "gem install #{dependency} -v '#{version}'"
+                end
+              raise LoadError,
+                "Please install the #{dependency} gem #{version} version, with "\
+                "#{statement} to use the #{callback} module."
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    Progress related to this, can be tracked in 
+    [this Issue](https://github.com/athityakumar/daru-io/issues/25) and
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/26).
+
+    ---Redis Importer---
+
+    Redis's scan method fetches all matching keys in a random order, and provides
+    the results in a paginated format. This pagination traversal has successfully
+    been implemented in the Redis Importer this week, along with `count` and 
+    `offset` features. However, the addition of `offset` doesn't seem to be
+    very significant owing to the random order characteristic of Redis. 
+
+    Also, discussion is still going on, regarding whether a `chunk` feature can be
+    added, to enable usage with the `Parallel` gem, for running same computation
+    on multiple dataframes in parallel.
+
+    Progress related to the Redis Importer, can be tracked in 
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/18).
+
+    ---Integrating Rubocop-rspec check---
+
+    - Rubocop is a static code analyzer for Ruby
+    - RSpec is a testing ramework
+    - `rubocop-rspec` is a plugin gem to rubocop, that specifies 
+      improvements in the written RSpec tests and helps in cleansing them.
+
+    Progress related to this, can be tracked in 
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/27).
+    This Pull Request is intended to be worked on during the next week,
+    after the Redis & Mongo Importers have been merged.

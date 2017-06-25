@@ -2,7 +2,7 @@ datetime_index: "201706042100"
 
 title:  GSoC 2017 - Coding Period | Week 1
 
-short_desc: Through this blog post, I'd like to document my progress in the first week of the Coding period, Google Summer of Code 2017.
+short_desc: Through this blog post, I'd like to document my progress in the first week of the Coding period, Google Summer of Code 2017. Contains updates regarding HTML Importer, Repository setup, Porting existing IO modules of daru and adding fxixture files.
 
 tags: 
     -   5
