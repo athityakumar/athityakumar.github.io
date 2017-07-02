@@ -1,0 +1,193 @@
+datetime_index: "201707021510"
+
+title:  GSoC 2017 - Coding Period | Week 5
+
+short_desc: Through this blog post, I'd like to document my progress in the fifth week of the Coding period, Google Summer of Code 2017. Also contains a summary of updates from the first month.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Following the end of the first month of coding, I'm happy to inform that I've successfully
+    passed the first evaluation. According to my original timeline, this week was intended
+    to be a Buffer period incase there is any delay in the first month of coding. Through this
+    post, I'd like to document the progress in this week, as well as the progress achieved
+    in the first month of coding.
+
+    ---Shared examples in tests---
+
+    Till week 4, all the tests of daru-io importer modules had their own set of shared examples
+    rather than having one single shared_examples for all importers. As these shared examples
+    weren't format dependent, it definitely proved to be wiser to club them into a single
+    shared examples section.
+
+    For example, let us take the case of Excel Importer. Till the previous week, the tests used
+    to look like this -
+
+    <pre>
+      <code>
+      RSpec.describe Daru::IO::Importers::Excel do
+        context 'loads from excel spreadsheet' do
+          let(:id)    { Daru::Vector.new([1, 2, 3, 4, 5, 6]) }
+          let(:name)  { Daru::Vector.new(%w[Alex Claude Peter Franz George Fernand]) }
+          let(:age)   { Daru::Vector.new([20, 23, 25, nil, 5.5, nil]) }
+          let(:city)  { Daru::Vector.new(['New York', 'London', 'London', 'Paris', 'Tome', nil]) }
+          let(:a1)    { Daru::Vector.new(['a,b', 'b,c', 'a', nil, 'a,b,c', nil]) }
+          let(:path)  { 'spec/fixtures/excel/test_xls.xls' }
+          let(:order) { %i[id name age city a1] }
+          let(:df)    { Daru::DataFrame.new({id: id, name: name, age: age, city: city, a1: a1},order: order) }
+
+          subject { described_class.new(path).call }
+
+          it_behaves_like 'daru dataframe'
+          its(:nrows) { is_expected.to eq(6) }
+          its('vectors.to_a') { is_expected.to eq(order) }
+          its('age.to_a.last') { is_expected.to eq(nil) }
+          it { is_expected.to eq(df) }
+        end
+      end
+      </code>
+    </pre>
+
+    As you can see, the tests contain a lot of expectation variables rather than subject-related
+    variables. Also, there are quite a few `rubocop-rspec` rules that are being voilated. For
+    example, subject block should be present before any let. And in general, it's better to 
+    avoid storing any variables for tests with let unless these variablesare used by the subject
+    call.
+
+    Hence, corresponding changes have lead to a much more readable test -
+
+    <pre>
+      <code>
+      RSpec.describe Daru::IO::Importers::Excel do
+        context 'loads from excel spreadsheet' do
+          subject    { described_class.new(path).call     }
+
+          let(:path) { 'spec/fixtures/excel/test_xls.xls' }
+
+          it_behaves_like 'exact daru dataframe',
+            ncols: 5,
+            nrows: 6,
+            order: %i[id name age city a1],
+            data: [
+              (1..6).to_a,
+              %w[Alex Claude Peter Franz George Fernand],
+              [20, 23, 25, nil, 5.5, nil],
+              ['New York', 'London', 'London', 'Paris', 'Tome', nil],
+              ['a,b', 'b,c', 'a', nil, 'a,b,c', nil]
+            ],
+            'age.to_a.last' => nil
+        end
+      end      
+      </code>
+    </pre>
+
+    And the best part is that, all Importers now use the same shared-examples block called
+    `"exact daru dataframe"`. Here is the block of code that makes the shared-example work :
+
+    <pre>
+      <code>
+      #! spec/shared_examples.rb
+
+      RSpec.shared_examples 'a daru dataframe' do |name: nil, nrows: nil, ncols: nil, **opts|
+        it            { is_expected.to be_a(Daru::DataFrame) }
+
+        its(:name)    { is_expected.to eq(name)           } if name
+        its(:ncols)   { is_expected.to eq(ncols)          } if ncols
+        its(:nrows)   { is_expected.to eq(nrows)          } if nrows
+
+        opts.each { |key, value| its(key.to_sym) { is_expected.to eq(value) } }
+      end
+
+      RSpec.shared_examples 'exact daru dataframe' do |dataframe: nil, data: nil, nrows: nil, ncols: nil, order: nil, index: nil, name: nil, **opts|
+        it_behaves_like 'a daru dataframe',
+          name: name,
+          nrows: nrows,
+          ncols: ncols,
+          **opts
+
+        it            { is_expected.to eq(dataframe)      } if dataframe
+        its(:data)    { is_expected.to ordered_data(data) } if data
+        its(:index)   { is_expected.to eq(index.to_index) } if index
+        its(:vectors) { is_expected.to eq(order.to_index) } if order
+      end
+      </code>
+    </pre>
+
+    Progress related to this, can be tracked in
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/27).
+
+    ---Rubocop-rspec and saharspec---
+
+    The two libraries that really came in handy while tidying the tests, were 
+    [rubocop-rspec](https://github.com/backus/rubocop-rspec) and
+    [saharspec](https://github.com/zverok/saharspec/).
+    Rubocop-rspec is a plugin gem to rubocop, that extends rspec-related rules. Meanwhile,
+    saharspec extends a few features to `rspec-its` that are more readable. For example,
+    here is a usage of one of the methods added by saharspec, `its_call` :
+
+    <pre>
+      <code>
+      #! spec/daru/io/importers/sql_spec.rb
+
+      #! SQL Importer without saharspec
+      RSpec.describe Daru::IO::Importers::SQL do
+        subject { described_class.new(source, query).call }
+
+        context 'with path to unsupported db file' do
+          let(:source) { 'spec/fixtures/plaintext/bank2.dat' }
+          it { expect { subject }.to raise_error(ArgumentError) }
+        end
+      end
+
+      #! SQL Importer with saharspec
+      RSpec.describe Daru::IO::Importers::SQL do
+        subject { described_class.new(source, query).call }
+
+        context 'with path to unsupported db file' do
+          let(:source) { 'spec/fixtures/plaintext/bank2.dat' }
+          its_call { is_expected.to raise_error(ArgumentError) }
+        end
+      end
+      </code>
+    </pre>
+
+    _A side note : Do have a look at 
+    [saharspec's README](https://github.com/zverok/saharspec/blob/master/README.md)
+    to understand the witty naming behind the unreleased gem._
+
+    ---Summary for first month---
+
+    The first month of GSoC with SciRuby organization has been quite a great experience for
+    me and I've learned quite a lot about best practises with Ruby and architecture in general.
+    Special thanks to mentors
+    [Victor](https://github.com/zverok),
+    [Sameer](https://github.com/v0dro/) and
+    [Lokesh](https://github.com/lokeshh)
+    for guiding me through this project.
+
+    As of the first month, here are the summarized updates with corresponding
+    Pull Request links for reference :
+
+    - [Daru-io](https://github.com/athityakumar/daru-io/) gem repository has been setup with
+      required tools such as Rubocop, Rspec, Travis and 
+      [Yard documentation](http://www.rubydoc.info/github/athityakumar/daru-io/master/).
+    - Fixture files required for tests, have been added with
+      [this Pull Request](https://github.com/athityakumar/daru-io/pull/17)
+    - Existing IO modules of daru have been ported to daru-io with
+      [this Pull Request](https://github.com/athityakumar/daru-io/pull/16).
+    - New IO modules added :
+
+      1. [HTML Importer](https://github.com/SciRuby/daru/pull/311) 
+      2. [Redis Importer](https://github.com/athityakumar/daru-io/pull/18)
+      3. [JSON Importer (with json-path option)](https://github.com/athityakumar/daru-io/pull/21)
+      4. [Mongo Importer](https://github.com/athityakumar/daru-io/pull/26)
