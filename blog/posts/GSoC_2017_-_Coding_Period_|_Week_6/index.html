@@ -8,16 +8,16 @@
     <link rel="shortcut icon" type="image/jpeg" href="../../../assets/images/logo.png" />
     <!-- Site Properities -->
     <meta name="generator" content="DocPad v6.78.4" />
-    <title> Athitya Kumar | GSoC 2017 - Coding Period | Week 4 </title>
-    <meta name="description" content="Through this blog post, I'd like to document my progress in the fourth week of the Coding period, Google Summer of Code 2017. Contains updates regarding Mongo Importer, Redis Importer, Optional dependencies and Rubocop-rspec." />
-    <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,open,source,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,Through,this,blog,post,,I'd,like,to,document,my,progress,in,the,fourth,week,of,the,Coding,period,,Google,Summer,of,Code,2017.,Contains,updates,regarding,Mongo,Importer,,Redis,Importer,,Optional,dependencies,and,Rubocop-rspec." />
-    <meta property="og:title" content="GSoC 2017 - Coding Period | Week 4" />
+    <title> Athitya Kumar | GSoC 2017 - Coding Period | Week 6 </title>
+    <meta name="description" content="Through this blog post, I'd like to document my progress in the sixth week of the Coding period, Google Summer of Code 2017." />
+    <meta name="keywords" content="athitya,kumar,iit,iitkgp,developer,open,source,coder,programmer,mechanical,engineering,chess,carnatic,vocalist,tv,series,blog,Through,this,blog,post,,I'd,like,to,document,my,progress,in,the,sixth,week,of,the,Coding,period,,Google,Summer,of,Code,2017." />
+    <meta property="og:title" content="GSoC 2017 - Coding Period | Week 6" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_|_Week_4/" />
-    <meta property="og:image" content="https://athityakumar.github.io/assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_4/gsoc.png" />
+    <meta property="og:url" content="https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_|_Week_6/" />
+    <meta property="og:image" content="https://athityakumar.github.io/assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_6/gsoc.png" />
     <meta property="og:image:width" content="200">
     <meta property="og:image:height" content="200">
-    <meta property="og:description" content="Through this blog post, I'd like to document my progress in the fourth week of the Coding period, Google Summer of Code 2017. Contains updates regarding Mongo Importer, Redis Importer, Optional dependencies and Rubocop-rspec." />
+    <meta property="og:description" content="Through this blog post, I'd like to document my progress in the sixth week of the Coding period, Google Summer of Code 2017." />
     <link rel="stylesheet" type="text/css" class="ui" href="../../../assets/all.css">
     <link rel="stylesheet" type="text/css" class="ui" href="../../../assets/prism.css">
   </head>
@@ -88,7 +88,7 @@
         <div class="introduction">
           <h1 class="ui inverted header">
             <span class="tagline">
-              GSoC 2017 - Coding Period | Week 4  
+              GSoC 2017 - Coding Period | Week 6  
             </span>
           </h1>
           <h4 class="tagline">  You're here : <a href="../../../">Homepage</a> > <a href="../../page1/">Blog</a> > <a>This Blog Post</a>
@@ -98,10 +98,10 @@
           <a href="#go" class="ui labeled primary icon button">
             <i class="angle double down large icon"></i> &nbsp; Read this post
           </a>
-          <a class="ui labeled primary icon button" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fathityakumar.github.io%2Fblog%2Fposts%2FGSoC_2017_-_Coding_Period_|_Week_4%2Findex.html&amp;src=sdkpreparse" target="_blank">
+          <a class="ui labeled primary icon button" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fathityakumar.github.io%2Fblog%2Fposts%2FGSoC_2017_-_Coding_Period_|_Week_6%2Findex.html&amp;src=sdkpreparse" target="_blank">
             <i class="facebook large icon"></i> &nbsp; Share
           </a>
-          <a class="ui labeled primary icon button" href="https://twitter.com/intent/tweet?text=Do+give+this+a+read.&url=https%3A%2F%2Fathityakumar.github.io%2Fblog%2Fposts%2FGSoC_2017_-_Coding_Period_|_Week_4%2Findex.html" target="_blank">
+          <a class="ui labeled primary icon button" href="https://twitter.com/intent/tweet?text=Do+give+this+a+read.&url=https%3A%2F%2Fathityakumar.github.io%2Fblog%2Fposts%2FGSoC_2017_-_Coding_Period_|_Week_6%2Findex.html" target="_blank">
             <i class="twitter large icon"></i> &nbsp; Tweet
           </a>
           <!-- <a href="resume.html" class="ui labeled primary icon button">
@@ -115,8 +115,8 @@
         <div class="row">
           <div class="sixteen wide column center aligned">
             <div class="ui hidden divider"></div>
-            <h2 class="ui title"> GSoC 2017 - Coding Period | Week 4</h2>
-            <p class="ui description">Posted on 25/06/2017 at 2:30 PM by <a href="../../../">The Vibe</a>.</p>
+            <h2 class="ui title"> GSoC 2017 - Coding Period | Week 6</h2>
+            <p class="ui description">Posted on 09/07/2017 at 5:00 PM by <a href="../../../">The Vibe</a>.</p>
             <p>
               <a href="../../tags/software/page1/" class="ui brown tag label"> Software </a>
               <a href="../../tags/development/page1/" class="ui brown tag label"> Development </a>
@@ -130,195 +130,165 @@
       <div class='stackable very relaxed ui grid container fakeload'>
         <div class='row'>
           <div class="twelve wide column">
-            <p><img src='../../../assets/images/load.png' class='ui centered image' data-src="../../../assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_4/banner.png" alt="GSoC Banner image"></p>
-            <p><span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>S</span>wiftly like a samurai sword, the fourth week of Google Summer of Code 2017
-              whizzed past me. In this week, I worked on adding support to import a
-              <code class='language-ruby' style='background-color : #fff;'>Daru::DataFrame</code></pre>
-             from a <code class='language-ruby' style='background-color : #fff;'>Mongo</code></pre>
-           collection, and also made changes to the
-          <code class='language-ruby' style='background-color : #fff;'>Redis</code></pre>
-         Importer as per the suggestions. With the second month of coding
-        to start in another week, the project is going as per schedule.</p>
-      <p><br>
-        <div class='ui horizontal divider'>Mongo Importer</div>
-      </p>
-      <p>According to my timeline, the importer I had planned to extend support this
-        week, was the Mongo Importer. Mongo is a NoSQL database, which works on the
-        concept of storing data as documents, and grouping all these documents under
-        collections. These collections are then stored in a database and accessed
-        as BSON (Binary JSON) documents when required.</p>
-      <p>For this Importer, I used the 
-        <a target='_blank' href="https://github.com/mongodb/mongo-ruby-driver">mongo</a>
-        gem. The BSON documents returned from a collection, are parsed to JSON by
-        the Mongo gem, through a <code class='language-ruby' style='background-color : #fff;'>to_json</code></pre>
-       method. The best part is that, the JSON
-      Importer built last week has been re-used (inherited) by the Mongo Importer
-      to re-use the feature of JSON-path selectors.</p>
-    <pre>
+            <p><img src='../../../assets/images/load.png' class='ui centered image' data-src="../../../assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_6/banner.png" alt="GSoC Banner image"></p>
+            <p><span style='display:block; float:left; font-size: 200%;  color:#ffffff; margin-top:5px; margin-right:8px; padding: 10px 20px 10px 20px; text-align:center; background-color: #000;'>S</span>econd month got off to a great start with 3 Pull Requests. Through this blog post, I&#39;d like
+              to document the progress that happened in this week. Despite working on a fun Ruby project
+              called <a target='_blank' href="https://github.com/athityakumar/colorls">colorls</a>, I&#39;m glad that I was able to
+              accomodate this week&#39;s GSoC timeline : XLSX Importer, CSV Importer and CSV Exporter.</p>
+            <p><br>
+              <div class='ui horizontal divider'>XLSX Importer</div>
+            </p>
+            <p>The XSLX Importer is supposed to import a <code class='language-ruby' style='background-color : #fff;'>Daru::DataFrame</code></pre>
+             from <code class='language-ruby' style='background-color : #fff;'>*.xlsx</code></pre>
+           files, which was
+          previously not possible with the <code class='language-ruby' style='background-color : #fff;'>from_excel</code></pre>
+         method, as the <code class='language-ruby' style='background-color : #fff;'>spreadsheet</code></pre>
+       gem doesn&#39;t
+      support parsing of xlsx files. The <code class='language-ruby' style='background-color : #fff;'>roo</code></pre>
+     gem has been used to parse the data from the
+    <code class='language-ruby' style='background-color : #fff;'>*.xlsx</code></pre>
+   file.</p>
+<pre>
   <code class='language-ruby' style='background-color : #fff;'>
-  #! lib/daru/io/importers/mongo.rb
-
-  require 'daru/io/importers/json'
-
   module Daru
     module IO
       module Importers
-        class Mongo < JSON
+        class XLSX < Base
           def call
-            # Connects to a collection
-            # Finds matching BSON documents
-            # Converts BSON documents to JSON object
-            @json_input = @client[@collection]
-                          .find(@filter, skip: @skip, limit: @limit)
-                          .to_json
+            book      = Roo::Excelx.new(@path)
+            worksheet = book.sheet(@sheet)
+            data      = worksheet.to_a
+            data      = strip_html_tags(data)
+            order     = @headers ? data.delete_at(0) : (0..data.first.length-1).to_a
 
-            # calls the JSON Importer
-            super
+            Daru::DataFrame.rows(data, order: order)
           end
         end
       end
     end
   end
   </code></pre>
-  </pre>
-  <p>The client is obtained through a variety of arguments - <code class='language-ruby' style='background-color : #fff;'>String</code></pre>
-  , <code class='language-ruby' style='background-color : #fff;'>Hash</code></pre>
- or
-an existing <code class='language-ruby' style='background-color : #fff;'>Mongo::Client</code></pre>
- connection, through the private instance method
-<code class='language-ruby' style='background-color : #fff;'>get_client()</code></pre>
- of <code class='language-ruby' style='background-color : #fff;'>Daru::IO::Importers::Mongo</code></pre>
- class.</p>
-<pre>
-  <code class='language-ruby' style='background-color : #fff;'>
-  def get_client(connection)
-    case connection
-    when ::Mongo::Client
-      connection
-    when Hash
-      hosts = connection.delete :hosts
-      ::Mongo::Client.new(hosts, connection)
-    when String
-      ::Mongo::Client.new(connection)
-    else
-      raise ArgumentError,
-        "Expected #{connection} to be either a Mongo instance, "\
-        'Mongo connection Hash, or Mongo connection URL String. '\
-        "Received #{connection.class} instead."
-    end
-  end
-  </code></pre>
 </pre>
-<p>Progress related to the <code class='language-ruby' style='background-color : #fff;'>Mongo</code></pre>
- Importer can tracked on
-<a target='_blank' href="https://github.com/athityakumar/daru-io/pull/26">this Pull Request</a>.
-Here are some screenshots from the YARD documentation.</p>
-<p><img src='../../../assets/images/load.png' class='ui centered image' data-src="../../../assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_4/mongo_example.png" alt="Mongo Importer - Example">
-  <img src='../../../assets/images/load.png' class='ui centered image' data-src="../../../assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_4/mongo_init.png" alt="Mongo Importer - Notes">
-  <img src='../../../assets/images/load.png' class='ui centered image' data-src="../../../assets/images/blog/GSoC_2017_-_Coding_Period_|_Week_4/mongo_params.png" alt="Mongo Importer - Parameters"></p>
-<p><br>
-  <div class='ui horizontal divider'>Optional dependencies and Partial requires</div>
-</p>
-<p><a target='_blank' href="https://github.com/athityakumar/daru-io">daru-io</a> uses a lot of
-  gems that parse various file / database formats. Having all these gems as
-  development dependencies would be costly, especially as daru-io is ideated
-  to support partial requiring of certain importers / exporters. This means
-  that the use-case of daru-io could be any of the below statements -</p>
-<pre>
-  <code class='language-ruby' style='background-color : #fff;'>
-  require 'daru/io' # => Requires ALL Importers and Exporters
-  require 'daru/io/importers' # => Requires ALL Importers
-  require 'daru/io/importers/json' # => Requires only JSON Importer
-  </code></pre>
-</pre>
-<p>Hence, a better trade-off for using the various parsing these parsing gems is
-  to have them as optional dependencies, rather than development dependencies.
-  By optional dependencies, the parsing gems will directly just be <code class='language-ruby' style='background-color : #fff;'>require</code></pre>
-d
-by daru-io. In case the <code class='language-ruby' style='background-color : #fff;'>require</code></pre>
-d gem isn&#39;t present in the environment,
-the default <code class='language-ruby' style='background-color : #fff;'>LoadError</code></pre>
- is rescued to print a more helpful message. This
-paves way for an <code class='language-ruby' style='background-color : #fff;'>optional_gem()</code></pre>
- method, which can be used like </p>
-<pre>
-  <code class='language-ruby' style='background-color : #fff;'>
-  # Used in Excel Importer (say)
-  optional_gem 'spreadsheet', '~> 1.1.1'
-  # => true
-  
-  # Used in ActiveRecord Importer (say)
-  optional_gem 'activerecord', '~> 4.0', requires: 'active_record'
-  # => LoadError: Please install the activerecord gem 4.0 version, with
-  # `gem install activerecord -v '4.0'` to use the
-  # Daru::IO::Importers::ActiveRecord module."
-  </code></pre>
-</pre>
-<p>This <code class='language-ruby' style='background-color : #fff;'>optional_gem()</code></pre>
- method could be achieved with something like this,
-under the hood -</p>
+<p>As the <code class='language-ruby' style='background-color : #fff;'>roo</code></pre>
+ gem by default transforms all the parsed data to HTML-tagged data. However,
+it would not be a preferable to have HTML-tagged data for analyzing the data. Hence, the
+HTML tags had to be stripped from the parsed HTML-tagged data. This is done by the private
+method <code class='language-ruby' style='background-color : #fff;'>strip_html_tags</code></pre>
+.</p>
 <pre>
   <code class='language-ruby' style='background-color : #fff;'>
   module Daru
     module IO
-      class Base
-        def optional_gem(dependency, version=nil, requires: nil,
-          callback: self.class.name)
-          gem dependency, version
-          require requires || dependency
-        rescue LoadError
-          statement =
-            if version.nil?
-              "gem install #{dependency}"
-            else
-              "gem install #{dependency} -v '#{version}'"
+      module Importers
+        class XLSX < Base
+
+        private
+
+        def strip_html_tags(data)
+          data.map do |row|
+            row.map do |ele|
+              next ele unless ele.is_a?(String)
+              ele.gsub(/<[^>]+>/, '')
             end
-          raise LoadError,
-            "Please install the #{dependency} gem #{version} version, with "\
-            "#{statement} to use the #{callback} module."
+          end
         end
       end
     end
   end
   </code></pre>
 </pre>
-<p>Progress related to this, can be tracked in 
-  <a target='_blank' href="https://github.com/athityakumar/daru-io/issues/25">this Issue</a> and
-  <a target='_blank' href="https://github.com/athityakumar/daru-io/pull/26">this Pull Request</a>.</p>
+<p>Progress related to this can be tracked from
+  <a target='_blank' href="https://github.com/athityakumar/daru-io/pull/28">this Pull Request</a> and
+  <a target='_blank' href="https://github.com/SciRuby/daru/issues/344">this Issue</a>.</p>
 <p><br>
-  <div class='ui horizontal divider'>Redis Importer</div>
+  <div class='ui horizontal divider'>CSV Importer Improvements</div>
 </p>
-<p>Redis&#39;s scan method fetches all matching keys in a random order, and provides
-  the results in a paginated format. This pagination traversal has successfully
-  been implemented in the Redis Importer this week, along with <code class='language-ruby' style='background-color : #fff;'>count</code></pre>
- and 
-<code class='language-ruby' style='background-color : #fff;'>offset</code></pre>
- features. However, the addition of <code class='language-ruby' style='background-color : #fff;'>offset</code></pre>
- doesn&#39;t seem to be
-very significant owing to the random order characteristic of Redis. </p>
-<p>Also, discussion is still going on, regarding whether a <code class='language-ruby' style='background-color : #fff;'>chunk</code></pre>
- feature can be
-added, to enable usage with the <code class='language-ruby' style='background-color : #fff;'>Parallel</code></pre>
- gem, for running same computation
-on multiple dataframes in parallel.</p>
-<p>Progress related to the Redis Importer, can be tracked in 
-  <a target='_blank' href="https://github.com/athityakumar/daru-io/pull/18">this Pull Request</a>.</p>
-<p><br>
-  <div class='ui horizontal divider'>Integrating Rubocop-rspec check</div>
-</p>
+<p><a target='_blank' href="https://github.com/athityakumar/daru-io/pull/33">This Pull Request</a> adds the following
+  improvements to the CSV Importer module -</p>
 <h4> 
   <ul class='ui list'>
-    <li>Rubocop is a static code analyzer for Ruby</li>
-    <li>RSpec is a testing ramework</li>
-    <li><code class='language-ruby' style='background-color : #fff;'>rubocop-rspec</code></pre>
-     is a plugin gem to rubocop, that specifies 
-    improvements in the written RSpec tests and helps in cleansing them.</li>
+    <li>Read from <code class='language-ruby' style='background-color : #fff;'>.csv.gz</code></pre>
+     format with <code class='language-ruby' style='background-color : #fff;'>compression: :gzip</code></pre>
+   option (As per <a target='_blank' href="https://github.com/SciRuby/daru/issues/127">issue #127</a>).</li>
 </ul>
  </h4>
-<p>Progress related to this, can be tracked in 
-  <a target='_blank' href="https://github.com/athityakumar/daru-io/pull/27">this Pull Request</a>.
-  This Pull Request is intended to be worked on during the next week,
-  after the Redis &amp; Mongo Importers have been merged.</p>
+<p>The <a target='_blank' href="https://github.com/ruby/zlib">zlib gem</a> was used to read from the <code class='language-ruby' style='background-color : #fff;'>.csv.gz</code></pre>
+compressed file as a <code class='language-ruby' style='background-color : #fff;'>String</code></pre>
+ and convert it to an <code class='language-ruby' style='background-color : #fff;'>Array</code></pre>
+ data with <code class='language-ruby' style='background-color : #fff;'>CSV.parse()</code></pre>
+.</p>
+<h4> 
+  <ul class='ui list'>
+    <li><code class='language-ruby' style='background-color : #fff;'>:skiprows</code></pre>
+     option to skip the first few rows (As per <a target='_blank' href="https://github.com/SciRuby/daru/issues/220">issue #220</a>).</li>
+</ul>
+ </h4>
+<p>The basic logic involved in skipping the rows is to crop the 2D-Array obtained from the
+  Importer with <code class='language-ruby' style='background-color : #fff;'>arr_of_arr[@skiprows..-1]</code></pre>
+.</p>
+<h4> 
+  <ul class='ui list'>
+    <li>Empty DataFrame is created when CSV file has only headers (As per <a target='_blank' href="https://github.com/SciRuby/daru/issues/349">issue #349</a>).</li>
+  </ul>
+   </h4>
+<p><br>
+  <div class='ui horizontal divider'>CSV Exporter Improvements</div>
+</p>
+<p><a target='_blank' href="https://github.com/athityakumar/daru-io/pull/34">This Pull Request</a> adds the option
+  to write a <code class='language-ruby' style='background-color : #fff;'>.csv.gz</code></pre>
+ format with <code class='language-ruby' style='background-color : #fff;'>compression: :gzip</code></pre>
+ option (As per 
+<a target='_blank' href="https://github.com/SciRuby/daru/issues/127">issue #127</a>). The
+<a target='_blank' href="https://github.com/ruby/zlib">zlib gem</a> was used to write the <code class='language-ruby' style='background-color : #fff;'>Daru::DataFrame</code></pre>
+ into
+compressed <code class='language-ruby' style='background-color : #fff;'>.csv.gz</code></pre>
+ file.</p>
+<p>The processing of <code class='language-ruby' style='background-color : #fff;'>Daru::DataFrame</code></pre>
+ into a writable Array of Array format is taken care of,
+by the <code class='language-ruby' style='background-color : #fff;'>process_dataframe()</code></pre>
+ method - as this is a common step. Then, an adapter chosen is
+decided depending on the <code class='language-ruby' style='background-color : #fff;'>:compression</code></pre>
+ option given.</p>
+<pre>
+  <code class='language-ruby' style='background-color : #fff;'>
+  module Daru
+    module IO
+      module Exporters
+        class CSV < Base
+          def call
+            contents = process_dataframe
+
+            if @compression == :gzip
+              ::Zlib::GzipWriter.open(@path) do |gz|
+                contents.each { |content| gz.write("#{content.join(',')}\n") }
+                gz.close
+              end
+            else
+              csv = ::CSV.open(@path, 'w', @options)
+              contents.each { |content| csv << content }
+              csv.close
+            end
+          end
+
+          private
+
+          def process_dataframe
+            order = [@dataframe.vectors.to_a] unless @headers == false
+            data  = @dataframe.map_rows do |row|
+              next row.to_a unless @convert_comma
+              row.map { |v| v.to_s.tr('.', ',') }
+            end
+
+            return data  if order.nil?
+            return order if data.empty?
+            order + data
+          end
+        end
+      end
+    end
+  end
+  </code></pre>
+</pre>
 </div>
 <div class="four wide column">
   <div class="ui fluid centered card">
@@ -364,10 +334,10 @@ on multiple dataframes in parallel.</p>
 <div class="ui stackable very relaxed grid container">
   <div class="row">
     <div class="sixteen wide column center aligned">
-      <a href="../GSoC_2017_-_Coding_Period_|_Week_3/" class="ui labeled primary icon left floated button">
+      <a href="../GSoC_2017_-_Coding_Period_|_Week_5/" class="ui labeled primary icon left floated button">
         <i class="angle double left large icon"></i> &nbsp; Previous post
       </a>
-      <a href="../GSoC_2017_-_Coding_Period_|_Week_5" class="ui right labeled primary icon right floated button">
+      <a class="ui right labeled icon right floated button">
         Next post &nbsp; <i class="angle double right large icon"></i>
       </a>
     </div>
@@ -482,7 +452,7 @@ on multiple dataframes in parallel.</p>
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
   
     var disqus_config = function () {
-    this.page.url = "http://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_|_Week_4/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.url = "http://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_|_Week_6/index.html";  // Replace PAGE_URL with your page's canonical URL variable
     this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
   

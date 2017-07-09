@@ -1,0 +1,154 @@
+datetime_index: "201707091700"
+
+title:  GSoC 2017 - Coding Period | Week 6
+
+short_desc: Through this blog post, I'd like to document my progress in the sixth week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Second month got off to a great start with 3 Pull Requests. Through this blog post, I'd like
+    to document the progress that happened in this week. Despite working on a fun Ruby project
+    called [colorls](https://github.com/athityakumar/colorls), I'm glad that I was able to
+    accomodate this week's GSoC timeline : XLSX Importer, CSV Importer and CSV Exporter.
+
+    ---XLSX Importer---
+
+    The XSLX Importer is supposed to import a `Daru::DataFrame` from `*.xlsx` files, which was
+    previously not possible with the `from_excel` method, as the `spreadsheet` gem doesn't
+    support parsing of xlsx files. The `roo` gem has been used to parse the data from the
+    `*.xlsx` file.
+
+    <pre>
+      <code>
+      module Daru
+        module IO
+          module Importers
+            class XLSX < Base
+              def call
+                book      = Roo::Excelx.new(@path)
+                worksheet = book.sheet(@sheet)
+                data      = worksheet.to_a
+                data      = strip_html_tags(data)
+                order     = @headers ? data.delete_at(0) : (0..data.first.length-1).to_a
+
+                Daru::DataFrame.rows(data, order: order)
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    As the `roo` gem by default transforms all the parsed data to HTML-tagged data. However,
+    it would not be a preferable to have HTML-tagged data for analyzing the data. Hence, the
+    HTML tags had to be stripped from the parsed HTML-tagged data. This is done by the private
+    method `strip_html_tags`.
+
+    <pre>
+      <code>
+      module Daru
+        module IO
+          module Importers
+            class XLSX < Base
+
+            private
+
+            def strip_html_tags(data)
+              data.map do |row|
+                row.map do |ele|
+                  next ele unless ele.is_a?(String)
+                  ele.gsub(/<[^>]+>/, '')
+                end
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    Progress related to this can be tracked from
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/28) and
+    [this Issue](https://github.com/SciRuby/daru/issues/344).
+
+    ---CSV Importer Improvements---
+
+    [This Pull Request](https://github.com/athityakumar/daru-io/pull/33) adds the following
+    improvements to the CSV Importer module -
+
+    - Read from `.csv.gz` format with `compression: :gzip` option (As per [issue #127](https://github.com/SciRuby/daru/issues/127)).
+
+      The [zlib gem](https://github.com/ruby/zlib) was used to read from the `.csv.gz` 
+      compressed file as a `String` and convert it to an `Array` data with `CSV.parse()`.
+
+    - `:skiprows` option to skip the first few rows (As per [issue #220](https://github.com/SciRuby/daru/issues/220)).
+
+      The basic logic involved in skipping the rows is to crop the 2D-Array obtained from the
+      Importer with `arr_of_arr[@skiprows..-1]`.
+
+    - Empty DataFrame is created when CSV file has only headers (As per [issue #349](https://github.com/SciRuby/daru/issues/349)).
+
+    ---CSV Exporter Improvements---
+
+    [This Pull Request](https://github.com/athityakumar/daru-io/pull/34) adds the option
+    to write a `.csv.gz` format with `compression: :gzip` option (As per 
+    [issue #127](https://github.com/SciRuby/daru/issues/127)). The
+    [zlib gem](https://github.com/ruby/zlib) was used to write the `Daru::DataFrame` into
+    compressed `.csv.gz` file.
+
+    The processing of `Daru::DataFrame` into a writable Array of Array format is taken care of,
+    by the `process_dataframe()` method - as this is a common step. Then, an adapter chosen is
+    decided depending on the `:compression` option given.
+
+    <pre>
+      <code>
+      module Daru
+        module IO
+          module Exporters
+            class CSV < Base
+              def call
+                contents = process_dataframe
+
+                if @compression == :gzip
+                  ::Zlib::GzipWriter.open(@path) do |gz|
+                    contents.each { |content| gz.write("#{content.join(',')}\n") }
+                    gz.close
+                  end
+                else
+                  csv = ::CSV.open(@path, 'w', @options)
+                  contents.each { |content| csv << content }
+                  csv.close
+                end
+              end
+
+              private
+
+              def process_dataframe
+                order = [@dataframe.vectors.to_a] unless @headers == false
+                data  = @dataframe.map_rows do |row|
+                  next row.to_a unless @convert_comma
+                  row.map { |v| v.to_s.tr('.', ',') }
+                end
+
+                return data  if order.nil?
+                return order if data.empty?
+                order + data
+              end
+            end
+          end
+        end
+      end
+      </code>
+    </pre>
