@@ -1,0 +1,170 @@
+datetime_index: "201707161700"
+
+title:  GSoC 2017 - Coding Period | Week 7
+
+short_desc: Through this blog post, I'd like to document my progress in the seventh week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    With college starting in a couple of days, the seventh week of coding also happens to be the
+    last week of coding in this summer vacation. Vacations have drawn to an end quite quickly,
+    and ofcourse, Winter is coming  too. Hopefully, interactions with SciRuby organization and 
+    GSoC 2017 will turn out to be my 'Lightbringer' and help me in surviving through the long
+    night.
+
+    _Alright, sorry for all the 'Game of Thrones' references._ Through this blog post, I'd like to
+    document the progress this week's progress in daru-io.
+
+    ---Excelx Importer---
+
+    The Excelx Importer designed last week to import `Daru::DataFrame` from `*.xlsx` files,
+    has some added features like `:skiprows` and `:skipcols`, to skip out some unnecessary
+    'header' parts from the xlsx sheet. Some more enhancements that could be quite useful,
+    have been filed in 
+    [this issue](https://github.com/athityakumar/daru-io/issues/36)
+    for future references.
+
+    Progress related to this can be tracked from
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/28) and
+    [this Issue](https://github.com/SciRuby/daru/issues/344).
+
+    ---csv.gz Exporter---
+
+    - Support for `compression: :infer` by default
+
+    As per last week, the CSV Exporter had an option to parse the dataframe into `csv.gz` format
+    only when the `:compression` was set as `:gzip`. In pandas, the `:compression` option is 
+    set to `:infer` by default. In the `:infer` mode, the exporter checks for the extension of
+    file to export to, to automatically guess the `:compression` technique to be used.
+
+    Support for `:infer` mode has now been provided.
+
+    - Piping the compression with standard library CSV
+
+    As per last week, the `csv.gz` exporter had a naive approach of `join`-ing the dataframe
+    data with comma (,), to convert the `Array` data into a writable string. But, there are many
+    different CSV options (like `:col_sep`) which are used quite often, that aren't taken into 
+    consideration here.
+
+    Rather, the `to_csv` method has now been used to pipe the CSV standard library options (like 
+    `:col_sep`) that are given by the user.
+
+    <pre>
+      <code>
+      # As per previous week
+      line = arr.join(',')
+
+      # This week
+      line = arr.to_csv(@options)
+      </code>
+    </pre>
+
+    ---Excel Exporter---
+
+    Previously, the Excel Exporter didn't have a provision to describe a specific formatting
+    such as font-weight, color, etc. of the dataframe. Through keyword arguments `header_options`
+    and `data_options`, option to specify formatting has been provisioned. These options are
+    directly piped / redirected to `Spreadsheet::Format` to set a row's formatting.
+
+    Progress related to this, can be tracked on
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/37).
+
+    ---JSON Exporter---
+
+    The JSON Exporter has been scheduled for the next week. There was a discussion this week, 
+    about a couple of use-cases that could be expected out of the JSON Exporter. One such
+    feature suggested by both Abhinash and Victor, was to have an Array of Hashes as the default
+    output, with also support for exporting with jsonpaths.
+
+    Taking this into consideration, I've started on the JSON exporter with usage of
+    [Hash#deep_merge](https://apidock.com/rails/Hash/deep_merge) method to merge two `Hash`es,
+    without key conflicts in case of complexly nested jsonpaths. Though other options like
+    `:order_first`, `:data_first` and even blocks are yet to be discussed in detail, here's a
+    sample use-case that's currently taken care of, by the JSON Exporter (pre-alpha version?).
+
+    <pre>
+      <code>
+      [1] pry(main)> require 'daru/io/exporters/json'
+      => true
+
+      [2] pry(main)> df = Daru::DataFrame.new [{name: 'Jon Snow', age: 18, sex: 'Male'}, {name: 'Rhaegar Targaryen', age: 54, sex: 'Male'}, {name: 'Lyanna Stark', age: 36, sex: 'Female'}], index: [:child, :dad, :mom]
+      => #< Daru::DataFrame(3x3) >
+                        name        age        sex
+            child   Jon Snow         18       Male
+              dad Rhaegar Ta         54       Male
+              mom Lyanna Sta         36     Female
+
+      [3] pry(main)> jsonpaths = {name: '$..person..this..is..my..name', age: '$..person..this..is..my..age', sex: '$..gender'}
+      => {:name=>"$..person..this..is..my..name", :age=>"$..person..this..is..my..age", :sex=>"$..gender"}
+
+      [4] pry(main)> df.to_json 'example.json', jsonpaths
+      => 578
+      </code>
+    </pre>
+
+    No, that's not the end. Don't look disappointed by expecting for a nested json and then
+    looking at a random number like 578. Maybe the formed `example.json` might turn out to
+    give the required sense of happiness? Here's the `example.json` file (prettified) -
+
+    <pre>
+      <code>
+      [
+        {
+          "gender": "Male",
+          "person": {
+            "this": {
+              "is": {
+                "my": {
+                  "age": 18,
+                  "name": "Jon Snow"
+                }
+              }
+            }
+          }
+        },
+        {
+          "gender": "Male",
+          "person": {
+            "this": {
+              "is": {
+                "my": {
+                  "age": 54,
+                  "name": "Rhaegar Targaryen"
+                }
+              }
+            }
+          }
+        },
+        {
+          "gender": "Female",
+          "person": {
+            "this": {
+              "is": {
+                "my": {
+                  "age": 36,
+                  "name": "Lyanna Stark"
+                }
+              }
+            }
+          }
+        }
+      ]
+      </code>
+    </pre>
+
+    This is currently under progress in
+    [this branch](https://github.com/athityakumar/daru-io/tree/json-exporter), and is yet to be
+    opened as a Pull Request. To have a look at the discussion with Abinash and Victor, feel free
+    to have a look at
+    [this issue](https://github.com/athityakumar/daru-io/issues/10).
