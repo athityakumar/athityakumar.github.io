@@ -1,0 +1,250 @@
+datetime_index: "201707231000"
+
+title:  GSoC 2017 - Coding Period | Week 8
+
+short_desc: Through this blog post, I'd like to document my progress in the eighth week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    College finally started this week, and I went through the customary pain of starting the
+    semester by setting up different things in my Laptop like Git, Heroku, and other ssh-related
+    services to work with the Institute proxy of `10.3.100.207:8080`. And of course, there was
+    also the customary joy that started off this semester - _**Game of Thrones S07E01**_. Despite
+    being a pretty normal episode, it acted as good kickstarter to the seventh season. 
+
+    Alright, I'll not provide any sploilers about the episode, but I definitely shall
+    provide some Easter eggs regarding the JSON Exporter. Throughout his week, I worked on the
+    JSON Exporter and added support to dynamic JsonPaths.
+
+    ---JSON Exporter : Dynamic JsonPaths---
+
+    The JSON Exporter built last week has been refactored to fit into the daru-io gem,
+    with tests. The `:orient` option was added to the JSON Exporter, after being inspired
+    from the Python equivalent,
+    [pandas](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html).
+    However, this was reverted to avoid any unnecessary over-complications to the code.
+
+    Adding to the static JsonPath feature of the sample code written last week, dynamic JsonPath
+    feature has been added this week. What is dynamic JsonPath? Hmm, let's have a look at the
+    below examples.
+
+    <pre>
+      <code>
+      [1] pry(main)> require 'daru/io/exporters/json'
+      => true
+
+      [2] pry(main)> df = Daru::DataFrame.new [{name: 'Jon Snow', age: 18, sex: 'Male'}, {name: 'Rhaegar Targaryen', age: 54, sex: 'Male'}, {name: 'Lyanna Stark', age: 36, sex: 'Female'}], index: [:child, :dad, :mom]
+      => #< Daru::DataFrame(3x3) >
+                        name        age        sex
+            child   Jon Snow         18       Male
+              dad Rhaegar Ta         54       Male
+              mom Lyanna Sta         36     Female
+
+      [3] pry(main)> jsonpaths = {name: '$.{index}.name', age: '$.{index}.age', sex: '$.{index}.gender', pretty: true}
+      => {:name=>"$.{index}.name", :age=>"$.{index}.age", :sex=>"$.{index}.gender"}
+
+      [4] pry(main)> df.to_json 'example.json', jsonpaths
+      => 177
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      [
+        {
+          "child": {
+            "gender": "Male",
+            "age": 18,
+            "name": "Jon Snow"
+          }
+        },
+        {
+          "dad": {
+            "gender": "Male",
+            "age": 54,
+            "name": "Rhaegar Targaryen"
+          }
+        },
+        {
+          "mom": {
+            "gender": "Female",
+            "age": 36,
+            "name": "Lyanna Stark"
+          }
+        }
+      ]
+      </code>
+    </pre>
+
+    Not just `{index}`, but even column names can be given as dynamic JsonPaths. For example,
+
+    <pre>
+      <code>
+      [5] pry(main)> jsonpaths = {age: '$.{name}.age', sex: '$.{name}.gender', index: '$.{name}.position', pretty: true}
+      => {:age=>"$.{name}.age", :sex=>"$.{name}.gender", :index=>"$.{name}.position"}
+
+      [6] pry(main)> df.to_json 'example.json', jsonpaths
+      => 313
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      [
+        {
+          "Jon Snow": {
+            "position": "child",
+            "gender": "Male",
+            "age": 18
+          }
+        },
+        {
+          "Rhaegar Targaryen": {
+            "position": "dad",
+            "gender": "Male",
+            "age": 54
+          }
+        },
+        {
+          "Lyanna Stark": {
+            "position": "mom",
+            "gender": "Female",
+            "age": 36
+          }
+        }
+      ]
+      </code>
+    </pre>
+
+    ---JSON Exporter : Orient & Block---
+
+    Looks great, with implementation of complexly nested Hashes with dynamic JsonPaths. But,
+    there are some more enhancements, which would make this Exporter more flexible to use. One
+    such requirement is the flexibility to provide a JSON output as Array of Arrays / Hash of
+    Hashes, unlike always returning an Array of Hashes (which is currently done).
+
+    Though the `:orient` option was supposed to tackle this, allowing the users to modify this
+    formed Array of Hashes content on their own through a block seems more flexible. Infact,
+    a discussion is still going on in
+    [this issue](https://github.com/athityakumar/daru-io/issues/10)
+    , regarding whether to include `:orient` / `&block` / both, to have a minimal-cum-flexible
+    JSON API Exporter.
+
+    Here are some use-case demos discussed in this issue, with block manipulation to obtain
+    various structures such as Array of Arrays, Hash of Arrays and Hash of Hashes.
+
+    <pre>
+      <code>
+      [7] pry(main)>  df.to_json('example.json', name: '$.person.name', age: '$.person.age', sex: '$.person.gender', index: '$.relation') do |json|
+      [7] pry(main)>*   json.map(&:values).map { |a,b| [a, b.values].flatten }
+      [7] pry(main)>* end
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      [
+        [
+          "child",
+          "Jon Snow",
+          18,
+          "Male"
+        ],
+        [ 
+          "dad",
+          Rhaegar Targaryen",
+          54,
+          "Male"
+        ],
+        [
+          "mom",
+          "Lyanna Stark",
+          36,
+          "Female"
+        ]
+      ]
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      [8] pry(main)>  df.to_json('example.json', name: '$.person.name', age: '$.person.age', sex: '$.person.gender', index: '$.relation') do |json|
+      [8] pry(main)>*   json.map(&:values).map { |a,b| [a, b.values] }.to_h
+      [8] pry(main)>* end
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      {
+        "child": [
+          "Jon Snow",
+          18,
+          "Male"
+        ]
+      },
+      { 
+        "dad": [
+          "Rhaegar Targaryen",
+          54,
+          "Male"
+        ]
+      },
+      {
+        "mom": [
+          "Lyanna Stark",
+          36,
+          "Female"
+        ]
+      }
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      [9] pry(main)>  df.to_json('example.json', sex: '$.{index}.gender', name: '$.{index}.name', age: '$.{index}.age') do |json|
+      [9] pry(main)>*   json.map { |j| [j.keys.first, j.values.first] }.to_h
+      [9] pry(main)>* end
+      </code>
+    </pre>
+
+    <pre>
+      <code>
+      {
+        "child": {
+          "name": Jon Snow",
+          "age": 18,
+          "gender": Male"
+        }
+      },
+      { 
+        "dad": {
+          "name": Rhaegar Targaryen",
+          "age": 54,
+          "gender": Male"
+        }
+      },
+      {
+        "mom": {
+          "name": Lyanna Stark",
+          "age": 36,
+          "gender": Female"
+        }
+      }
+      </code>
+    </pre>
+
+    For more details regarding the JSON Exporter, feel free to have a look at
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/40) and
+    [this issue](https://github.com/athityakumar/daru-io/issues/10).
