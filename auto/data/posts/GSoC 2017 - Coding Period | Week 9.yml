@@ -1,0 +1,136 @@
+datetime_index: "201707301900"
+
+title:  GSoC 2017 - Coding Period | Week 9
+
+short_desc: Through this blog post, I'd like to document my progress in the ninth week of the Coding period, Google Summer of Code 2017. This week also wraps up the second month of coding.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    This week was pretty different than the previous weeks, as this included a fun-filled
+    round-robin review among the 3 students who were selected by Ruby Science Foundation
+    organization, namely Prasun, Shekhar & myself. So, this is how it works -
+
+    - Prasun reviews my work on daru-io
+    - I review Shekhar's work on daru-view
+    - Shekhar reviews Prasun's work on Arrayfire
+
+    Such a review helps in getting more perspectives about the codebase from someone who hasn't
+    been around when the codebase was being developed.
+
+    ---Prasun's review of daru-io---
+
+    Sticking to the timeline and working on many branches which are being refined is good.
+
+    - Should ActiveRecords Importer / Exporter replace that of SQL?
+
+      Clarification : In case of use-cases (say, a non-Rails app) where ActiveRecords
+      isn't used, the SQL IO modules would come in handy. Hence, IMO it'd be better
+      to retain SQL IO modules.
+
+    - Timeout exception not handled in Redis & Mongo modules.
+
+      Clarification : Acknowledged, this is an Issue which I didn't face during usage. However,
+      it definitely does seem logical to handle Timeout exceptions.
+
+    - Can json modules have a simpler use-case than JsonPaths?
+
+      Clarification : JsonPaths are optional arguments. By default, `'$.{column_name}'`
+      is used. However, while creating / accessing from complexly nested hashes (as is the
+      case with most social media APIs), JsonPaths seems to be most easiest way to deal.
+
+    - RDoc generation with `rdoc` leads to error.
+
+      Clarification : Ah, this seems to have been left out in documentation. The YARD
+      docs are to generated with `yard doc` rather than `rdoc`.
+
+    ---My review of daru-view---
+
+    ### Timeline wise
+
+    Most components like `nyaplot`, `highcharts`, `googlecharts` have been adhered to, with the
+    proposed timeline. However, other components like `matplotlib` and `chartkick` have been
+    left out.
+    
+    `matplotlib` has been dropped, as it has the ability to create only SVG charts which aren't
+    interactive. Meanwhile, `chartkick` has been dropped as it's dependencies (`highcharts`,
+    `googlecharts`) have already been added support in `daru-view`.
+
+    ### Code Quality
+
+    Shekhar has done a great work with implementation of the adapters architecture. Meanwhile,
+    these are some improvements that could be fixed IMO -
+    
+    - Couple of Rubocop disables like `PerceivedComplexity` & `CyclomaticComplexity`.
+    - Couple of unused variables on running `rspec`, that should be taken care of.
+    - Tidying specs with [rubocop](https://github.com/bbatsov/rubocop),
+      [rubocop-rspec](https://github.com/backus/rubocop-rspec) and
+      [saharspec](https://github.com/zverok/saharspec).
+    - Update to new YARD doc standards.
+    - Some pieces of code that guess the datatype seem like they can be DRY-ied with
+      Inheritence.
+    - Few minor code style enhancements like `case..when` blocks, as present in
+      [view/adapters/googlecharts.rb](https://github.com/Shekharrajak/daru-view/blob/7e7b2a009125605a4b36a917504fca338a969c6c/lib/daru/view/adapters/googlecharts.rb#L146-L159)
+      and
+      [view/adapters/highcharts.rb](https://github.com/Shekharrajak/daru-view/blob/1c04474e7ea7f098d6756575776bfc2c83c045ce/lib/daru/view/adapters/highcharts.rb#L93-L109).
+
+      In short, blocks like 
+
+      <pre>
+        <code>
+        case
+        when var.is_a? String
+          'String'
+        when var.is_a? Integer || var.is_a? Float
+          'Number'
+        else
+          'Something else'
+        end
+        </code>
+      </pre>
+
+      can be changed to
+
+      <pre>
+        <code>
+        case var
+        when String then 'String'
+        when Integer, Float then 'Number'
+        else 'Something else'
+        end
+        </code>
+      </pre>
+
+    ### Usability
+
+    - Download as SVG feature for charts
+    - Better documentation with links to respective JS lib should be provided in README,
+      as the whole usage of daru-view depends on the options that can be passed.
+    - Monkey-patch into `Daru::DataFrame` / `Daru::Vector` to allow use-cases like `df.plot(opts)`
+
+    ---Second Month's Progress in daru-io---
+
+    - The Excelx Importer has been added to support reading from `.xlsx` files along with
+      `:skiprows` and `:skipcols` functionality, with
+      [this Pull Request](https://github.com/athityakumar/daru-io/pull/28).
+
+    - The CSV Importer has been added features of `:skiprows`, empty dataframe and reading from
+      `.csv.gz` files in
+      [this Pull Request](https://github.com/athityakumar/daru-io/pull/33).
+
+    - The CSV Exporter has been extended support to export to `.csv.gz` format, with
+      [this Pull Request](https://github.com/athityakumar/daru-io/pull/34).
+
+    - The JSON Exporter has been added to the fray, with JsonPaths feature for complexly nested
+      hashes, `:orient` option and also block manipulation of the JSON content. Progress can be
+      tracked in [this Pull Request](https://github.com/athityakumar/daru-io/pull/40).
