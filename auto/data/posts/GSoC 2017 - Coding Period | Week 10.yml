@@ -1,0 +1,103 @@
+datetime_index: "201708062300"
+
+title:  GSoC 2017 - Coding Period | Week 10
+
+short_desc: Through this blog post, I'd like to document my progress in the tenth week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Throughout this week, I was working on RDS & RData Importer-Exporter modules. Though it was quite tedious
+    to integrate RSRuby gem and Renviron with Travis CI, I was able to finally excel with the Travis CI build
+    after 10 days & 65+ commits. Also, Game of Thrones S07E04 got leaked later this week, and it was
+    definitely the best episode in the season so far with an amazing 9.9/10 rating on IMDb.
+
+    ---RDS & RData IO modules---
+
+    The RSRuby gem makes it incredibly simple to call statements into R, with `R.eval_R()` method. Thus,
+    commands like `saveRDS()` for RDS Exporter, `save()` for RData Exporter, `readRDS()` for RDS Importer
+    and `load()` for RData Importer. Hence, I've tackled the export of Ruby `Daru::DataFrame` objects into R
+    `data.frame` objects and import of R `data.frame` objects back into Ruby `Daru::DataFrame` objects by
+    computing an Array of Strings that'll be executed by the `R.eval_R()` method. Here are a few code
+    snippets that explain the working of the R IO modules -
+
+    <pre>
+      <code>
+      def process_statements(r_variable, dataframe)
+        [
+          *dataframe.map_vectors_with_index do |vector, i|
+            "#{i} = c(#{vector.to_a.map { |val| convert_datatype(val) }.join(', ')})"
+          end,
+          "#{r_variable} = data.frame(#{dataframe.vectors.to_a.map(&:to_s).join(', ')})"
+        ]
+      end
+
+      def rds_exporter
+        @instance    = RSRuby.instance
+        @statements  = process_statements(@r_variable, @dataframe)
+        @statements << "saveRDS(#{@r_variable}, file='#{@path}')"
+        @statements.each { |statement| @instance.eval_R(statement) }
+      end
+
+      def rdata_exporter
+        @instance    = RSRuby.instance
+        @statements  = @options.map do |r_variable, dataframe|
+        process_statements(r_variable, dataframe)
+        end.flatten
+        @statements << "save(#{@options.keys.map(&:to_s).join(', ')}, file='#{@path}')"
+        @statements.each { |statement| @instance.eval_R(statement) }
+      end
+      </code>
+    </pre>
+
+    The working of the RData IO modules are quite similar to the code snippets given above. These modules
+    have been approved and merged. Progress related to these IO modules can be tracked in
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/44).
+
+    ---Avro IO modules---
+
+    Until the previous week, I was quite doubtful about whether Avro files contain both schema and data,
+    or just schema. The good news is that, things have quite fallen into place now after discussing with
+    mentor [Victor Shepelev (zverok)](https://github.com/zverok)
+    in [this issue tracker](https://github.com/athityakumar/daru-io/issues/11). Support for the Avro IO
+    module has been planned to be provided with the
+    [avro gem](https://github.com/apache/avro/tree/master/lang/ruby). A small code snippet that was
+    used in the Avro Importer.
+
+    <pre>
+      <code>
+      buffer = StringIO.new(File.read('path/to/avro/file'))
+      data   = Avro::DataFile::Reader.new(buffer, Avro::IO::DatumReader.new).to_a
+
+      Daru::DataFrame.new(data)      
+      </code>
+    </pre>
+
+    Progress related to this module can be tracked from
+    [this tree](https://github.com/athityakumar/daru-io/tree/avro-io).
+
+    ---Rails example---
+
+    A sample Rails app is under development in
+    [this repository](https://github.com/Shekharrajak/daru_examples_io_view_rails),
+    to showcase the simplifications that are introduced by both
+    [daru-io](https://github.com/athityakumar/daru-io) and
+    [daru-view](https://github.com/Shekharrajak/daru-view). Currently, an example has been added to
+    show the working of JSON Importer to obtain a `Daru::DataFrame` from GitHub API, to create a DataTable,
+    Plot and even 'Export to {format}' buttons that use appropriate daru-io Exporters. Here are a few
+    screenshots that depicts this.
+
+    ![DataTable image](table.png)
+    ![Chart-1 image](chart_1.png)
+    ![Chart-2 image](chart_2.png)
+    ![Chart-3 image](chart_3.png)
