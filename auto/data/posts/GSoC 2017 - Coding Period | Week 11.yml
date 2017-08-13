@@ -84,3 +84,12 @@ html_content:   |
     ![Export as JSON image](json-exporter.png)
 
     ![Export as RDS image](rds-exporter.png)
+
+    ---Documenting the daru-io repository---
+
+    Irrespective of how well written the code is, the software won't be friendly for users unless
+    it is well documented. In GitHub, there are quite a few traditional markdown files that are
+    required for any good open-source repository : **README**, **LICENSE**, **CODE OF CONDUCT**,
+    **CONTRIBUTING** and so on. They are being added quite exhaustively in
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/50), to ensure that users
+    and contributors of daru-io, find it easier to develop with daru-io.
