@@ -1,0 +1,86 @@
+datetime_index: "201708131400"
+
+title:  GSoC 2017 - Coding Period | Week 11
+
+short_desc: Through this blog post, I'd like to document my progress in the tenth week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Throughout this week, I was primarily working on the Avro Importer-Exporter modules and improving
+    the documentation of the repository. I also worked on adding the "Export as {format}" button examples
+    for more formats such as JSON & RDS.
+
+    On a sidenote, I also attended online test and 3 rounds of interview for Goldman Sachs for the role of
+    Summer Analyst. The online test consisted of 3 sections - Coding, Quant and Machine Learning. I was able
+    to clear the online tests. All 3 rounds of interview were about coding and very light HR questions.
+    However, it turned out to be one of the interviews that go well, but you still don't get selected after
+    the final round and question yourself for a week regarding why you were rejected.
+
+    ---Avro IO modules---
+
+    At the beginning of this week, [this Pull Request](https://github.com/athityakumar/daru-io/pull/48)
+    was submitted to add the Avro Importer & Exporter modules. For the Avro IO modules,
+    [avro gem](https://github.com/apache/avro/tree/master/lang/ruby) has been used. A small code snippet
+    that was used in the Avro Importer, has been added in the previous blog post. Meanwhile, here's a code
+    snippet which makes the Avro Exporter work.
+
+    <pre>
+      <code>
+      class Daru::IO::Exporters::Avro < Daru::IO::Exporters::Base
+        def call
+          @schema_obj = process_schema
+          @writer     = ::Avro::IO::DatumWriter.new(@schema_obj)
+          @buffer     = StringIO.new
+          @writer     = ::Avro::DataFile::Writer.new(@buffer, @writer, @schema_obj)
+          @dataframe.each_row { |row| @writer << row.to_h }
+          @writer.close
+
+          File.open(@path, 'w') { |file| file.write(@buffer.string) }
+        end
+
+        private
+
+        def process_schema
+          case @schema
+          when ::Avro::Schema then @schema
+          when String         then ::Avro::Schema.parse(@schema)
+          when Hash           then ::Avro::Schema.parse(@schema.to_json)
+          else raise ArgumentError, 'Invalid Avro Schema provided.'
+          end
+        end
+      end
+      </code>
+    </pre>
+
+    ---Rails example---
+
+    The Rails App that serves as an example to demonstrate the working of 
+    [daru-io](https://github.com/athityakumar/daru-io) and
+    [daru-view](https://github.com/Shekharrajak/daru-view)
+    with [daru](https://github.com/SciRuby/daru)
+    is under active development, in
+    [this repository](https://github.com/Shekharrajak/daru_examples_io_view_rails).
+    Support for "Export as {format}" has been added for more formats such as JSON & RDS, in
+    [this Pull Request](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/6).
+
+    Here are a few screenshots depicting the "Export as {format}" buttons and the downloaded
+    files -
+
+    ![Export as CSV image](csv-exporter.png)
+
+    ![Export as Excel image](excel-exporter.png)
+
+    ![Export as JSON image](json-exporter.png)
+
+    ![Export as RDS image](rds-exporter.png)
