@@ -1,0 +1,111 @@
+datetime_index: "201708202000"
+
+title:  GSoC 2017 - Coding Period | Week 12
+
+short_desc: Through this blog post, I'd like to document my progress in the twelth week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Throughout this week, I was mostly working on the sample Rails application along with Shekhar
+    and also on the documentation of the daru-io gem repository. With the coding period coming
+    closer and closer to an end, the focus is currently on turning the project into a deliverable
+    open-source project, which could benefit from community (open-source) contribution.
+
+    ---Sample Rails Application---
+
+    - Repository : [GitHub link](https://github.com/Shekharrajak/daru_examples_io_view_rails)
+    - Deployed Application : [Heroku link](https://daru-examples-io-view-rails.herokuapp.com/)
+
+    With the Rails application being deployed to Heroku, demonstrating the sample application
+    is much easier. The Pull Requests
+    [Download as {format}](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/6) and
+    [HTML Importer showcase](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/10)
+    have been merged and deployed. As it can be seen from the [election controller](https://github.com/Shekharrajak/daru_examples_io_view_rails/blob/master/app/controllers/election_controller.rb#L5-L22),
+    all the visualization entities like DataTable, Pie Chart and Column Chart have been achieved in
+    just a couple of lines of code. Here's a code snippet of the controller -
+
+    <pre>
+      <code>
+      #! app/controllers/election_controller.rb
+
+      class ElectionController < ApplicationController
+
+        layout :resolve_layout
+
+        def data
+          @df_stock = Daru::DataFrame.from_html('http://eciresults.nic.in/PartyWiseResult.htm').first
+          @df_stock.delete_row(-1) # delete the 'Total' row for visualization purpose
+          
+          data                = @df_stock.map_vectors { |x| [x.name, x.to_a.map { |y| y.to_i.to_s==y ? y.to_i : y } ] }.to_h
+          new_df              = Daru::DataFrame.new('Party' => data['Party'], 'Won' => data['Won'])
+          opts                = { adapter: :googlecharts, height: 500, width: 1000 }
+          table_opts          = { adapter: :googlecharts, pageSize: 10, height: 300, width: 400 }
+          @df_stock_table     = Daru::View::Table.new(@df_stock, table_opts) # DataTable entity
+          @df_stock_pie_chart = Daru::View::Plot.new(new_df, type: :pie, **opts) # Pie Chart entity
+          @df_stock_col_chart = Daru::View::Plot.new(new_df, type: :histogram, **opts) # Column Chart entity
+        end
+
+        private
+
+        def resolve_layout
+         case action_name
+           when 'data'
+            "googlecharts_layout"
+           else
+            Daru::View.plotting_library = :nyaplot
+            "application"
+           end
+        end
+      end
+      </code>
+    </pre>
+
+    Great, the controller part is done. But for visualization, we obviously need to have
+    the views part. Here's the most simple way to embed the DataTable or Charts.
+
+    <pre>
+      <code>
+      #! app/views/election/data.erb
+
+      <%=raw @df_stock_table.div %>
+      <%=raw @df_stock_pie_chart.div %>
+      <%=raw @df_stock_col_chart.div %>
+      </code>
+    </pre>
+
+
+    Here are a few screenshots showcasing the above example of election data with the use of
+    HTML Importer.
+
+    ![Visualization as DataTable](data-table.png)
+
+    ![Visualization as Pie Chart](pie-chart.png)
+
+    ![Visualization as Column Chart](col-chart.png)
+
+    ---Documenting the daru-io repository---
+
+    Irrespective of how well written the code is, the software won't be friendly for users unless
+    it is well documented. With daru-io to be transferred to SciRuby organzization on GitHub
+    soon enough, it is quite necessary to add files : **README**, **LICENSE**, **CODE OF CONDUCT**,
+    **CONTRIBUTING** and so on. They are being added quite exhaustively in
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/50), to ensure that users
+    and contributors of daru-io, find it easier to develop with daru-io.
+
+    Meanwhile, a discussion regarding the calls of read-write methods from daru to daru-io is going
+    on, in [this issue](https://github.com/athityakumar/daru-io/issues/29). Also,
+    [Pjotr](https://github.com/pjotrp)'s suggestion of adding benchmarks for daru-io to identify
+    the IO modules that might require faster approaches, sounds good and this is something that
+    daru-io users could need, to decide on faster formats to import / export. Though this might not
+    be possible within the GSoC 2017 timeline, I'd definitely like to add these benchmarks after GSoC 2017.
