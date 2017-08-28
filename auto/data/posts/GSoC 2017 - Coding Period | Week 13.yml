@@ -1,0 +1,88 @@
+datetime_index: "201708280700"
+
+title:  GSoC 2017 - Coding Period | Week 13
+
+short_desc: Through this blog post, I'd like to document my progress in the thirteenth and final week of the Coding period, Google Summer of Code 2017.
+
+tags: 
+    -   5
+    -   7
+    -   10
+    -   13
+    -   19
+
+image_preview:  gsoc.png
+
+html_content:   |
+
+    ![GSoC Banner image](banner.png)
+
+    Throughout this week, I was working on extending the different methods supported by daru-io,
+    like `#from_format`, `#read_format`, `#to_format`, `#to_format_string` and `#write_format`. Along
+    with this, I'm also working on a small bug fix in daru.
+
+    Two of my favourite things are coming to an end (kind of) within this week - GSoC
+    (Google Summer of Code) 2017, and GoT (Game of Thrones). With the final evaluation due tomorrow,
+    I'll soon be publishing a comprehensive blog post to submit for the GSoC portal as Work Submission.
+
+    ---The different IO methods---
+
+    - `read_format` : This method imports from a specific file format. For example, a `.xls` file.
+    - `from_format` : This method imports from a Ruby format instance. For example, a `Spreadsheet` instance.
+    - `to_format` : This method exports a `Daru::DataFrame` into a Ruby format instance.
+    - `to_format_string` : This method exports a `Daru::DataFrame` into a writable file string.
+    - `write_format` : This method writes a `Daru::DataFrame` into a specific file format.
+
+    The main aspect while implementing this in daru-io, is to find a way to automate the linkages
+    between daru and daru-io for all these different methods. Here's the sample logic behind these
+    linkages, that uses Regexp (Regular Expression) matching.
+
+    <pre>
+      <code>
+      # function : A symbol, like :to_csv
+      # instance : A daru-io class, like Daru::IO::Exporters::CSV
+      def link(function, instance)
+        case function.to_s
+        when /\Ato_.*_string\Z/
+          define_method(function) { |*args, &io_block| instance.new(self, *args, &io_block).to_s }
+        when /\Ato_/
+          define_method(function) { |*args, &io_block| instance.new(self, *args, &io_block).to }  
+        when /\Awrite_/
+          define_method(function) { |*args, &io_block| instance.new(self, *args[1..-1], &io_block).write(*args[0]) }
+        when /\Afrom_/
+          define_singleton_method(function) { |*args, &io_block| instance.new(*args[1..-1], &io_block).from(*args[0]) }
+        when /\Aread_/
+          define_singleton_method(function) { |*args, &io_block| instance.new(*args[1..-1], &io_block).read(*args[0]) }
+        else
+          raise ArgumentError, 'Invalid function name given to monkey-patch into Daru::DataFrame.'
+        end
+      end
+      </code>
+    </pre>
+
+    This way, the daru-io methods are linked back to daru calls in this way -
+
+    <pre>
+      <code>
+      importer = Daru::IO::Importers::Format.new(opts, &block)
+      exporter = Daru::IO::Exporters::Format.new(df, opts, &block)
+
+      exporter.write(path) #! Linked to df.write(path, opts, &block)
+      exporter.to_s #! Linked to df.to_s(opts, &block)
+      exporter.to #! Linked to df.to_format(opts, &block)
+
+      importer.read(path) #! Linked to Daru::DataFrame.read_format(path, opts, &block)
+      importer.from(instance) #! Linked to Daru::DataFrame.from_format(instance, opts, &block)
+      </code>
+    </pre>
+
+    Progress related to this, can be tracked via
+    [this Pull Request](https://github.com/athityakumar/daru-io/pull/52).
+
+    ---Minor bug fixing in daru---
+
+    In [this Pull Request](https://github.com/SciRuby/daru/pull/303)
+    I had drafted months ago, I had missed to handle the missing elements like `nil`. Hence,
+    all the comparisons would fail if the `Daru::Vector` contains any missing elements. This is
+    currently under progress in [this Pull Request](https://github.com/SciRuby/daru/pull/387)
+    and is yet to be merged.
