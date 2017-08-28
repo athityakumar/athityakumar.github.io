@@ -1,8 +1,8 @@
-datetime_index: "201708202000"
+datetime_index: "201708280800"
 
-title:  GSoC 2017 - Coding Period | Week 12
+title:  GSoC 2017 - Final Work Submission
 
-short_desc: Through this blog post, I'd like to wrap-up my Google Summer of Code 2017 project for the Final Work Submission.
+short_desc: Through this blog post, I'd like to comprehensively document all of my work done through the entire Google Summer of Code 2017.
 
 tags: 
     -   5
@@ -17,95 +17,84 @@ html_content:   |
 
     ![GSoC Banner image](banner.png)
 
-    Throughout this week, I was mostly working on the sample Rails application along with Shekhar
-    and also on the documentation of the daru-io gem repository. With the coding period coming
-    closer and closer to an end, the focus is currently on turning the project into a deliverable
-    open-source project, which could benefit from community (open-source) contribution.
+    Through this blog post, I'd like to comprehensively document all of my work done through the
+    entire Google Summer of Code 2017. This involves links to all code documentations, blog posts,
+    repositories, discussions and code merges. A huge token of thanks for all the support extended
+    by mentors
+    [Victor Shepelev](https://github.com/zverok),
+    [Sameer Deshmukh](https://github.com/v0dro),
+    [Lokesh Sharma](https://github.com/lokeshh) and
+    the entire [Ruby Science Foundation](http://sciruby.com/) community for their
+    swift responses, open interactions and healthy discussions.
 
-    ---Sample Rails Application---
+    ---Connected repositories---
 
-    - Repository : [GitHub link](https://github.com/Shekharrajak/daru_examples_io_view_rails)
-    - Deployed Application : [Heroku link](https://daru-examples-io-view-rails.herokuapp.com/)
+    - [Daru](https://github.com/SciRuby/daru) : A Data Analysis framework in RUby.
+    - [Daru-IO](https://github.com/athityakumar/daru-io) : A plugin gem to daru, that extends Import-Export features.
+    - [Daru-View](https://github.com/Shekharrajak/daru-view) : A plugin gem to daru, that extends visualization features.
+    - [Sample Rails App](https://github.com/Shekharrajak/daru_examples_io_view_rails) : A sample rails app, showcasing the easeness introduced by the combination of daru, daru-io and daru-view with Rails.
 
-    With the Rails application being deployed to Heroku, demonstrating the sample application
-    is much easier. The Pull Requests
-    [Download as {format}](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/6) and
-    [HTML Importer showcase](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/10)
-    have been merged and deployed. As it can be seen from the [election controller](https://github.com/Shekharrajak/daru_examples_io_view_rails/blob/master/app/controllers/election_controller.rb#L5-L22),
-    all the visualization entities like DataTable, Pie Chart and Column Chart have been achieved in
-    just a couple of lines of code. Here's a code snippet of the controller -
+    ---Mailing list discussions---
 
-    <pre>
-      <code>
-      #! app/controllers/election_controller.rb
+    These are some of the daru-io related discussions that took place within the SciRuby Developers
+    mailing list.
 
-      class ElectionController < ApplicationController
+    - [(Pre-selection) Discussion regarding daru-io and daru-view](https://groups.google.com/forum/#!topic/sciruby-dev/nQKGrsqZ0gY)
+    - [(Post-selection) Frequent updates on Daru-IO](https://groups.google.com/forum/#!topic/sciruby-dev/xFKVpQtoSS0)
+    - [(Post-selection) Importing / Exporting DataFrames between Daru & R](https://groups.google.com/forum/#!topic/sciruby-dev/2UjSQ_LkenU)
+    - [(Post-selection) Idea for daru-io: partial requires](https://groups.google.com/forum/#!topic/sciruby-dev/aVmvGsqLCXw)
 
-        layout :resolve_layout
+    ---Documentations---
 
-        def data
-          @df_stock = Daru::DataFrame.from_html('http://eciresults.nic.in/PartyWiseResult.htm').first
-          @df_stock.delete_row(-1) # delete the 'Total' row for visualization purpose
-          
-          data                = @df_stock.map_vectors { |x| [x.name, x.to_a.map { |y| y.to_i.to_s==y ? y.to_i : y } ] }.to_h
-          new_df              = Daru::DataFrame.new('Party' => data['Party'], 'Won' => data['Won'])
-          opts                = { adapter: :googlecharts, height: 500, width: 1000 }
-          table_opts          = { adapter: :googlecharts, pageSize: 10, height: 300, width: 400 }
-          @df_stock_table     = Daru::View::Table.new(@df_stock, table_opts) # DataTable entity
-          @df_stock_pie_chart = Daru::View::Plot.new(new_df, type: :pie, **opts) # Pie Chart entity
-          @df_stock_col_chart = Daru::View::Plot.new(new_df, type: :histogram, **opts) # Column Chart entity
-        end
+    - [YARD Documentations for daru-io](http://www.rubydoc.info/github/athityakumar/daru-io/master)
+    - Blog posts (15)
+      - [Acceptance of Student Proposal](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Acceptance_of_Student_Proposal/)
+      - [Community Bonding Period](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Community_Bonding_Period/)
+      - [Coding Period : Week 1](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_1/)
+      - [Coding Period : Week 2](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_2/)
+      - [Coding Period : Week 3](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_3/)
+      - [Coding Period : Week 4](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_4/)
+      - [Coding Period : Week 5](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_5/)
+      - [Coding Period : Week 6](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_6/)
+      - [Coding Period : Week 7](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_7/)
+      - [Coding Period : Week 8](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_8/)
+      - [Coding Period : Week 9](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_9/)
+      - [Coding Period : Week 10](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_10/)
+      - [Coding Period : Week 11](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_11/)
+      - [Coding Period : Week 12](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_12/)
+      - [Coding Period : Week 13](https://athityakumar.github.io/blog/posts/GSoC_2017_-_Coding_Period_%7C_Week_13/)
 
-        private
+    ---Pull Requests---
 
-        def resolve_layout
-         case action_name
-           when 'data'
-            "googlecharts_layout"
-           else
-            Daru::View.plotting_library = :nyaplot
-            "application"
-           end
-        end
-      end
-      </code>
-    </pre>
+    - The Sample Rails App repository (2)
+      - [#6 : Using Daru-IO Exporters for 'Download as {format}' button](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/6)
+      - [#10 : Adding HTML Importer + Plotting examples](https://github.com/Shekharrajak/daru_examples_io_view_rails/pull/10)
 
-    Great, the controller part is done. But for visualization, we obviously need to have
-    the views part. Here's the most simple way to embed the DataTable or Charts.
-
-    <pre>
-      <code>
-      #! app/views/election/data.erb
-
-      <%=raw @df_stock_table.div %>
-      <%=raw @df_stock_pie_chart.div %>
-      <%=raw @df_stock_col_chart.div %>
-      </code>
-    </pre>
+      For list of Pull Requests in this repository, kindly have a look [here](https://github.com/Shekharrajak/daru_examples_io_view_rails/pulls?q=is%3Apr+author%3Aathityakumar).
 
 
-    Here are a few screenshots showcasing the above example of election data with the use of
-    HTML Importer.
+    - Daru repository (2+)
+      - [#334 : Adds support to remote URL for Daru::DataFrame#from_csv](https://github.com/SciRuby/daru/pull/334)
+      - [#311 : Adds support to from_html module](https://github.com/SciRuby/daru/pull/311)
 
-    ![Visualization as DataTable](data-table.png)
+      For list of Pull Requests, kindly have a look [here](https://github.com/SciRuby/daru/pulls?q=is%3Apr+author%3Aathityakumar).
 
-    ![Visualization as Pie Chart](pie-chart.png)
+    - Daru-IO repository (16)
+      - [#16 : Ports all existing IO modules from daru](https://github.com/athityakumar/daru-io/pull/16)
+      - [#17 : Add fixture files for JSON, Avro, R formats](https://github.com/athityakumar/daru-io/pull/17)
+      - [#18 : Adds from_redis importer](https://github.com/athityakumar/daru-io/pull/18)
+      - [#21 : Adds JSON Importer](https://github.com/athityakumar/daru-io/pull/21)
+      - [#26 : Adds Mongo Importer](https://github.com/athityakumar/daru-io/pull/26)
+      - [#27 : Adds support for rubocop-rspec in tests](https://github.com/athityakumar/daru-io/pull/27)
+      - [#28 : Adds XLSX Importer](https://github.com/athityakumar/daru-io/pull/28)
+      - [#33 : Adds improvements to CSV Importer](https://github.com/athityakumar/daru-io/pull/33)
+      - [#34 : Adds support for Gzip extension in CSV Exporter ](https://github.com/athityakumar/daru-io/pull/34)
+      - [#37 : Excel Exporter - support for options](https://github.com/athityakumar/daru-io/pull/37)
+      - [#40 : Adds JSON Exporter](https://github.com/athityakumar/daru-io/pull/40)
+      - [#44 : Adds RDS & RData IO modules](https://github.com/athityakumar/daru-io/pull/44)
+      - [#47 : Fixes auto-requiring](https://github.com/athityakumar/daru-io/pull/47)
+      - [#48 : Adds Avro IO modules](https://github.com/athityakumar/daru-io/pull/48)
+      - [#50 : README & Markdown files](https://github.com/athityakumar/daru-io/pull/50)
+      - [#52 : [WIP] Adds from, read, write, to_s methods](https://github.com/athityakumar/daru-io/pull/52)
 
-    ![Visualization as Column Chart](col-chart.png)
-
-    ---Documenting the daru-io repository---
-
-    Irrespective of how well written the code is, the software won't be friendly for users unless
-    it is well documented. With daru-io to be transferred to SciRuby organzization on GitHub
-    soon enough, it is quite necessary to add files : **README**, **LICENSE**, **CODE OF CONDUCT**,
-    **CONTRIBUTING** and so on. They are being added quite exhaustively in
-    [this Pull Request](https://github.com/athityakumar/daru-io/pull/50), to ensure that users
-    and contributors of daru-io, find it easier to develop with daru-io.
-
-    Meanwhile, a discussion regarding the calls of read-write methods from daru to daru-io is going
-    on, in [this issue](https://github.com/athityakumar/daru-io/issues/29). Also,
-    [Pjotr](https://github.com/pjotrp)'s suggestion of adding benchmarks for daru-io to identify
-    the IO modules that might require faster approaches, sounds good and this is something that
-    daru-io users could need, to decide on faster formats to import / export. Though this might not
-    be possible within the GSoC 2017 timeline, I'd definitely like to add these benchmarks after GSoC 2017.
+      For list of Pull Requests in this repository, kindly have a look [here](https://github.com/athityakumar/daru-io/pulls?q=is%3Apr+author%3Aathityakumar).
