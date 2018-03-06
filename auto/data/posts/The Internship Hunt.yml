@@ -1,0 +1,306 @@
+datetime_index: "201803060830"
+
+title:  The Internship Hunt for Summers 2018
+
+short_desc:  Starting the clinical procedure of looking for Internship as a student of one of the highly reputed Institutes in the country, I thought that it would be a cake walk. And you guessed it right - I was SO naive and wrong. Read through a story of multiple rejections, followed by an all-is-well-that-ends-well ending. Also, I really hope that this blog post can instill people going through a similar phase with motivation.
+
+tags: 
+    -   3
+    -   5
+    -   7
+    -   8
+    -   9
+
+image_preview:  iitkgp.png
+
+html_content:   |
+
+    ![Internship Banner image](banner.jpg)
+
+    Starting the clinical procedure of looking for Internship as a student of one of the
+    highly reputed Institutes in the country, I thought that it would be a *cake walk*. And
+    you guessed it right - I was **SO naive and wrong**. Read through a story of multiple
+    rejections, followed by an *all-is-well-that-ends-well* ending. Also, I really hope
+    that this blog post can instill people going through a similar phase with motivation.
+
+    ---Background check---
+
+    ![Background Check image](bgcheck.jpg)
+
+    - Strengths
+
+    I'm a 4th year undergrad from IIT Kharagpur. I've been into programming right from my
+    first year, when I started with web development. Then came the exposure to the realm
+    of open-source and the steep learning curve along with it. You can have a look at
+    [my Resume](https://drive.google.com/file/d/1CXDcFOwlgjGyeVUNPZ1Tdw-UEixXt5Sj/view?usp=sharing)
+    for the long story. But in short, I'm really passionate about software development
+    and have a knack for the same.
+
+    - Weakness
+
+    I'm from the Department of Mechanical Engineering. What that means, is that I won't be
+    allowed to even sit for most of the software companies that come to campus. That
+    includes companies like Google, Microsoft, Intuit, Amazon, etc.
+
+    Also, I've observed that companies tend to recruit safely. So, any company on any
+    given day would prefer recruiting a CS student over a Mechie for a Software
+    Development profile. Who would take risk and make an unorthodox decision, right?
+
+    - Opportunity
+
+    In-campus and off-campus positions.
+
+    - Threat
+
+    As much as you want to get a good Internship, so are the others applying for the
+    position. So, everyone is going to give their very best and let natural selection to
+    do the rest. And as I've stated above, I'm from IIT Kharagpur - need I explain more
+    about how talented the competition pool is?
+
+    ---1. Goldman Sachs---  
+
+    ![GS Banner image](gs.jpg)
+
+    **(Aug 2017)**
+
+    Goldman Sachs was one of the companies that came to IIT Kharagpur on day 1 of the
+    Internship process. Being one of the very few "prestigious" companies with a
+    software-related profile that opened for Mechanical Engineering students, I
+    definitely applied.
+
+    - Online Test
+
+    All students who applied through the CDC-IITKGP website had to take an online test on
+    HackerRank. This test included 3 parts - Coding, Machine Learning & Aptitude. There were
+    about 15-20 MCQ questions across these 3 genres, and also 2 questions to write code.
+
+    - Round 1 (30mins)
+
+    After being shortlisted by the online test results, we had continous rounds on the same
+    day. This first round was pretty easy - it involved me explaining the projects I had
+    worked on, what were the difficulties I faced, how I overcame them and what were the
+    takeaways I gathered for further projects.
+
+    Next, the interviewer asked me to solve
+    [this sum problem](https://www.geeksforgeeks.org/write-a-c-program-that-given-a-set-a-of-n-numbers-and-another-number-x-determines-whether-or-not-there-exist-two-elements-in-s-whose-sum-is-exactly-x/)
+    and another simple string manipulation question. I solved them both, and we discussed
+    about what the interviewer's team (Security) does at Goldman Sachs. Oh, we were also
+    able to discuss about the recent GoT episode that had aired.
+
+    - Round 2 (30 mins)
+
+    With Round 1 being very satisfactory, I was passed on to Round 2. I was again asked to
+    talk about some of my projects, though - not in such detail as the previous round. He
+    then asked me to solve
+    [a question based on intervals](https://www.geeksforgeeks.org/merging-intervals/).
+    I was able to solve this, and went ahead explaining a test case. Later, he told me
+    about the Tech stack being used in GS. We also discussed about how it becomes
+    frustrating to manage Python codebases with teams that have different Space-Tab
+    configurations.
+
+    - Round 3 (30 mins)
+
+    After the 2nd results were out, the remaining shortlisted students were told to have
+    lunch and come back in an hour for the final round of interview. Again, the interviewer
+    asked me about some of the projects I had worked on. Then, he told me to solve
+    [this sum-tree question](https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/).
+
+    I made a mistake of missing out the termination criteria of the recursive algorithm,
+    and the interviewer pointed out the same. After correcting it, we discussed more about
+    the possible roles at GS.
+
+    - Aftermath
+
+    I was really confident about getting the Internship, given how my interviews went. 
+    However, it came as a shock when I saw the CDC notice board later that evening and
+    found out that my name wasn't included in the list. I pinged 
+    [Hardik Sheth](https://www.facebook.com/hardik.sheth.180) (one of
+    my seniors at GS), but he wasn't able to find any feedback either. One of his messages
+    that I'd like to quote is,
+
+    > "Don't be disheartened, dedicated desperation will take you anywhere you want." <br> - [Hardik Sheth](https://www.facebook.com/hardik.sheth.180)
+
+    And yes, I maybe did cry a little.
+
+    ---2. GitHub---
+
+    ![GH Banner image](gh.png)
+
+    **(Sep 2017)**
+
+    This was definitely an off-campus opportunity. GitHub had just posted their openings
+    for Summer Internships of 2018. One of the roles that seemed pretty interesting to
+    me was that of Rails Developer, and I applied on their website. A week later,
+    one of GitHub's Talent Acquisition staff got in touch with me and we scheduled the
+    first interview. However, as the interviewers were supposedly busy for the next 2
+    weeks, I had my interview scheduled after 15 days of getting in touch.
+
+    In the meantime, I also went though
+    [GitHub Classroom](https://github.com/education/classroom) - the project for this
+    role, and started contributing. However, on THE day of the interview, I received a
+    mail saying that they've already found another Hubber who'll be working on the same
+    project, and hence the Internship profile is not open anymore. That was literally an
+    hour before my scheduled interview.
+
+    *Apologizing for the inconvinience, GitHub sent me a few goodies - Tee & Hoodie. No
+    one can remain upset after receiving goodies, right?*
+
+    ---3. DE Shaw---
+
+    ![DE Shaw image](deshaw.png)
+
+    **(Dec 2017)**
+
+    During the winter vacations, I received a message from a DE Shaw executive on LinkedIn,
+    informing me about a vacancy in the team and how I could be a possible fit. Being in my
+    pre-final year, I politely rejected it and rather asked them about whether I could
+    be considered for a Summer Internship instead. But I'm yet to get any interview
+    scheduled.
+
+    *I'm good enough to be considered for a job, but not for an internship? Sed lyf.*
+
+    ---4. Morgan Stanley---
+
+    ![Morgan Stanley image](ms.png)
+
+    **(Feb 2018)**
+
+    - Online Test
+
+    Morgan Stanley came to campus in mid-Febraury 2018. The online test was quite generic,
+    15-20 MCQs of both coding and aptitude questions with 2 coding problems. I don't
+    remember the questions exactly, but one of them was quite easy and the other was of
+    intermediate difficulty.
+
+    - Round 1
+
+    After being shortlisted by the online test results, nearly 20 students gave this round.
+    This round took place almost 2 weeks after the online test, and there were 3
+    interviewers who had come on campus.
+
+    I was called at around 10PM. It was really interacting with this interviewer. We
+    discussed about some of my open-source projects, and later I was given to solve
+    [this question](https://www.geeksforgeeks.org/reverse-individual-words/). I was
+    also asked a few questions on different data structures, and it was pretty good
+    overall.
+
+    - Round 2
+
+    After the 1st round, 9 students were shortlisted for this final round of interview.
+    The interview started with me explaining my project, and the interviewer asked a
+    question on system design. I wasn't able to explain much about the scalability,
+    but I was able to put together the different pieces required for the question.
+
+    I was also asked to solve [this dialpad problem](https://www.geeksforgeeks.org/find-possible-words-phone-digits/),
+    which I was able to do with recursion and 10 mins. Finally, we discussed about
+    how Morgan Stanley handles scalability and what are the expectations of an Intern.
+
+    - Aftermath
+
+    I stayed back at the Main Building to have a look at the results first-hand. The
+    PlaceComm member (who had become my friend by the previous round) came running to me
+    with a sad face and told me that I didn't make it. Quite frankly, I wasn't as sad.
+    Maybe, it was just that the past rejections had trained me to cope up with upcoming
+    rejections. Or maybe it was the free Morgan Stanley Tee that I had received in the
+    last round. Anyways, I remember walking out of the Main Building with a grin, proud of
+    how I took this rejection.
+
+    ---5. Intuit---
+
+    ![Intuit image](intuit.png)
+
+    **(Feb 2018 - Mar 2018)**
+
+    - The Karate workshop
+
+    Peter Thomas from Intuit, came to IIT Kharagpur to give a hands-on workshop on his
+    open-source project ([Karate](https://github.com/intuit/karate)) that has recently
+    received a lot of traction. All the attendees were sponsored a free Subway snack,
+    as well as an Intuit bag (goodie).
+
+    The interaction was really fun, with Peter giving a couple of examples of how Karate
+    is pretty useful and also throwing a couple of life advices every now and then. At the
+    end of the workshop, we were told that students contributing to this project would
+    be considered for Internship opportunities at Intuit.
+
+    Being a huge open-source fan looking for internship, I couldn't think of a better
+    opportunity. So, I started setting up the repository and contributed 
+    [a few Pull Requests](https://github.com/intuit/karate/pulls?q=is%3Apr+is%3Aclosed+author%3Aathityakumar)
+    within the weekend.
+
+    After the Pull Requests got merged, I communicated with Zubin and Naina from Intuit
+    about the contributions and my intent to do a Summer Internship at Intuit. At the same
+    time, one of my seniors ([Naresh](https://www.facebook.com/naresh.ramesh)) also
+    referred me for this internship. Hence, I was scheduled an interview in a week.
+
+    - Round 1
+
+    The 1st round was taken by Prateek Mandloi. The interview started with my
+    introduction, and discussion about some of my open-source contributions (including
+    Karate).
+
+    Then, I was asked to solve a 2D-matrix related coding problem wherein
+    there were blank spaces, and given sequence of numbers had to be inserted into
+    appropriate positions (increasing order) in the matrix (taking the blanks into
+    account). I was able to come up with a solution involving binary search to find out
+    the index of insertion and also handle blank spaces. But, I made a very silly mistake
+    in the binary search method - which Prateek pointed out later.
+
+    Further, we discussed about a few of the projects that Intuit works on, and what'll
+    be the scope of an intern.
+
+    - Round 2
+
+    The 2nd round took place nearly a week after the first one, and was taken by Roshni
+    Neogy. Overall, it was a really friendly interview - something I hadn't experienced
+    for some time now.
+
+    I was first asked a system design question on designing an online
+    treasure hunt for the campus. I was able to discuss the different models that would
+    be required to build such an application. While discussing about campus-related
+    applications, I was also able to briefly talk about the
+    [projects](https://github.com/metakgp/) among other interactive sessions
+    held by Metakgp.
+
+    Further, I was asked the difference between Queue and Stack data structure, and
+    [how to implement Queue from Stack](https://www.geeksforgeeks.org/queue-using-stacks/).
+    I was able to come up with the idea of using 2 stacks on-the-spot (thankfully!).
+
+    - Round 3
+
+    The final round took place a week after the second one, and was taken by Bala Dutt.
+    First things first, I was excited because the interviewer is an alumnus of IIT
+    Kharagpur. It was another one of those GOOD interviews that were more of a discussion,
+    rather than a Question-Answer session.
+
+    I was asked a few theoretical questions such as virtual classes, deadlocks in
+    parallel computation, etc. After that, we had a discussion on how to implement a
+    data structure that would have constant time for insertion, deletion, look-ups and
+    returning random members. The moment I heard "look-up", I was pretty sure it had to be
+    a hashmap. I was able to implement this data structure using both Array and Hashmap,
+    just like [this](https://www.geeksforgeeks.org/design-a-data-structure-that-supports-insert-delete-search-and-getrandom-in-constant-time/).
+
+    Finally, we discussed about kind of projects I'd like to work on during the Internship
+    (if I got one, ofcourse) and how to switch to coding when coming from a non-CS
+    background.
+
+    - Aftermath
+
+    On the same day as the 3rd round, I got a call from Zubin informing me that my
+    interviews went well and Intuit will be offering me with an Internship. It was
+    really relieving to hear this. Thanks for making an unorthodox decision by giving
+    chance to a non-CS guy, Intuit!
+
+    ---Take aways---
+
+    ![Just Do It image](just_do_it.gif)   
+
+    - Rejections are not personal.
+    - Rejections may happen even if you're talented enoough for the role.
+    - Laugh at your own rejections.
+    - Getting selected is not just about being talented, it's also about being a "fit".
+    - Third time is the charm.
+
+    > "Don't be disheartened, dedicated desperation will take you anywhere you want." <br> - [Hardik Sheth](https://www.facebook.com/hardik.sheth.180)
+
+    > "Things work out at the end. They always do!" <br> - [Naresh Ramesh](https://www.facebook.com/naresh.ramesh)
