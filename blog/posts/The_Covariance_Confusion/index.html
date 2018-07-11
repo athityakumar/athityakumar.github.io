@@ -136,7 +136,7 @@
               silly about the same. Here&#39;s a geek-rant about a silly confusion that I 
               experienced, a few months back. </p>
             <p><br>
-              <div class='ui horizontal divider'>The Background</div>
+              <div class='ui horizontal divider' id='The Background'>The Background</div>
             </p>
             <p><a target='_blank' href="https://auviitkgp.github.io/">Team Autonomous Underwater Vehicle (AUV)</a> is a 
               Research group of <a target='_blank' href="https://en.wikipedia.org/wiki/Indian_Institute_of_Technology_Kharagpur">IIT Kharagpur</a>
@@ -152,7 +152,7 @@
             ROS parameters called <code class='language-ruby' style='background-color : #fff;'>ROSPARAMS</code></pre>
           . </p>
         <p><br>
-          <div class='ui horizontal divider'>The Confusion Episode</div>
+          <div class='ui horizontal divider' id='The Confusion Episode'>The Confusion Episode</div>
         </p>
         <p>The <a target='_blank' href="https://github.com/auviitkgp/kraken_3.0/blob/indigo-devel/sensor_stack/sparton/src/sparton.py">Sparton sensor&#39;s script</a> in general deals with 
           mechanical variables - like <code class='language-ruby' style='background-color : #fff;'>roll</code></pre>
@@ -201,7 +201,7 @@ anti-climatic plot-twist manner. </p>
 <p>Pranay : What exactly would be done with the covariance values, Athitya? </p>
 <p>Athitya : It's a part of the sensor message. </p>
 <br>
-<div class='ui horizontal divider'>And now, the plot thickens</div>
+<div class='ui horizontal divider' id='And now, the plot thickens'>And now, the plot thickens</div>
 <p>Siddharth : Athitya, I just read the description provided by ROS, which says - 
   _If the covariance of the measurement is known, it should be filled in (if all you know is the variance of each measurement, e.g. from the datasheet, just put those along the diagonal). A covariance matrix of all zeros will be interpreted as covariance unknown, and to use the data a covariance will have to be assumed or gotten from some other source.' _
   It looks to me like they are saying that we should fill it in if it's 
@@ -213,7 +213,7 @@ anti-climatic plot-twist manner. </p>
 </div>
 </h4>
 <p><br>
-  <div class='ui horizontal divider'>The solution</div>
+  <div class='ui horizontal divider' id='The solution'>The solution</div>
 </p>
 <p>As mentioned by Siddharth, the <a target='_blank' href="http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html">IMU sensor_msgs documentation by ROS</a>, cleared this self-created 
   confusion, and the porting of new message types for sparton sensor was 
@@ -308,6 +308,8 @@ anti-climatic plot-twist manner. </p>
   };
   
   var post_content = [
+  
+      { url: "../My_Internship_Experience_at_Intuit_India/",  post_title: "My Internship Experience at Intuit India" },
   
       { url: "../The_Internship_Hunt/",  post_title: "The Internship Hunt for Summers 2018" },
   

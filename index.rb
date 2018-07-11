@@ -276,7 +276,13 @@ def get_posts
         replace = ["<br><div class='ui horizontal divider'>", "</div>"]
         rep_i = 0
         while str.include? "---"
-          str.sub!('---',replace[rep_i])
+          text_inbetween = str.split("---")[1]
+
+          if(rep_i == 0)
+            str.sub!('---', "<br><div class='ui horizontal divider' id='#{text_inbetween}'>")
+          else
+            str.sub!('---', "</div>")            
+          end
           rep_i = rep_i == 1 ? 0 : 1
         end
         data["html_content"] = str

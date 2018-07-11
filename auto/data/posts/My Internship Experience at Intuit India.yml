@@ -1,0 +1,210 @@
+datetime_index: "201807110830"
+
+title:  My Internship Experience at Intuit India
+ 
+short_desc:  Having interned at Intuit for 10 weeks, I've a LOT of things to share about my Internship experience. And NO, this is not going to be a technical blog post that documents my internship "work". Rather, it's about almost everything except that.
+
+tags: 
+    -   8
+
+image_preview:  intuit.jpg
+
+html_content:   |
+
+    Having interned at Intuit for 10 weeks, I've a LOT of things to share about my
+    Internship experience. And NO, this is not going to be a technical blog post that
+    documents my internship "work". Rather, it's about almost everything except that.
+
+    If you'd like to know how I got this Summer Internship despite being from a
+    non-CS background, I've written [this excruciatingly detailed blogpost](https://athityakumar.github.io/blog/posts/The_Internship_Hunt/)
+    just for you.
+
+    ---Day 1: Induction---
+
+    Our group of 10 interns, were the first batch of interns to start the Summer
+    Internship on 7th May 2018. We were provided a temporary accomodation at
+    [Nagarjuna Suites](https://www.tripadvisor.in/Hotel_Review-g297628-d1828935-Reviews-Nagarjuna_Suites-Bengaluru_Bangalore_District_Karnataka.html) for 1 week.
+
+    We had an all-day orientation session on 7th May 2018. This included a complete tour
+    around the building, security measures, sessions from various other teams and IT induction
+    among other things. We were then taken to lunch by our respective buddies (ie, mentor)
+    and also got shown our cubicles. But more about that, in the next section.
+
+    By the end of the day, we had really received a **LOT** of information from the onboarding
+    sessions - more than what we could comprehend. Well, that's what we felt on the 1st day.
+    Looking back at it now, I think it's actually pretty easy to cope-up with so much
+    information: just give yourself a week!
+
+    And oh, the best part about day 1. We got a LOT of things to take back to our hotel rooms:
+
+    ![Onboarding items image](onboarding.jpg)
+
+    - Badge
+    - Locker key (yes, there's a locker for each cubicle)
+    - Bag
+    - Apple MacBook Pro (with slider)
+    - USB Mouse
+    - 2 x chargers
+    - A couple of port converters (like, HDMI-to-USB)
+    - Headphone
+
+    *Clearly, the heavy influx of information given in the onboarding sessions didn't make it to
+    that list.*
+
+    ---Goodies and workspace---
+
+    I interned with the Pro-Connect Group (PCG), and sat with the rest of the team on the 4th
+    floor. The workspace is pretty awesome, as you can see from the picture below. Oh, also - Intuit
+    loves giving goodies coupled with surprise.
+
+    ![The A-class workspace image](workspace.jpg)
+
+    ![The goodies image](goodies.jpg)
+
+    - Bag
+    - Bottle
+    - Tee (welp, I'm yet to get one)
+    - Cap
+    - Rope Bag
+    - Hand-band
+
+    ---The case of the mysterious hand-band---
+
+    ![The band image](the_band.jpg)
+
+    25th May was supposed to be just another day, but clearly it wasn't normal. I came to my
+    cubicle after having breakfast, to find a mysterious hand-band (along with the bottle) lying
+    on my table. It's just a normal hand-band like the ones people usually wear, am I right?
+
+    **NOPE. Plot-twist.** It rather turned out to be a USB phone charging cable, disguised
+    as a hand-band to deceive unsuspecting interns. It turned out to be a hot topic of discussion
+    for about an hour or two, amongst the interns.
+
+    ---Internship project---
+
+    My internship project was a stand-alone one, that would be pluggable into one of the
+    existing products of our group. As a result, I got to work with fairly modern tech stack: 
+    mostly JavaScript, nodeJS and web-sockets. Infact, the project turned out to be pretty
+    generic, that we're now pushing to open-source it.
+
+    This definitely wouldn't have been so easy and seamless, if it weren't for my teammates
+    (Shashank and Pavithra) who guided me closely through the project. And ofcourse, a huge
+    token of thanks to Peter (Architect) and Raghu (Manager) for assigning me this interesting
+    project in the first place!
+
+    ---Team activities---
+
+    - Innovation Week
+
+    The very 2nd week of my internship turned out to coincide with the "Innovation week" of our
+    group. This is basically a week where anyone can solely concentrate and work on a specific
+    innovative idea. I teamed up with Venkatesh (a FTE) to build a blockchain application
+    that would make consent verification more secure and fraud detection easier. It was a great
+    feeling when I came to know that our project had gotten selected to be demoed to the senior
+    leadership of our group.
+
+    Infact, when Cece Morgan (EVP & GM, PCG) visited our group on 21st June, Venkatesh and I were
+    able to demo our innovation week project and my internship project respectively. *For some
+    reason, our desktops started to go crazy (loose HDMI cables maybe?) - right when it's
+    cooperation was required the most. But, we were luckily able to counter it with some
+    on-the-spot humour and it all turned out well.*
+
+    - Team Outing #1 at Serai Resorts
+
+    The whole PCG team went out for an outing at Serai resorts on 1st & 2nd June. In short, we
+    played Dumb-Charades, Mafia, Swimming / Water Polo and a couple of indoor games.
+
+    ![Serai resorts image](serai.jpg)
+
+    - Team Outing #2 at Something's cooking
+
+    As a part of team-bonding activity, we went to the "Something's cooking" outlet at Koramangla
+    on 2nd July. The ambience there was pretty much like MasterChef, and we split into 2 teams to
+    prepare veg & non-veg Italian dishes.
+
+    ![Something's cooking image](somethings_cooking.jpg)
+
+    *Well, I made a couple of my team members (Srikanth, Kusum and Namrata) cry by peeling
+    onion. And ofcourse, we all unit-tested the (tasty) brownie we had prepared - until it almost
+    got over before being served.*
+
+    - And the numerous eat-outs
+
+    The food here was really a welcome relief to people like me, who had survived on eating years
+    of hostel food. But by the 2nd month, the food flare kinda started getting saturated. So, we
+    had to eat outside atleast once a week, just to break the monotony.
+
+    *Thanks for all the free food - Srikanth, Sharath, Naveen, Divakar, Noorul and literally
+    almost the entire team. Perks of being an intern, am I right?*
+
+    ---Intern activities---
+
+    - Interns Day Out at Discovery Village Resort
+
+    ![Interns outing image](interns_outing.jpg)
+
+    On 15th June, we (interns) went on an outing to Discovery Village Resort. Here, we had a
+    couple of team building activities, rope climbing, paintball and indoor games. In between,
+    we were also able to fit in Dumb-Charades and Mafia before starting to disperse by the
+    evening.
+
+    - Interns Hackathon
+
+    This overnight hackathon was held on 21st & 22nd June, wherein interns grouped into teams of 
+    2/3/4. My team worked on a reccomendation system, and the other teams worked on a very
+    diverse range of fields: Alexa integration, Tweet classification, NFC tap-based application,
+    Face unlock for websites, etc.
+
+    And ofcourse, the creativity of the interns was reflected by the very project names.
+    Basically, they were all puns. There's a product called Mint, and all Mint-related projects
+    were named like: Mintor, MintCentives, ProxiMinty, etc.
+
+    *Well, we're all Mintelligent and Mintastic Minterns. Okay, sorry - the Mint puns are never
+    going to stop.*
+
+    - Meeting with Leaders
+
+    ![Meeting with leaders image](with_leaders.jpg)
+
+    We got to meet Intuit India's outgoing-SVP Vijay Anand and incoming-SVP Sanket Atal over an
+    interactive session on 19th June, where they shared their life stories and we discussed
+    our journey with Intuit so far. A week later, we had lunch with a couple of experienced
+    leaders - where they shared their journey so far and we talked about what we're working on.
+
+    - Product Mash-Ups
+
+    Product mash-ups happened as individual sessions for each product (Mint, QuickBooks and
+    TurboTax), wherein the managers met with all the interns. Such mash-ups consisted of both:
+    presentation and a hands-on session, so that we could try out the demo product.
+
+    - Final Review & Gallery Walk
+
+    With the internship tenure coming to an end, we had a final review wherein 1/2 reviewer(s)
+    is/are called from a different group to evaluate our work. With 15 minutes to present and
+    demo, this was more of a collaborative session where the reviewer also understood what's
+    going on with the project and how it could probably be used and be improved.
+
+    But, what's the fun in demonstrating your 2 months of work to just 1/2 reviewer(s)? That's
+    why we had something known as a "Gallery Walk", where you set a "stall" for your project and
+    demo it to the FTEs who come during lunch.
+
+    Well, it wasn't just the FTEs who came to the stalls. As the gallery walk happened in
+    batches, the rest of the interns would also come and ask the current batch of gallery walk
+    interns to present their project. **And listen intently, while also simultaneously
+    maintaining a poker face the whole time.**
+
+    ![The evilest thing image](evilest_thing.gif)
+
+    ---Conclusion---
+
+    Overall, the span of 10 weeks spent interning at Intuit was really fun and enjoyable. This
+    definitely wouldn't be possible if it weren't for all the awesome people around: PCG team
+    members and the fellow interns.
+
+    Last but definitely not the least, the connecting piece - the HR folks (Naina, Zubin,
+    Blossom and Leena) - thanks a lot for organizing a lot of events for the interns
+    and keeping us all as engaged as possible.
+
+    Thanks again!
+
+    **FIN.**
