@@ -2,7 +2,7 @@ datetime_index: "201807110830"
 
 title:  My Internship Experience at Intuit India
  
-short_desc:  Having interned at Intuit for 10 weeks, I've a LOT of things to share about my Internship experience. And NO, this is not going to be a technical blog post that documents my internship "work". Rather, it's about almost everything except that.
+short_desc:  Having interned at Intuit for 10 weeks, I've got a LOT of things to share about my Internship experience. And NO, this is not going to be a technical blog post that documents my internship "work". Rather, it's about almost everything except that.
 
 tags: 
     -   8
@@ -11,18 +11,18 @@ image_preview:  intuit.jpg
 
 html_content:   |
 
-    Having interned at Intuit for 10 weeks, I've a LOT of things to share about my
+    Having interned at Intuit for 10 weeks, I've got a LOT of things to share about my
     Internship experience. And NO, this is not going to be a technical blog post that
     documents my internship "work". Rather, it's about almost everything except that.
 
     If you'd like to know how I got this Summer Internship despite being from a
-    non-CS background, I've written [this excruciatingly detailed blogpost](https://athityakumar.github.io/blog/posts/The_Internship_Hunt#5. Intuit)
+    non-CS background, I've written [this excruciatingly detailed blog post](https://athityakumar.github.io/blog/posts/The_Internship_Hunt#5. Intuit)
     just for you.
 
     ---Day 1: Induction---
 
     Our group of 10 interns, were the first batch of interns to start the Summer
-    Internship on 7th May 2018. We were provided a temporary accomodation at
+    Internship on 7th May 2018. We were provided with a temporary accommodation at
     [Nagarjuna Suites](https://www.tripadvisor.in/Hotel_Review-g297628-d1828935-Reviews-Nagarjuna_Suites-Bengaluru_Bangalore_District_Karnataka.html) for 1 week.
 
     We had an all-day orientation session on 7th May 2018. This included a complete tour
@@ -53,7 +53,7 @@ html_content:   |
 
     ---Goodies and workspace---
 
-    I interned with the Pro-Connect Group (PCG), and sat with the rest of the team on the 4th
+    I interned with the Pro-Connect Group (PCG) and sat with the rest of the team on the 4th
     floor. The workspace is pretty awesome, as you can see from the picture below. Oh, also - Intuit
     loves giving goodies coupled with surprise.
 
@@ -72,7 +72,7 @@ html_content:   |
 
     ![The band image](the_band.jpg)
 
-    25th May was supposed to be just another day, but clearly it wasn't normal. I came to my
+    25th May was supposed to be just another day, but clearly, it wasn't normal. I came to my
     cubicle after having breakfast, to find a mysterious hand-band (along with the bottle) lying
     on my table. It's just a normal hand-band like the ones people usually wear, am I right?
 
@@ -84,11 +84,11 @@ html_content:   |
 
     My internship project was a stand-alone one, that would be pluggable into one of the
     existing products of our group. As a result, I got to work with fairly modern tech stack: 
-    mostly JavaScript, nodeJS and web-sockets. Infact, the project turned out to be pretty
+    mostly JavaScript, nodeJS and web-sockets. In fact, the project turned out to be pretty
     generic, that we're now pushing to open-source it.
 
     This definitely wouldn't have been so easy and seamless, if it weren't for my teammates
-    (Shashank and Pavithra) who guided me closely through the project. And ofcourse, a huge
+    (Shashank and Pavithra) who guided me closely through the project. And of course, a huge
     token of thanks to Peter (Architect) and Raghu (Manager) for assigning me this interesting
     project in the first place!
 
@@ -98,12 +98,12 @@ html_content:   |
 
     The very 2nd week of my internship turned out to coincide with the "Innovation week" of our
     group. This is basically a week where anyone can solely concentrate and work on a specific
-    innovative idea. I teamed up with Venkatesh (a FTE) to build a blockchain application
+    innovative idea. I teamed up with Venkatesh (an FTE) to build a blockchain application
     that would make consent verification more secure and fraud detection easier. It was a great
-    feeling when I came to know that our project had gotten selected to be demoed to the senior
+    feeling when I came to know that our project had gotten selected to be presented to the senior
     leadership of our group.
 
-    Infact, when Cece Morken (EVP & GM, PCG) visited our group on 21st June, Venkatesh and I were
+    In fact, when Cece Morken (EVP & GM, PCG) visited our group on 21st June, Venkatesh and I were
     able to demo our innovation week project and my internship project respectively. *For some
     reason, our desktops started to go crazy (loose HDMI cables maybe?) - right when it's
     cooperation was required the most. But, we were luckily able to counter it with some
@@ -118,21 +118,21 @@ html_content:   |
 
     - Team Outing #2 at Something's cooking
 
-    As a part of team-bonding activity, we went to the "Something's cooking" outlet at Koramangla
+    As a part of a team-bonding activity, we went to the "Something's cooking" outlet at Koramangala
     on 2nd July. The ambience there was pretty much like MasterChef, and we split into 2 teams to
     prepare veg & non-veg Italian dishes.
 
     ![Something's cooking image](somethings_cooking.jpg)
 
     *Well, I made a couple of my team members (Srikanth, Kusum and Namrata) cry by peeling
-    onion. And ofcourse, we all unit-tested the (tasty) brownie we had prepared - until it almost
+    onion. And of course, we all unit-tested the (tasty) brownie we had prepared - until it almost
     got over before being served.*
 
     - And the numerous eat-outs
 
     The food here was really a welcome relief to people like me, who had survived on eating years
     of hostel food. But by the 2nd month, the food flare kinda started getting saturated. So, we
-    had to eat outside atleast once a week, just to break the monotony.
+    had to eat outside at least once a week, just to break the monotony.
 
     *Thanks for all the free food - Srikanth, Sharath, Naveen, Divakar, Noorul and literally
     almost the entire team. Perks of being an intern, am I right?*
@@ -151,13 +151,13 @@ html_content:   |
     - Interns Hackathon
 
     This overnight hackathon was held on 21st & 22nd June, wherein interns grouped into teams of 
-    2/3/4. My team worked on a reccomendation system, and the other teams worked on a very
+    2/3/4. My team worked on a recommendation system, and the other teams worked on a very
     diverse range of fields: Alexa integration, Tweet classification, NFC tap-based application,
-    Face unlock for websites, etc.
+    Face unlocking for websites, etc.
 
-    And ofcourse, the creativity of the interns was reflected by the very project names.
+    And of course, the creativity of the interns was reflected by the very project names.
     Basically, they were all puns. There's a product called Mint, and all Mint-related projects
-    were named like: Mintor, MintCentives, ProxiMinty, etc.
+    were named as Mintor, MintCentives, ProxiMinty, etc.
 
     *Well, we're all Mintelligent and Mintastic Minterns. Okay, sorry - the Mint puns are never
     going to stop.*
@@ -201,7 +201,7 @@ html_content:   |
     definitely wouldn't be possible if it weren't for all the awesome people around: PCG team
     members and the fellow interns.
 
-    Last but definitely not the least, the connecting piece - the HR folks (Naina, Zubin,
+    Last but definitely NOT the least, the connecting piece - the HR folks (Naina, Zubin,
     Blossom and Leena) - thanks a lot for organizing a lot of events for the interns
     and keeping us all as engaged as possible.
 
