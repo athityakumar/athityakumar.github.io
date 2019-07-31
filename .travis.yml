@@ -1,0 +1,7 @@
+language: ruby
+rvm: 2.4.1
+script:
+  - bundle exec rubocop
+before_install:
+  - gem install bundler
+  - bundle install
