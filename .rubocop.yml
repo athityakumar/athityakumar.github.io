@@ -1,0 +1,104 @@
+AllCops:
+  Include:
+    - 'index.rb'
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+
+# Preferred codebase style ---------------------------------------------
+
+### Layouts ------------------------------------------------------------
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+
+Layout/SpaceAfterComma:
+  Enabled: false
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Layout/SpaceAroundOperators:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+### Styles -------------------------------------------------------------
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Style/EmptyMethod:
+  EnforcedStyle: compact
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false # TODO
+
+### Metrics ------------------------------------------------------------
+
+Metrics/AbcSize:
+  Enabled: false
+  # Max: 20
+
+Metrics/BlockLength:
+  Max: 100
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+  # Max: 7
+
+Metrics/LineLength:
+  Max: 300
+
+Metrics/MethodLength:
+  Max: 150
+
+Metrics/ModuleLength:
+  Max: 200
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+### Lint ---------------------------------------------------------------
+
+Lint/SplatKeywordArguments:
+  Enabled: false
