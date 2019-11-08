@@ -64,7 +64,7 @@ def setup_paths
   make_dir('blog/tags')
   n_blog_pages = $posts.each_slice($per_page).to_a.count
   (1..n_blog_pages).each do |i|
-    make_dir("blog/page#{i}")
+    make_dir("blog/page_#{i}")
   end
   $posts.each do |post|
     make_dir("blog/posts/#{post['filename']}")
@@ -75,7 +75,7 @@ def setup_paths
     n_tag_pages = fetch_posts_tagged(tag).each_slice($per_page).to_a.count
     n_tag_pages = n_tag_pages.zero? ? 1 : n_tag_pages
     (1..n_tag_pages).each do |i|
-      make_dir("blog/tags/#{tag['filename']}/page#{i}")
+      make_dir("blog/tags/#{tag['filename']}/page_#{i}")
     end
   end
 end
@@ -108,10 +108,10 @@ def do_pagination(posts, tag)
       template = 'auto/templates/pagination.html.erb'
       html_text = HtmlBeautifier.beautify(File.exist?(template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : '')
       if tag.empty?
-        File.open("blog/page#{j+1}/index.html", 'w') { |file| file.write(html_text) }
+        File.open("blog/page_#{j+1}/index.html", 'w') { |file| file.write(html_text) }
         puts "Generating Blog page #{j+1}."
       else
-        File.open("blog/tags/#{tag['filename']}/page#{j+1}/index.html", 'w') { |file| file.write(html_text) }
+        File.open("blog/tags/#{tag['filename']}/page_#{j+1}/index.html", 'w') { |file| file.write(html_text) }
         puts "Generating page #{j+1} of Tag #{tag['name']}."
       end
     end
@@ -124,10 +124,10 @@ def do_pagination(posts, tag)
     template = 'auto/templates/pagination.html.erb'
     html_text = HtmlBeautifier.beautify(File.exist?(template) ? ERB.new(File.open(template).read, 0, '>').result(binding) : '')
     if tag.empty?
-      File.open('blog/page1/index.html', 'w') { |file| file.write(html_text) }
+      File.open('blog/page_1/index.html', 'w') { |file| file.write(html_text) }
       puts 'Generating Blog page 1.'
     else
-      File.open("blog/tags/#{tag['filename']}/page1/index.html", 'w') { |file| file.write(html_text) }
+      File.open("blog/tags/#{tag['filename']}/page_1/index.html", 'w') { |file| file.write(html_text) }
       puts "Generating page 1 of Tag #{tag['name']}."
     end
   end
