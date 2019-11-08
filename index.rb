@@ -29,6 +29,8 @@ require 'htmlbeautifier'
 require 'yaml'
 require 'redcarpet'
 
+READING_SPEED = 265
+
 def remove_dir(path)
   if File.directory?(path)
     Dir.foreach(path) do |file|
@@ -242,6 +244,7 @@ def fetch_posts
                      data['datetime_index'][8..9] + ':' + data['datetime_index'][10..11] + ' AM'
                    end
     data['tag_data'] = []
+    data['x_minutes_read'] = data['html_content'].count(' ')/READING_SPEED + 1
     image_dir = "assets/images/blog/#{data['filename']}"
     if Dir.exist? image_dir
       data['image_preview'] = '' unless File.exist? "#{image_dir}/#{data['image_preview']}"
