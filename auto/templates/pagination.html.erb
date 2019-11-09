@@ -19,13 +19,13 @@
     <% if tag.length == 0 %>
       <link rel="stylesheet" type="text/css" class="ui" href="../../assets/all.css">
       <link rel="shortcut icon" href="../../assets/images/logo.png" />
-      <meta property="og:url" content="https://athityakumar.github.io/blog/page/<%= i+1 %>/" />
+      <meta property="og:url" content="https://athityakumar.github.io/blog/page_<%= i+1 %>/" />
       <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />
       <meta property="og:description" content="This is page <%= i+1 %> of Athitya Kumar's blog." />
     <% else %>
       <link rel="stylesheet" type="text/css" class="ui" href="../../../../assets/all.css">
       <link rel="shortcut icon" href="../../../../assets/images/logo.png" />
-      <meta property="og:url" content="https://athityakumar.github.io/blog/tags/<%= tag["filename"] %>/page/<%= i+1 %>/" />
+      <meta property="og:url" content="https://athityakumar.github.io/blog/tags/<%= tag["filename"] %>/page_<%= i+1 %>/" />
       <meta property="og:image" content="https://athityakumar.github.io/assets/images/logo.png" />
       <meta property="og:description" content="This is page <%= i+1 %> of posts with tag '<%= tag["name"] %>' , in Athitya Kumar's blog." />
     <% end %>
@@ -117,7 +117,7 @@
             <h4 class="tagline">    
               You're here : 
               <a href="../../">Homepage</a> > 
-              <a href="../page1/">Blog</a> > 
+              <a href="../page_1/">Blog</a> > 
               <a>Page <%= i+1 %> </a>    
               <br>              
                Total : <%= n_posts %> post(s), <%= n_pages %> page(s), <%= $tags.count %> tag(s). <br> Showing posts <%= showing_posts[0] %> - <%= showing_posts[1] %> in this page.
@@ -131,8 +131,8 @@
             <h4 class="tagline">    
               You're here : 
               <a href="../../../../">Homepage</a> > 
-              <a href="../../../page1/">Blog</a> > 
-              <a href="../page1/">This Tag</a> >
+              <a href="../../../page_1/">Blog</a> > 
+              <a href="../page_1/">This Tag</a> >
               <a href>Page <%= i+1 %> </a>    
               <br>              
               <% if n_posts != 0 %>
@@ -167,7 +167,7 @@
                   <a href="../posts/<%= post["filename"] %>/">#<%= post["index"] %> - <%= post["title"] %></a></span></b><br>                  
                   <p> 
                     <% post["tag_data"].each do |tag| %>
-                      <a href="../tags/<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>
+                      <a href="../tags/<%= tag["filename"] %>/page_1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>
                     <% end %>
                   </p>
                   
@@ -204,7 +204,7 @@
                       <a href="../../../posts/<%= post["filename"] %>/">#<%= post["index"] %> - <%= post["title"] %></a></span></b><br>                  
                       <p> 
                         <% post["tag_data"].each do |tag| %>
-                          <a href="../../<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>
+                          <a href="../../<%= tag["filename"] %>/page_1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>
                         <% end %>
                       </p>
                       <br>
@@ -242,11 +242,11 @@
                   <div class="ui hidden divider"></div>
                     <% if tag.length == 0 %>
                       <% $tags.each do |tag| %>
-                        <a href="../tags/<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
+                        <a href="../tags/<%= tag["filename"] %>/page_1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
                       <% end %>
                     <% else %>
                       <% $tags.each do |tag| %>
-                        <a href="../../<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
+                        <a href="../../<%= tag["filename"] %>/page_1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
                       <% end %>
                     <% end %>
                 </p>
@@ -259,7 +259,7 @@
         <div class="row">
           <div class="sixteen wide column center aligned">
             <% if older_page_exists %>
-              <a href="../page<%= older_page %>/" class="ui labeled primary icon left floated button">
+              <a href="../page_<%= older_page %>/" class="ui labeled primary icon left floated button">
                 <i class="angle double left large icon"></i> &nbsp; Older posts
               </a>
             <% else %>
@@ -268,7 +268,7 @@
               </a>
             <% end %>
             <% if recent_page_exists %>
-              <a href="../page<%= recent_page %>/" class="ui right labeled primary icon right floated button">
+              <a href="../page_<%= recent_page %>/" class="ui right labeled primary icon right floated button">
                 Recent posts &nbsp; <i class="angle double right large icon"></i>
               </a>
             <% else %>
@@ -317,9 +317,9 @@ var post_content = [
 var tag_content = [
   <% for i in (0..$tags.count-1) %>
     <% if i != $tags.count-1 %>  
-      { url: "../../blog/tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
+      { url: "../../blog/tags/<%= $tags[i]["filename"] %>/page_1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
     <% else %>
-      { url: "../../blog/tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
+      { url: "../../blog/tags/<%= $tags[i]["filename"] %>/page_1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
     <% end %>
   <% end %>
 ];
@@ -337,9 +337,9 @@ var post_content = [
 var tag_content = [
   <% for i in (0..$tags.count-1) %>
     <% if i != $tags.count-1 %>  
-      { url: "../../<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
+      { url: "../../<%= $tags[i]["filename"] %>/page_1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
     <% else %>
-      { url: "../../<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
+      { url: "../../<%= $tags[i]["filename"] %>/page_1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
     <% end %>
   <% end %>
 ];

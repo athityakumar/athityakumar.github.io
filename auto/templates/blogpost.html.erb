@@ -98,7 +98,7 @@
   
         </span>
           </h1>
-          <h4 class="tagline">  You're here : <a href="../../../">Homepage</a> > <a href="../../page1/">Blog</a> > <a>This Blog Post</a>
+          <h4 class="tagline">  You're here : <a href="../../../">Homepage</a> > <a href="../../page_1/">Blog</a> > <a>This Blog Post</a>
           </h4>
           <div class="ui hidden divider"></div>
           <div class="ui hidden divider"></div>
@@ -129,7 +129,7 @@
             <p class="ui description">Posted on <%= $posts[i]["date"] %> at <%= $posts[i]["time"] %> by <a href="../../../">The Vibe</a>.</p>
             <p>
               <% $posts[i]["tag_data"].each do |tag| %>
-              <a href="../../tags/<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"> <%= tag["name"] %> </a>
+              <a href="../../tags/<%= tag["filename"] %>/page_1/" class="ui <%= tag["color"] %> tag label"> <%= tag["name"] %> </a>
               <% end %>
             </p>
          </div>
@@ -157,7 +157,7 @@
                   </div>
                   <div class="ui hidden divider"></div>
                     <% $tags.each do |tag| %>
-                      <a href="../../tags/<%= tag["filename"] %>/page1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
+                      <a href="../../tags/<%= tag["filename"] %>/page_1/" class="ui <%= tag["color"] %> tag label"><%= tag["name"] %></a>                      
                     <% end %>
                 </p>
               </div>
@@ -233,9 +233,9 @@ var post_content = [
 var tag_content = [
   <% for i in (0..$tags.count-1) %>
     <% if i != $tags.count-1 %>  
-      { url: "../../tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
+      { url: "../../tags/<%= $tags[i]["filename"] %>/page_1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" },
     <% else %>
-      { url: "../../tags/<%= $tags[i]["filename"] %>/page1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
+      { url: "../../tags/<%= $tags[i]["filename"] %>/page_1/",  tag_title: "<%= $tags[i]["name"] %>", color: "<%= $tags[i]["color"] %>" }
     <% end %>
   <% end %>
 ];
