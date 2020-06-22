@@ -7,7 +7,7 @@
     {"name" : "Design", "index" : 6, "color" : "brown"},
     {"name" : "Development", "index" : 7, "color" : "brown"},
     {"name" : "Experience", "index" : 8, "color" : "green"},
-    {"name" : "Rant", "index" : 9, "color" : "green"},
+    {"name" : "Rant", "index" : 9, "color" : "red"},
     {"name" : "Documentation", "index" : 10, "color" : "green"},
     {"name" : "JavaScript", "index" : 11, "color" : "blue"},
     {"name" : "Python", "index" : 12, "color" : "blue"},
@@ -17,5 +17,6 @@
     {"name" : "C++", "index" : 16, "color" : "blue"},
     {"name" : "Chess", "index" : 17, "color" : "orange"},
     {"name" : "Music", "index" : 18, "color" : "orange"},
-    {"name" : "GSoC 2017", "index" : 19, "color" : "blue"}
+    {"name" : "GSoC 2017", "index" : 19, "color" : "blue"},
+    {"name" : "Flex", "index" : 20, "color" : "green"}
 ]
