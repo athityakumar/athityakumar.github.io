@@ -1,0 +1,373 @@
+datetime_index: "202007130830"
+
+title:  Getting into the Software Development Life, without a CS Degree
+ 
+short_desc:  After respawning my practice of blogging, a couple of friends have suggested me to write about my journey of switching from Mechanical Engineering to working as a Software Engineer. A lot of things in the 5 years of my life at IIT Kharagpur shaped me up for this switch - and that's what I've tried to summarise in this blog post.
+
+tags: 
+    -   7
+    -   8
+    -   9
+    -   20
+
+image_preview:  coding_banner_4_2.png
+
+html_content:   |
+
+    ![Mech to Coding Banner](coding_banner_7_2.png)
+
+    After respawning my practice of blogging, a couple of friends have suggested me to
+    write about my journey of switching from Mechanical Engineering to working as 
+    a Software Engineer. A lot of things in the 5 years of my life at IIT Kharagpur shaped
+    me up for this switch - and that's what I've tried to summarise in this blog
+    post.
+
+    Having had the opportunity to know seniors and batchmates who managed to do a
+    similar switch, I've also tried to connect the dots between our journeys from my
+    perspective. That way, folks who're following the same pursuit can learn from
+    my/our mistakes and probably skip making the same mistakes themselves.
+
+    ![Mech to Coding Banner](two_roads_1.png)
+
+    In this blog post, I've split our journeys into 4 phases:
+
+    - Phase 1: The change seeker
+    - Phase 2: Indiana Jones, the explorer
+    - Phase 3: The Padawan
+    - Phase 4: The Jedi
+
+    ---Phase 1: The change seeker---
+
+    Pretty much everyone starts out with this phase, in fact, irrespective of what they want to
+    pursue. **The very first step to realize what you want to do, is realizing that you don't want to
+    keep doing whatever you're currently doing.**
+
+    ![Shifu](shifu.jpg)
+
+    And in my case, it didn't even take much convincing for me to figure out that 
+    Mechanical Engineering wasn't my cup of tea. In our first year of engineering, we all
+    had a shared curriculum. I didn't have concerns
+    with most of them, but these two courses were in a league of their own -
+    namely, Engineering Drawing (ED) and Mechanics.
+    
+    Remember ED? It's the course where you get introduced to MiniDrafter; a tool that you use as a
+    prank gun for the rest of your college life; until you suddenly remember you're 2 months away
+    from graduation and finally pass down the legacy to some junior of yours! It's that dreadful course
+    where people with poor hand-eye coordination skills just give up and accept any passing grade. **I
+    can go on and on with the rants, but you get the drift. ¯\\_(ツ)_/¯**
+
+    Now, the probability of me escaping these two courses after my first year was close to zero. IITs
+    usually have a concept of "Department Change" (aka DeptC) wherein the top scorers among the freshers
+    get to change their department (Terms & Conditions apply, of course). But sadly, with these two courses
+    present in my first year, there was no chance my CGPA would come even remotely close to
+    switching my branch to CS.
+        
+    At that moment, reality dawned on me. The dreadful realization that the next four years of
+    my life would be filled with permutations and combinations of such Mech courses; because, wellllllll,
+    Mechanical Engineering.
+
+    ![Inner panic](inner_panic.png)
+
+    Right away after ending my first year, I had a very undeniable clarity that neither did I
+    have the interest to take Mech as a career nor did I have the skills to justify it. **In hindsight, I think
+    it was a blessing in disguise that my first-year experience had given me a crystal clear
+    focus that I'd have to pursue something outside of Mech.** That is, if I hadn't been annoyed enough,
+    I wouldn't have had enough motivation to start as early to switch to something else. In fact, I
+    saw this problem occurring with some of my friends even till their placements - they didn't have
+    much hate for Mech, but they didn't love it either. Such a situation results in half-hearted learning
+    and half-assed effort; which is at least as bad as it sounds.
+
+    > "Life is too short to tolerate something just for the sake of it - spend more time enjoying your passion!"
+
+    ![Change your destiny](naruto_destiny.jpg)
+
+    ---Phase 2: Indiana Jones, the explorer---
+
+    Once you've made up your mind (and heart) that you'd love to pursue something else, the next step
+    is to find out where your passion lies. And typically, it does take some time to explore
+    multiple options and figure out where our genuine interest lies.
+
+    In my case, I definitely used up my freshman and sophomore years trying to consider all different
+    options; as Mechanical Engineering was turning out to be very chill for me (yup, sarcasm). The
+    first couple of options I contemplated were: Coding, Finance and Management.
+    
+    Management seemed too much for a freshman, and the finance domain just had too many technical
+    mumbo-jumbo terms that I'd have to first get acquainted with - which seemed like an overkill back
+    then, and; is also tough to self-learn without someone pointing you towards all the right
+    resources. _Okay, yup, maybe I was intimidated by these two domains back then. I probably still
+    am, but now I do have friends who can point me to the right resources now._ And that's where
+    it began:
+
+    ![Dual boot starts](dualboot.jpeg)
+
+    So, I thought I'd give the Software domain a try. I went through the very risky process of dual-booting my
+    Windows laptop with Ubuntu; thankfully, I was able to complete the dual-boot without turning
+    my laptop into a piece of brick that has no OS to boot into. When I opened up the terminal, I was
+    already drawn into it - I still can't put it into words why. It felt like this dual-boot
+    adventure had finally paid off. Life decisions are often hard to explain - especially when the
+    reason is childish.
+    
+    Now, I was ready to deep-dive into the coding domain - yay! Where do I start
+    though? Software Engineering has way too many sub-genres, which leads to two main problems if you're
+    not coming from a CS degree background:
+    
+    - Choice paralysis: It's very easy to get intimated/indecisive by the wide range of choices
+
+    ![Choice paralysis](more_choice.jpeg)
+
+    - Curse of the comfort zone: It's very easy to fall into the trap of getting too comfortable and
+    fixated with one specific sub-genre and not getting to even explore some basic concepts or even
+    other interesting prospects.
+
+    Think about it - everyone prefers to always be in their comfort zone ideally. But hey, life
+    does have other plans - so how do you make sure you still get to be in your comfort zone
+    despite the uncertainties of life? The trick is to regularly step out by yourself, and
+    make yourself comfortable with more of these circumstances. That way, you eventually build
+    a large enough comfort zone and maintain a good trade-off between staying and stepping out
+    of this comfort zone.
+
+    And sometimes, stepping out of your comfort zone can be the best thing to ever happen to you.
+
+    ![Comfort zone meme](comfort_zone_1.jpg)
+
+    To give an example of the cons of a comfort zone,
+    I started out with plain static front-end web development near the end of my
+    freshman year as it was very intuitive to see the changes get reflected in the UI. Testing out the changes was as easy as opening an HTML file in the browser!
+    
+    But I got a bit too comfortable with it that I didn't want to explore much outside of
+    front-end, as it was too immersive to not keep spending time. Learning javascript
+    has definitely made life easier in hindsight, but still, it took me almost an
+    entire semester to start moving out of my comfort zone of front-end. There's a
+    whole world outside to venture! Baby steps.
+
+    ![Comfort zone meme](comfort_zone_3.jpg)
+
+    The next logical step to explore was checking out the back-end aspects of the same, and then maybe
+    trying to make the front-end and back-end work together (and that's the circle of full-stack
+    development). Most people choose Python3 as their first high-level language, but I picked up Ruby
+    as my first high-level language, as it just reads very naturally.
+
+    _In hindsight, it was indeed
+    [functional programming](https://womanonrails.com/functional-programming-ruby)
+    that had this effect of Ruby reading very naturally to me. And it's become a great
+    paradigm in recent times, being adopted by most of the languages!_
+
+    ---Phase 3: The Padawan---
+
+    When getting started in this journey of transition, there are two types of people. There are the
+    independent lone wolves who can venture anything on their own, and then there are those who prefer to
+    progress as a wolf pack. Lone wolves don't depend on anyone and can work at their own pace/will;
+    but typically, it's good to have an active community of folks (wolfpack) that share their learnings and
+    guide you when you need help.
+    
+    ![Itachi advice about comrades](itachi.jpg)
+    
+    A support group of sorts, to share exciting stuff and also to fall
+    back on when you feel overwhelmed. In retrospect, this role was kind of played by Metakgp in my
+    college tenure - there were always people who'd help out with a query. The best part is, it's not
+    an official "club"/"society" where there's a hierarchy of juniors/seniors -
+    so, it served as a barrier-free environment for everyone to interact freely and improve mutually.
+    
+    ![Apes together strong](apes.jpg)
+
+    I got started with simple plain Ruby scripts and then moved onto other sophisticated things - that
+    involved web frameworks (Rails), web scraping, API integrations, growth hacking and more. And here's
+    where my very first Internship at Pipecandy came in very handy! I put my full-stack skills
+    to good use and also got to learn a lot of things I use on a day-to-day basis like git commands.
+
+    If you're just getting started with coding and don't know git yet, git is a version management tool
+    that gives you the flexibility to collaborate with others and has your code changes in different
+    branches; [_even though most folks see the actual value added by git when they've broken the master
+    branch and need to revert back to a working version_](https://ohshitgit.com/).
+
+    Now that I had gathered some knowledge on good Ruby practices and libraries, I next delved into
+    open-source development to give back to the community and also learn back better best-practices. Or 
+    at least, that's how it started. But with more open-source CLIs and tools that I started using from
+    GitHub very regularly, the more invested I became with the open-source community!
+
+    I came across the SciRuby organization (also known as Ruby Science Foundation) and noticed that they
+    already had some progress in building computational tools in Ruby. With most Rubyists coming from a
+    Rails background and being one myself, I loved the idea of helping to make their tools more easily integrable
+    with Rails. And that's exactly what I did as a part of my GSOC 2017 project; I contributed IO
+    integrations between
+    [daru (Data Analysis in RUby)](https://github.com/sciruby/daru)
+    and Rails via [daru-io](https://github.com/sciruby/daru-io). Feel free to read
+    [this very creatively-written (self-proclaimed) GSOC post](http://sciruby.com/blog/2017/08/29/gsoc-2017-support-to-import-export-of-more-formats/)
+    on the same.
+
+    Fast forward by one year, I bagged
+    [a splendid summer internship at Intuit India](https://athityakumar.github.io/blog/posts/My_Internship_Experience_at_Intuit_India/)
+    - thanks again to my open-source contributions! 
+
+    ---Surprise: Wholesome Rant time!---
+
+    Oh, yup, spoiler alert - one major drawback of pursuing Software
+    Development without a CS background is discrimination. A lot of companies use your degree as a
+    means of filtering out your application from the system. As a result, it's tough to even get to the
+    interview stage. And your CS colleagues are usually not empathetic to your cause either,
+    as they seldom know about the problems you face. *(Cough)* **Privilege.** *(Cough)*
+    
+    On the brighter side, this trend is changing slowly for the better and companies are
+    now starting to consider open-source contributions as an alternative to the mainstream competitive
+    programming skills and CS degree requirements. If you're interested in reading rants, I'm sure you
+    will love [my Internship Hunt](https://athityakumar.github.io/blog/posts/The_Internship_Hunt/)!
+
+    Every time I recount my memories from college after having made the switch, the first motivational 
+    image that comes to my mind
+    is the iconic scene from MSD's biopic. Another level of hard relate - as MSD too couldn't put up for
+    long with what he was doing at Kharagpur, even though this was also a very crucial formative phase
+    for him, faced hardships, beat the odds and then went on to shine in his passion:
+
+    ![MSD Scene](msd.jpg)
+
+    And for what it's worth, at least all the hardships have given me enough content to write about! ¯\\_(ツ)_/¯
+
+    ![Jiraiya](jiraiya.jpg)
+
+
+    ---Back to Phase 3: Padawan, the sequel---
+
+    Sorry for drifting away with the rants - it's a rabbit-hole, but a very luring one. Alright, let's
+    get back to our timeline. After all the Ruby learnings, I wanted to venture more unknown
+    territories. I hopped to the next big thing: Data Analysis & Machine Learning. Given my experience
+    with the daru library, this was a nice segue. There are a couple of domains (IP/Image
+    Processing, NLP/Natural Language Processing, Video Processing, etc.) where these "smart" concepts can
+    be applied and it's preferred to take a course on the theory of ML and understand the math first,
+    to understand what the code exactly does.
+
+    If you're just using an existing ML model in your project, there are lots of repositories for each
+    of the domains that can provide you with object detection/face detection functionality in your
+    projects with barely a few lines of code. But mind you - if you'd rather like to add new features
+    to improve the performance of such-existing models, that's a whole other ball-game altogether!
+
+    In my case, I took up an NLP project for my BTech project and an IP project for my MTech project.
+    Both of these projects were not about using an existing model, but also adding some improvement to
+    existing architectures. And they typically involve a **LOT** of work, to go through the process of
+    literature review, familiarising with ALL the existing methods that have been tried out so far,
+    and then ideating something new. Converting this idea into code is often the easiest part in such
+    research-oriented pursuits. This is something you'd wanna do if you're trying to go for a PhD
+    or have explored multiple domains and then chosen a specific domain to deep-dive into. But unless
+    you're clear about it, I'd suggest you save it for the future.
+
+    ---Phase 4: The Jedi---
+
+    The major difference between the Padawan phase and the Jedi phase apart from the skill-set/knowledge
+    is the level of maturity. It's very typical for a Padawan to get fixated on their favourite
+    language, deep-dive into a specific language/framework and show-off their rapid software
+    building skills in it. However, the Padawan transitions into a Jedi when they come to appreciate
+    all languages/frameworks for the pros & cons each of them provide, and try to understand the
+    programming patterns and concepts that unite them. An accurate depiction of Jedis finding
+    programming patterns in the Naruto-verse would look something like this:
+
+    ![Sharingan seeing patterns](madara.gif)
+
+    Let me give an example between my Padawan and Jedi phases. As a Padawan, I was deeply invested
+    into Ruby & Rails - I loved the concept of
+    ActiveRecord for the simplistic interface it provides to communicate with the back-end database! But
+    as a Jedi, the language-specific knowledge that is acquired gets transformed and organized more
+    generically - ie, in terms of concepts and programming patterns. To draw a parallel to the same
+    example, a Jedi would focus more on learning the parts that'd be language-independent - such as
+    **MVC (Model-View-Controller)** pattern adopted by Rails (and a lot of other web frameworks as well,
+    **ORM (Object Relation Mapping)** adopted by RoR via ActiveRecord, etc.
+
+    That way, it's easier to learn a new language/framework based on the known common concepts/patterns and it's possible to even adopt hybrid best practices among languages!
+
+
+    > "You don't just learn software; you also learn how to learn software over time"
+
+    There's a real benefit to starting with the hands-on software development first and then
+    reading up its corresponding theory. It's because you often tend to reverse engineer the solution
+    depending on your need and then relate it with the theory/coursework. Such a theory that you
+    learn yourself by correlating with your hands-on experience tends to stick with you for
+    a long long time - in stark contrast to what you crammed for an exam.
+
+    However, the only con with not having a structured layout of a CS degree is that you may end up
+    skipping some of these basic concepts covered in some courses - either because it didn't seem
+    interesting to you and you were tempted to knowingly skip ahead, or you were not even aware of
+    its mere existence and didn't even get a chance to study it.
+
+    This was one of the golden tips given to me by [Bala Dutt](https://www.linkedin.com/in/baladutt/)
+    - one of the folks who took my internship interview at Intuit.
+    Bala also came into the Software Engineering realm with a non-CS
+    background and is now a revered Principal Engineer! His exact suggestion
+    during my pre-final year was to cover as much unchartered territory in CS coursework during the
+    final year. Thanks to his advice - I felt the need to retrospect the gaps I had left and covered
+    them during my final year.
+
+    ![Narrator: He didn't](narrator.png)
+
+    Or at least, that's what I thought. I joined back full-time at Intuit India as an SE1 and got allotted
+    the Data Platform. Most of the work here involved handling/processing data in a scalable way through
+    data lake concept and uses a generic ensemble of technologies like Hive, Hadoop, Spark, Kafka, Scala,
+    etc. This was surely a blind spot for me, as I had never gotten to work on such a huge amount of data
+    and was never exposed to this domain previously. I not only lacked just the specific tech-stack
+    familiarity, but also had to read on _why/how_ these technologies are scalable whereas traditional
+    datastores aren't as scalable relatively. **For example, why build a data lake for scalability; when
+    you can just work on MYSQL with lots and lots of shards?**
+
+    It was a bit comforting to know that it wasn't exactly an issue of being from a non-CS background.
+    Rather, the majority of the newly graduated folks are just not acquainted with the domain unless they've
+    specifically done an internship in the same domain. Almost everyone gets to learn this during
+    their first job hands-on. _Yay, validation!_ Around eleven months in, I feel more confident in the
+    domain of distributed computing and how the tech-stack ensemble comes together to give a scalable
+    solution.
+
+    Of course, it's always possible to get dealt blindspots in Software Development, irrespective of your
+    experience/background - no one has a perfect repertoire of knowing all concepts, domains and
+    tech-stacks. Rather, it's about how you handle blindspots based on the concepts you already know
+    and how you correlate them. _It's the same thing with life also no?_
+
+    And this is another thing that distinguishes Padawan from a Jedi. So, one way to handle blindspots
+    is to proactively improve your repertoire. Proactively - ie, without waiting for an external
+    factor to get you to do it. My way of doing this has been
+    by actively participating in hackathons. Hackathons are usually a competitive space, but not for
+    me. For me, a hackathon is an opportunity to throw myself out of my comfort zone and getting to learn
+    something new quickly. **A coder's version of improv performance, if you will.** Of course, this
+    has a lot to do with consciously choosing to step outside your comfort zone:
+
+    ![Comfort zone meme](comfort_zone_4.jpg)
+
+    Software Development has too many sub-domains. And the more of these domains you're familiar with,
+    the better your pace at learning a new domain quickly; as you've more distributed knowledge and
+    have a better chance of finding something to relate with the new domain. Also, with each domain
+    you're familiar with, the more all-round you become as a Software Developer (IMO) and the more
+    the number of prospective opportunities you give yourself to delve into!
+
+    ![Comfort zone meme](comfort_zone_5.png)
+
+    > "Always keep your options open."
+
+    Also, as a Jedi, you get to train and mentor Padawans of your own - guiding them on their path to
+    become a Jedi themselves one day. It's always a wholesome experience when they transition and
+    start guiding their own Padawans! It's the circle of life, in action.
+
+    ![Heart is very full!](heart_is_full.gif)
+
+    ---Conclusion---
+
+    If you've made it to the end of this post, you have incredible perseverance and passion to endure
+    in your pursuit!
+
+    ![Perseverance of a genius](might_guy.png)
+    ![Believe your choice!](might_believe_lee.png)
+
+
+    I hope that reading this post has been a fun experience and not just an information dump.
+    Now that we're almost done with the blog post, I've saved the most important for the last! I'd like
+    to take some time to emphasize the importance of following your
+    passion and not switching to the Software domain just because of the "hefty" pay. Be
+    rest assured, it does involve a lot of time and effort to compensate for what you get
+    paid for. And especially with this realm heavily relying on one to constantly sharpen
+    their edge and technical prowess; it's very easy to get burnt out and lose direction.
+
+    > "No effort seems like a lot when you're passionate about it, and; any minimal effort can
+    seem like heavy lifting if you're not passionate about it."
+    
+    _Yup, Mechanical Engineering, I'm seeing you._
+
+    Follow your passion - YOLO!
+
+    **FIN.**
+
+    *Got any other topic(s) that'd you like me to specifically write about? Please feel free
+    to use the comment section below.*
